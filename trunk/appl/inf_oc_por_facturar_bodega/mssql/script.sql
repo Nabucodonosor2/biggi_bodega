@@ -1,0 +1,29 @@
+CREATE TABLE INF_OC_POR_FACTURAR_BODEGA
+(
+	COD_INF_OC_POR_FACTURAR_BODEGA		numeric(10, 0) IDENTITY(1,1) NOT NULL,
+	FECHA_INF_OC_POR_FACTURAR_BODEGA	datetime NOT NULL,
+	COD_USUARIO							numeric(10, 0) NOT NULL,
+	COD_ORDEN_COMPRA					numeric(10, 0) NOT NULL,
+	FECHA_ORDEN_COMPRA					datetime NOT NULL,
+	COD_ITEM_ORDEN_COMPRA				numeric(10, 0) NOT NULL,
+	COD_PRODUCTO						varchar(100) NOT NULL,
+	NOM_PRODUCTO						varchar(100) NOT NULL,
+	CANTIDAD_OC							numeric(10, 2) NOT NULL,
+	CANT_FA								numeric(10, 2) NOT NULL,
+	CANT_POR_FACT						numeric(10, 2) NOT NULL,
+	COD_USUARIO_VENDEDOR				varchar(4) NULL,
+	COD_NOTA_VENTA						numeric(10, 2) NULL,
+	NOM_USUARIO							varchar(100) NULL,
+ CONSTRAINT PK_INF_OC_POR_FACTURAR_BODEGA PRIMARY KEY CLUSTERED (COD_INF_OC_POR_FACTURAR_BODEGA ASC)
+)
+
+--********************** INSERT ITEM MENU BODEGA - TODOINOX ********************
+insert into ITEM_MENU
+values(4097,'Informe OC Por Facturar BODEGA','S','M','S')
+
+				--BODEGA
+insert into AUTORIZA_MENU
+select COD_PERFIL,'4097','E','S','S' from PERFIL where COD_PERFIL = 1
+
+insert into AUTORIZA_MENU
+select COD_PERFIL,'4097','N','N','N' from PERFIL where COD_PERFIL <> 1

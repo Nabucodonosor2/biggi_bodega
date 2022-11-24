@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>Sistema Grupo de Empresas Biggi</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script src="../../../../commonlib/trunk/script_js/SpryTabbedPanels.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../empresa/help_empresa.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="faprov.js" type="text/javascript"></script>
+<link href="../../../../commonlib/trunk/css/SpryTabbedPanels.css" rel="stylesheet" type="text/css"/>
+{WI_JAVA_SCRIPT}
+</head>
+<body {WI_ONLOAD}>
+<!-- DO NOT MOVE! The following AllWebMenus linking code section must always be placed right AFTER the BODY tag-->
+<!-- ******** BEGIN ALLWEBMENUS CODE FOR menu ******** -->
+<script type="text/javascript">var MenuLinkedBy="AllWebMenus [4]",awmMenuName="menu",awmBN="740";awmAltUrl="";</script>
+<script charset="UTF-8" src="{K_ROOT_URL}menu/menu.js" type="text/javascript"></script>
+<script type="text/javascript">{W_MENU}</script>
+<!-- ******** END ALLWEBMENUS CODE FOR menu ******** -->
+<form action="" method="post" name="input" id="input">
+<input name="wi_hidden" id="wi_hidden" type="hidden" value="">
+<input name="wi_current_tab_page" id="wi_current_tab_page" type="hidden" value="">
+<table width="1050" border="0" align="center">
+	<tr bgcolor="#FFFFFF">
+	<!-- menu superior-->
+		<td width="1000"  height="51" align="center" id="awmAnchor-menu" style="width:100px; height:50px;">
+			<div style="color:blue; text-align:right; height:29px;"></div>
+			<div style="color:blue;text-align:right; font-family: Verdana,Arial,Helvetica,sans-serif;">{K_NOMBRE}</div>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>
+			<table width="1000" border="0">
+				<tr>
+					<td>
+						<table width="520" border="0">
+						<tr>
+							<td height="100%"><div class="titulo_central">{WI_RUTA_MENU}</div></td>
+						</tr>
+						<tr>
+							<td height="0%"><div class="tit_superior"><font color="#999999">{WI_FECHA_ACTUAL}</font></div></td>
+						</tr>
+						<tr>
+							<td height="0%"><div class="tit_superior"><font color="#999999">{WI_FECHA_MODIF}</font></div></td>
+						</tr>
+						</table>
+					</td> 
+					<!--<td width="68">{WI_DELETE}</td> -->
+					<td width="68" >{WI_CREATE}</td>
+					<td width="68">{WI_PRINT}</td>
+					<td width="68">{WI_NO_SAVE}</td>
+					<td width="68">{WI_SAVE}</td>
+					<td width="68">{WI_MODIFY}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>
+			<table width="1000" border="0" align="center">
+				<tr>
+					<td height="95">
+						<table width="1015" border="0" align="center">
+							<tr valign="top">
+								<td>
+									<!-- INI TabbedPanels1 -->
+									<div id="TabbedPanels1" class="TabbedPanels">
+										<ul class="TabbedPanelsTabGroup">
+												<li class="TabbedPanelsTab" tabindex="0" style="display:{TAB_151005}">FA Proveedor</li>
+												<li class="TabbedPanelsTab" tabindex="0" style="display:{TAB_151010}">Pagos</li>			
+										</ul>
+										<!-- INI TabbedPanelsContentGroup -->
+										<div class="TabbedPanelsContentGroup">
+											<!-- INI TabbedPanelsContent -->
+											<div class="TabbedPanelsContent">
+												<!--INI FAPROV-->
+												<div style="height:500px;" class="claro">
+													<table width="1000" rules="none" border="1" align="center">
+			                                    		<tr class="titulo_tabla">
+			                                            	<td colspan="6">DATOS GENERALES</td>
+			                                            </tr>
+			                                            <tr class="encabezado_right">
+				                                            <td width="166">Código:</td>
+				                                            <td width="166" class="claro" align="left">{COD_FAPROV}</td>
+				                                            <td width="166">Fecha:</td>
+				                                            <td width="166" class="claro" align="left">{FECHA_REGISTRO}</td>
+				                                            <td width="166">Emisor:</td>
+				                                            <td width="166" class="claro" align="left">{NOM_USUARIO}</td>
+			                                           	</tr>
+			                                  	  	</table> 
+			                                      	<p />
+												  	<table width="1000" rules="none" border="1" align="center">
+														<tr class="titulo_tabla">				
+															<td colspan="1">PROVEEDOR</td>
+															<td colspan="7">&nbsp;</td>
+														</tr>
+														<tr class="encabezado_right">
+															<td width="171">Rut:</td>
+															<td width="159" class="claro" align="left">{RUT}-{DIG_VERIF}</td>
+															<td width="166">Alías:</td>
+															<td width="161" class="claro" align="left">{ALIAS}</td>
+															<td width="166">Código</td>
+															<td width="167" class="claro" align="left">{COD_EMPRESA}</td>
+														</tr>
+														<tr class="encabezado_right">
+															<td>Razón Social:</td>
+															<td colspan="5" class="oscuro" align="left">{NOM_EMPRESA}</td>
+														</tr>
+													</table> 
+													<P />
+													<table width="1000" rules="none" border="1" align="center" class="claro">	
+														<tr class="titulo_tabla">				
+															<td colspan="11">DATOS DOCUMENTO{PORC_IVA_H}{RETENCION_BH_H}{ORIGEN_FAPROV_H}</td>
+														</tr>
+														<tr class="encabezado_right">
+															<td width="166">Tipo Documento:</td>
+															<td width="166" class="claro" align="left">{COD_TIPO_FAPROV}</td>
+															<td width="166">Nº Documento:</td>
+															<td width="166" class="claro" align="left">{NRO_FAPROV}</td>
+															<td width="166">Fecha Documento:</td>
+															<td width="166" class="claro" align="left">{FECHA_FAPROV}</td>
+														</tr>
+														<tr class="encabezado_right">
+															<td>{LABEL_BRUTO_NETO}:</td>
+															<td class="oscuro" align="left">{TOTAL_NETO}{TOTAL_NETO_H}</td>
+															<td>{LABEL_RETENCION_IVA}:</td>
+															<td class="oscuro" align="left">{MONTO_IVA}{MONTO_IVA_H}</td>
+															<td>{LABEL_TOTAL}:</td>
+															<td class="oscuro" align="left">{TOTAL_CON_IVA}{TOTAL_CON_IVA_H}</td>
+														</tr>
+														<tr class="encabezado_right">
+															<td>Proyecto compra:</td>
+															<td class="claro" align="left" colspan="5">{COD_CUENTA_COMPRA}</td>
+														</tr>
+														<tr class="encabezado_right">
+															<td>Estado:</td>
+															<td class="oscuro" align="left">{COD_ESTADO_FAPROV}</td>
+															<td>Registrado Por:</td>
+															<td colspan="3" class="oscuro" align="left">{USUARIO_CAMBIO}{COD_USUARIO_ANULA}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{FECHA_CAMBIO}{FECHA_ANULA}</td>
+														</tr>
+														<tr class="encabezado_right" id="tr_anula" style="display:{TR_DISPLAY}">
+															<td>Motivo Anulación:</td>
+															<td class="claro" colspan="5" align="left">{MOTIVO_ANULA}</td>
+															
+														</tr>
+													</table>	
+													<P/>
+													<table width="1000" rules="none" border="1" align="center" class="claro">		
+														<tr class="titulo_tabla">				
+															<td colspan="11">{TITULO_COD_DOC}</td>
+														</tr>
+														<tr class="encabezado_center">
+															<th width="3%"></th>
+															<th width="6%">Código</th>
+															<th width="10%">Fecha</th>
+															<th width="23%" style="display:{TD_REFERENCIA_ITEM}">Referencia</th>
+															<th width="6%" style="display:{TD_COD_NOTA_VENTA}">Nº NV</th>
+															<th width="10%">{LABEL_BRUTO_NETO1}</th>
+															<th width="10%">{LABEL_RETENCION_IVA1}</th>
+															<th width="10%">{LABEL_TOTAL1}</th>
+															<th width="10%" style="display:{TD_SALDO_SIN_FAPROV}">Por Asignar</th>
+															<th width="12%">Monto Asignado</th>
+														</tr>
+													</table>	
+													<table width="1000" rules="none" border="0" align="center" class="claro">
+														<tr>
+															<td>	
+															<div style="overflow-x:hidden; overflow-y:auto; height:127; margin-top:0em;">
+																<table width="1000" rules="none" border="1" align="center" class="claro" id="ITEM_FAPROV">								
+																<!-- startBlock(ITEM_FAPROV) -->
+																	 <tr class="{DW_TR_CSS}" id="{DW_TR_ID}" style="display:{TR_VISIBLE}">
+																	 	<td width="3%" align="center">{SELECCION}</td>
+																		<td width="6%" align="center">{COD_DOC}</td>
+																		<td width="10%" align="center">{FECHA_ITEM}</td>
+																		<td width="23%" align="left" style="display:{TD_REFERENCIA_ITEM}">{REFERENCIA_ITEM}</td>
+																		<td width="6%" align="center" style="display:{TD_COD_NOTA_VENTA}">{COD_NOTA_VENTA}</td>   
+																		<td width="10%" align="right">{TOTAL_NETO_ITEM}</td>   
+																		<td width="10%" align="right">{MONTO_IVA_ITEM}</td>
+																		<td width="10%" align="right">{TOTAL_CON_IVA_ITEM}</td>
+																		<td width="10%" align="right" style="display:{TD_SALDO_SIN_FAPROV}">{SALDO_SIN_FAPROV}{SALDO_SIN_FAPROV_H}</td>
+																		<td width="12%" align="right"><div style="padding-right:20px;">{MONTO_ASIGNADO}{MONTO_ASIGNADO_C}<label style="display:{DISPLAY_CERO};">0</label></div></td>
+																	</tr>	
+																	<!-- endBlock(ITEM_FAPROV) -->
+																 </table>
+															</div>
+															</td>
+														</tr>
+													</table>
+													<table width="1000" align="center" border="1" rules="none">											
+														<tr class="titulo_2_tabla_right">
+															<td width="88%" class="encabezado_right">Total Asignado:</td>
+															<td width="12%"><div style="padding-right:20px;">{SUM_MONTO_ASIGNADO_C}</div></td>
+														</tr>
+													</table>
+													<table width="1000" align="center" border="0" rules="none">											
+														<tr class="encabezado_right">
+															<td colspan="2" class="claro" align="left">
+																<input type="button" value="Dejar Selección" class="Button" onClick="muestra_lista('none');" {DISABLE_BUTTON}>
+																<input type="button" value="Volver a todo el listado" class="Button" onClick="muestra_lista('');" {DISABLE_BUTTON}>
+														</tr>													
+													</table>
+												</div><!--FIN FAPROV-->
+											</div><!-- FIN TabbedPanelsContent -->
+											<!--INI TabbedPanelsContent -->
+											<div class="TabbedPanelsContent">
+													<!--INI PAGOS-->
+													<div style="height:500px;" class="claro">
+														<table width="1000" rules="none" border="1" align="center">
+				                                    		<tr class="titulo_tabla">
+				                                            	<td colspan="6">DATOS GENERALES</td>
+				                                            </tr>
+				                                            <tr class="encabezado_right">
+					                                            <td width="166">Código:</td>
+					                                            <td width="166" class="claro" align="left">{COD_FAPROV}</td>
+					                                            <td width="166">Fecha:</td>
+					                                            <td width="166" class="claro" align="left">{FECHA_REGISTRO}</td>
+					                                            <td width="166">Emisor:</td>
+					                                            <td width="166" class="claro" align="left">{NOM_USUARIO}</td>
+				                                           	</tr>
+				                                  	  	</table> 
+				                                      	<p />
+					                                    <table width="1000" rules="none" border="1" align="center">                  			  					  		
+															<tr height="10">				
+																<td colspan="3" class="titulo_tabla"><!-- AGREGAR TITULO --></td>
+															</tr>
+															<tr class="encabezado_center">
+																<td width="30%">Codigo Pago Proveedor</td>
+																<td width="70%">Monto Asignado</td>
+															</tr>
+														</table>
+														<div style="overflow-x:hidden; overflow-y:auto; height:400; margin-top:-1em;">
+															<table width="1000" rules="none" border="1" align="center" class="claro" id="FPROV">
+															<!-- startBlock(PAGO_FAPROV) -->
+																<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+																	<td width="30%" align="center">{TIPO}&nbsp{COD_PAGO_FAPROV}</td>
+																	<td width="70%" align="center">{MONTO_ASIGNADO_PAGO}</td>
+																</tr>
+															<!-- endBlock(PAGO_FAPROV) -->
+															</table>
+														</div>
+				                                    </div><!--FIN PAGOS-->
+											</div><!--FIN TabbedPanelsContent -->
+										</div><!-- FIN TabbedPanelsContentGroup -->	
+									</div><!-- FIN TabbedPanels1 -->
+								</td>																
+							</tr>
+						</table>
+						<table width="1000" border="0" align="center">
+							<tr valign="middle">
+							  <td width="290" >{WI_BACK}</td>
+							  <td align="right">{WI_FIRST}{WI_PREV}</td>
+							  <td align="left">{WI_NEXT}{WI_LAST}</td>
+							  <td width="290"></td>
+							</tr>
+						</table> 							
+					</td>	
+				</tr>  
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+<!--
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# m h  dom mon dow   command
+#*/1 * * * * /usr/bin/curl root:fedora http://192.168.2.100/mail/envio.php
+*/1 * * * * /var/www/mail/script_mail.sh
+28 13 * * 4 /var/www/mail/script_pp.sh

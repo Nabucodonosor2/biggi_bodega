@@ -1,0 +1,458 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>Sistema Grupo de Empresas Biggi</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script src="../../../../commonlib/trunk/script_js/SpryTabbedPanels.js" type="text/javascript"></script>
+<link href="../../../../commonlib/trunk/css/SpryTabbedPanels.css" rel="stylesheet" type="text/css"/>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../empresa/help_empresa.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="envio_softland.js" type="text/javascript"></script>
+{WI_JAVA_SCRIPT}
+</head>
+<body {WI_ONLOAD}>
+<!-- DO NOT MOVE! The following AllWebMenus linking code section must always be placed right AFTER the BODY tag-->
+<!-- ******** BEGIN ALLWEBMENUS CODE FOR menu ******** -->
+<script type="text/javascript">var MenuLinkedBy="AllWebMenus [4]",awmMenuName="menu",awmBN="740";awmAltUrl="";</script>
+<script charset="UTF-8" src="{K_ROOT_URL}menu/menu.js" type="text/javascript"></script>
+<script type="text/javascript">{W_MENU}</script>
+<!-- ******** END ALLWEBMENUS CODE FOR menu ******** -->
+<form action="" method="post" name="input" id="input">
+<input name="wi_hidden" id="wi_hidden" type="hidden" value="">
+<input name="wi_current_tab_page" id="wi_current_tab_page" type="hidden" value="">
+<table width="1050" border="0" align="center">
+	<tr bgcolor="#FFFFFF">
+	<!-- menu superior-->
+		<td width="1000"  height="51" align="center" id="awmAnchor-menu" style="width:100px; height:50px;">
+			<div style="color:blue; text-align:right; height:29px;"></div>
+			<div style="color:blue;text-align:right; font-family: Verdana,Arial,Helvetica,sans-serif;">{K_NOMBRE}</div>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+	  <td>
+		<table width="1000" border="0">
+			<tr>
+				<td>
+					<table width="520" border="0">
+						<tr>
+							<td height="100%"><div class="titulo_central">{WI_RUTA_MENU}</div></td>
+						</tr>
+						<tr>
+							<td height="0%"><div class="tit_superior"><font color="#999999">{WI_FECHA_ACTUAL}</font></div></td>
+						</tr>
+						<tr>
+							<td height="0%"><div class="tit_superior"><font color="#999999">{WI_FECHA_MODIF}</font></div></td>
+						</tr>
+					</table>
+				</td>
+				<td width="68"></td>
+				<td width="68">{WI_PRINT}</td>
+				<td width="68">{WI_NO_SAVE}</td>
+				<td width="68">{WI_SAVE}</td>
+				<td width="68">{WI_MODIFY}</td>
+			</tr>
+		</table>
+	  </td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>
+			<table width="1000" border="0" align="center">
+				<tr>
+					<td height="95">
+						<table width="1015" border="0" align="center">
+							<tr valign="top">
+								<td height="528">
+									<div id="TabbedPanels1" class="TabbedPanels">
+										<ul class="TabbedPanelsTabGroup">
+											<li class="TabbedPanelsTab" style="display:{TAB_25450505}">Envio Softland</li>
+											<li class="TabbedPanelsTab" style="display:{DISPLAY_FA}" id="TAB_FA">Facturas</li>
+											<li class="TabbedPanelsTab" style="display:{DISPLAY_NC}" id="TAB_NC">Notas de Crédito</li>
+											<li class="TabbedPanelsTab" style="display:{DISPLAY_FC}" id="TAB_FC">Facturas Compra</li>
+											<li class="TabbedPanelsTab" style="display:{DISPLAY_NCC}" id="TAB_FC">Notas de Crédito Compra</li>
+											<li class="TabbedPanelsTab" style="display:{DISPLAY_CLI}" id="TAB_EM">Clientes</li>
+											<li class="TabbedPanelsTab" style="display:{DISPLAY_PP}" id="TAB_EM">Pago Proveedores</li>
+											<li class="TabbedPanelsTab" style="display:{DISPLAY_IP}" id="TAB_IM">Ingresos de Pago</li>
+										</ul>
+										<div class="TabbedPanelsContentGroup">
+											<!--INI ENVIO_COMPROBANTE-->
+											<div class="TabbedPanelsContent" style="height:470;">
+												<table width="1000" rules="none" border="1" align="center">
+													<tr class="titulo_tabla">
+														<td colspan="6">DATOS GENERALES</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td width="166">Código:</td>
+														<td width="169" class="claro" align="left">{COD_ENVIO_SOFTLAND}</td>
+														<td width="166">Fecha:</td>
+														<td width="170" class="claro" align="left">{FECHA_ENVIO_SOFTLAND}</td>
+														<td width="167">Emisor:</td>
+														<td width="165" class="claro" align="left">{NOM_USUARIO}</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td >Tipo:</td>
+														<td class="oscuro" align="left">{COD_TIPO_ENVIO}{NOM_TIPO_ENVIO}</td>
+														<td >Estado:</td>
+														<td class="oscuro" align="left">{COD_ESTADO_ENVIO}</td>
+														<td colspan="2" class="oscuro" align="left">{NOM_USUARIO_CAMBIO} - {FECHA_CAMBIO}</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td>N° Comprobante:</td>
+														<td class="claro" align="left">{NRO_COMPROBANTE}</td>
+														<td>N° Correlativo interno:</td>
+														<td class="claro" align="left">{NRO_CORRELATIVO_INTERNO}{NRO_CORRELATIVO_H}</td>
+														<td class="claro" align="left" colspan="2">(Usado solo en traspaso de compras)</td>
+													</tr>
+												</table>
+												<p>
+												<table width="1000" rules="none" border="1" align="center" style="display:{DISPLAY_1_2_TIPO}">
+													<tr class="titulo_tabla">
+														<td colspan="6">RESUMEN TRASPASO</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td>Cantidad FA:</td>
+														<td class="oscuro">{RE_CANT_FA}</td>
+														<td class="oscuro">{RE_TOTAL_NETO_FA}</td>
+														<td class="oscuro">{RE_MONTO_IVA_FA}</td>
+														<td class="oscuro" colspan="2">{RE_TOTAL_FA}</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td>Cantidad NC:</td>
+														<td class="claro">{RE_CANT_NC}</td>
+														<td class="claro">{RE_TOTAL_NETO_NC}</td>
+														<td class="claro">{RE_MONTO_IVA_NC}</td>
+														<td class="claro" colspan="2">{RE_TOTAL_NC}</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td class="oscuro" colspan="6" align="center">{RE_DIF_MESES}</td>
+													</tr>													
+												</table>
+												<table width="1000" rules="none" border="1" align="center" style="display:{DISPLAY_3_4_TIPO}">
+													<tr class="titulo_tabla">
+														<td colspan="6">RESUMEN TRASPASO</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td>Cantidad:</td>
+														<td class="oscuro">{RE_CANT_FA}</td>
+														<td class="oscuro" colspan="4">{RE_TOTAL_FA}</td>
+													</tr>
+												</table>
+											</div>
+											<!--FIN ENVIO_COMPROBANTE-->
+										  <!--INI FACTURA-->
+										  <div class="TabbedPanelsContent">
+												<table width="1000" rules="none" border="1" align="center" class="claro">
+													<tr class="titulo_tabla">
+														<td colspan="11">FACTURAS</td>
+													</tr>
+													<tr class="encabezado_center">
+														<th width="10%">Selección</th>
+														<th width="10%">N° FA</th>
+														<th width="10%">Fecha</th>
+														<th width="40%">Razón Social</th>
+														<th width="10%">Total Neto</th>
+														<th width="10%">IVA</th>
+														<th width="10%">Total</th>
+													</tr>
+												</table>
+												<div style="overflow-x:hidden; overflow-y:auto; height:425;">
+												<table width="1000" rules="none" border="1" align="center" class="claro" id="ENVIO_FACTURA">
+													<!-- startBlock(ENVIO_FACTURA) -->
+													<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+														<td width="10%" align="center">{FA_SELECCION}</td>
+														<td width="10%" align="center">{FA_NRO_FACTURA}</td>
+														<td width="10%" align="center">{FA_FECHA_FACTURA}</td>
+														<td width="40%" align="left">{FA_NOM_EMPRESA}</td>
+														<td width="10%" align="right">{FA_TOTAL_NETO}</td>									
+														<td width="10%" align="right">{FA_MONTO_IVA}</td>									
+														<td width="10%" align="right"><div style="padding-right:20px;">{FA_TOTAL_CON_IVA}</div></td>									
+													</tr>
+													<!-- endBlock(ENVIO_FACTURA) -->
+												</table>
+												</div>
+                                        		<table width="1000" border="0" align="center" class="claro">
+													<tr>
+														<td align="left">
+															<input type="button" value="Marcar Todo" class="Button" onClick="marcar_todo('ENVIO_FACTURA', 'FA_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Desmarcar Todo" class="Button" onClick="desmarcar_todo('ENVIO_FACTURA', 'FA_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Dejar selección" class="Button" onClick="dejar_seleccion('ENVIO_FACTURA', 'FA_SELECCION');" {DISABLE_BUTTON}>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<!--FIN FACTURA-->
+											<!--INI NOTA_CREDITO-->
+										  	<div class="TabbedPanelsContent">
+												<table width="1000" rules="none" border="1" align="center" class="claro">
+													<tr class="titulo_tabla">
+														<td colspan="11">NOTAS DE CREDITO</td>
+													</tr>
+													<tr class="encabezado_center">
+														<th width="10%">Selección</th>
+														<th width="10%">N° NC</th>
+														<th width="10%">Fecha</th>
+														<th width="40%">Razón Social</th>
+														<th width="10%">Total Neto</th>
+														<th width="10%">IVA</th>
+														<th width="10%">Total</th>
+													</tr>
+												</table>
+												<div style="overflow-x:hidden; overflow-y:auto; height:425;">
+												<table width="1000" rules="none" border="1" align="center" class="claro" id="ENVIO_NOTA_CREDITO">
+													<!-- startBlock(ENVIO_NOTA_CREDITO) -->
+													<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+														<td width="10%" align="center">{NC_SELECCION}</td>
+														<td width="10%" align="center">{NC_NRO_NOTA_CREDITO}</td>
+														<td width="10%" align="center">{NC_FECHA_NOTA_CREDITO}</td>
+														<td width="40%" align="left">{NC_NOM_EMPRESA}</td>
+														<td width="10%" align="right">{NC_TOTAL_NETO}</td>									
+														<td width="10%" align="right">{NC_MONTO_IVA}</td>									
+														<td width="10%" align="right"><div style="padding-right:20px;">{NC_TOTAL_CON_IVA}</div></td>									
+													</tr>
+													<!-- endBlock(ENVIO_NOTA_CREDITO) -->
+												</table>
+												</div>
+                                        		<table width="1000" border="0" align="center" class="claro">
+													<tr>
+														<td align="left">
+															<input type="button" value="Marcar Todo" class="Button" onClick="marcar_todo('ENVIO_NOTA_CREDITO', 'NC_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Desmarcar Todo" class="Button" onClick="desmarcar_todo('ENVIO_NOTA_CREDITO', 'NC_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Dejar selección" class="Button" onClick="dejar_seleccion('ENVIO_NOTA_CREDITO', 'NC_SELECCION');" {DISABLE_BUTTON}>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<!--FIN NOTA_CREDITO-->
+										  <!--INI FACTURA COMPRA-->
+										  <div class="TabbedPanelsContent">
+												<table width="1000" rules="none" border="1" align="center" class="claro">
+													<tr class="titulo_tabla">
+														<td colspan="11">FACTURAS DE COMPRA</td>
+													</tr>
+													<tr class="encabezado_center">
+														<th width="10%">Selección</th>
+														<th width="10%">N° FA</th>
+														<th width="10%">Fecha</th>
+														<th width="30%">Razón Social</th>
+														<th width="8%">Total Neto</th>
+														<th width="8%">IVA</th>
+														<th width="8%">Total</th>
+														<th width="16%">Correlativo Interno</th>
+													</tr>
+												</table>
+												<div style="overflow-x:hidden; overflow-y:auto; height:425;">
+												<table width="1000" rules="none" border="1" align="center" class="claro" id="ENVIO_FAPROV">
+													<!-- startBlock(ENVIO_FAPROV) -->
+													<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+														<td width="10%" align="center">{FC_SELECCION}</td>
+														<td width="10%" align="center">{FC_NRO_FACTURA}</td>
+														<td width="10%" align="center">{FC_FECHA_FACTURA}</td>
+														<td width="30%" align="left">{FC_NOM_EMPRESA}</td>
+														<td width="8%" align="right">{FC_TOTAL_NETO}</td>									
+														<td width="8%" align="right">{FC_MONTO_IVA}</td>									
+														<td width="8%" align="right">{FC_TOTAL_CON_IVA}</td>
+														<td width="16%" align="right"><div style="padding-right:20px;">{FC_CORRELATIVO}</div></td>																							
+													</tr>
+													<!-- endBlock(ENVIO_FAPROV) -->
+												</table>
+												</div>
+                                        		<table width="1000" border="0" align="center" class="claro">
+													<tr>
+														<td align="left">
+															<input type="button" value="Marcar Todo" class="Button" onClick="marcar_todo('ENVIO_FAPROV', 'FC_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Desmarcar Todo" class="Button" onClick="desmarcar_todo('ENVIO_FAPROV', 'FC_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Dejar selección" class="Button" onClick="dejar_seleccion('ENVIO_FAPROV', 'FC_SELECCION');" {DISABLE_BUTTON}>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<!--FIN FACTURA COMPRA-->
+											<!--INI NOTA_CREDITO COMPRA-->
+										  	<div class="TabbedPanelsContent">
+												<table width="1000" rules="none" border="1" align="center" class="claro">
+													<tr class="titulo_tabla">
+														<td colspan="11">NOTAS DE CREDITO DE COMPRA</td>
+													</tr>
+													<tr class="encabezado_center">
+														<th width="10%">Selección</th>
+														<th width="10%">N° NC</th>
+														<th width="10%">Fecha</th>
+														<th width="30%">Razón Social</th>
+														<th width="8%">Total Neto</th>
+														<th width="8%">IVA</th>
+														<th width="8%">Total</th>
+														<th width="16%">Correlativo Interno</th>
+													</tr>
+												</table>
+												<div style="overflow-x:hidden; overflow-y:auto; height:425;">
+												<table width="1000" rules="none" border="1" align="center" class="claro" id="ENVIO_NCPROV">
+													<!-- startBlock(ENVIO_NCPROV) -->
+													<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+														<td width="10%" align="center">{NCC_SELECCION}</td>
+														<td width="10%" align="center">{NCC_NRO_NOTA_CREDITO}</td>
+														<td width="10%" align="center">{NCC_FECHA_NOTA_CREDITO}</td>
+														<td width="30%" align="left">{NCC_NOM_EMPRESA}</td>
+														<td width="8%" align="right">{NCC_TOTAL_NETO}</td>									
+														<td width="8%" align="right">{NCC_MONTO_IVA}</td>									
+														<td width="8%" align="right">{NCC_TOTAL_CON_IVA}</td>									
+														<td width="16%" align="right"><div style="padding-right:20px;">{NCC_CORRELATIVO}</div></td>																							
+													</tr>
+													<!-- endBlock(ENVIO_NCPROV) -->
+												</table>
+												</div>
+                                        		<table width="1000" border="0" align="center" class="claro">
+													<tr>
+														<td align="left">
+															<input type="button" value="Marcar Todo" class="Button" onClick="marcar_todo('ENVIO_NCPROV', 'NCC_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Desmarcar Todo" class="Button" onClick="desmarcar_todo('ENVIO_NCPROV', 'NCC_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Dejar selección" class="Button" onClick="dejar_seleccion('ENVIO_NCPROV', 'NCC_SELECCION');" {DISABLE_BUTTON}>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<!--FIN NOTA_CREDITO COMPRA-->
+											<!--INI ENVIO_EMPRESA-->
+											<div class="TabbedPanelsContent">
+												<table width="1000" rules="none" border="1" align="center" class="claro"> 
+													<tr class="titulo_tabla">
+														<td colspan="4">EMPRESAS</td>
+													</tr>
+													<tr class="encabezado_center">
+														<th width="10%">Selección</th>
+														<th width="10%">Rut</th>
+														<th width="30%">Alias</th>
+														<th width="50%">Razón Social</th>
+													</tr>
+												</table>
+												<div style="overflow-x:hidden; overflow-y:auto; height:425;">
+												<table width="1000" rules="none" border="1" align="center" class="claro" id="ENVIO_EMPRESA">								
+													<!-- startBlock(ENVIO_EMPRESA) -->
+													<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+														<td width="10%" align="center">{EM_SELECCION}</td>
+														<td width="10%" align="center">{EM_RUT}-{EM_DIG_VERIF}</td>
+														<td width="30%">{EM_ALIAS}</td>
+														<td width="50%">{EM_NOM_EMPRESA}</td>
+													</tr>	
+													<!-- endBlock(ENVIO_EMPRESA) -->
+												</table>
+												</div>
+                                        		<table width="1000" border="0" align="center" class="claro">
+													<tr>
+														<td align="left">
+															<input type="button" value="Marcar Todo" class="Button" onClick="marcar_todo('ENVIO_EMPRESA', 'EM_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Desmarcar Todo" class="Button" onClick="desmarcar_todo('ENVIO_EMPRESA', 'EM_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Dejar selección" class="Button" onClick="dejar_seleccion('ENVIO_EMPRESA', 'EM_SELECCION');" {DISABLE_BUTTON}>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<!--FIN ENVIO_EMPRESA-->
+											<!--INI PAGO_PROVEEDORES-->
+											<div class="TabbedPanelsContent">
+												<table width="1000" rules="none" border="1" align="center" class="claro"> 
+													<tr class="titulo_tabla">
+														<td colspan="4">EMPRESAS</td>
+													</tr>
+													<tr class="encabezado_center">
+														<th width="10%">Selección</th>
+														<th width="10%">Cod Pago Faprov</th>
+														<th width="10%">Fecha Pago Faprov</th>
+														<th width="40%">Razón Social</th>
+														<th width="15%">Nom. Tipo Pago Faprov</th>
+														<th width="15%">Monto Documento</th>
+													</tr>
+												</table>
+												<div style="overflow-x:hidden; overflow-y:auto; height:425;">
+												<table width="1000" rules="none" border="1" align="center" class="claro" id="ENVIO_PAGOFAPROV">								
+													<!-- startBlock(ENVIO_PAGOFAPROV) -->
+													<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+														<td width="10%" align="center">{EG_SELECCION}</td>
+														<td width="10%" align="center">{EG_COD_PAGO_FAPROV}</td>
+														<td width="10%">{EG_FECHA_PAGO_FAPROV}</td>
+														<td width="40%">{EG_NOM_EMPRESA}</td>
+														<td width="15%">{EG_NOM_TIPO_PAGO_FAPROV}</td>
+														<td width="15%" align="right">{EG_MONTO_DOCUMENTO}</td>
+													</tr>	
+													<!-- endBlock(ENVIO_PAGOFAPROV) -->
+												</table>
+												</div>
+                                        		<table width="1000" border="0" align="center" class="claro">
+													<tr>
+														<td align="left">
+															<input type="button" value="Marcar Todo" class="Button" onClick="marcar_todo('ENVIO_PAGOFAPROV', 'EG_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Desmarcar Todo" class="Button" onClick="desmarcar_todo('ENVIO_PAGOFAPROV', 'EG_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Dejar selección" class="Button" onClick="dejar_seleccion('ENVIO_PAGOFAPROV', 'EG_SELECCION');" {DISABLE_BUTTON}>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<!--FIN PAGO_PROVEEDORES-->
+											<!--INI INGRESO_PAGO-->
+											<div class="TabbedPanelsContent">
+												<table width="1000" rules="none" border="1" align="center" class="claro"> 
+													<tr class="titulo_tabla">
+														<td colspan="4">EMPRESAS</td>
+													</tr>
+													<tr class="encabezado_center">
+														<th width="10%">Selección</th>
+														<th width="10%">Ingreso Pago</th>
+														<th width="10%">Fecha</th>
+														<th width="40%">Razón Social</th>
+														<th width="15%">Cant. doc.</th>
+														<th width="15%">Monto</th>
+													</tr>
+												</table>
+												<div style="overflow-x:hidden; overflow-y:auto; height:425;">
+												<table width="1000" rules="none" border="1" align="center" class="claro" id="ENVIO_INGRESOPAGO">								
+													<!-- startBlock(ENVIO_INGRESOPAGO) -->
+													<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+														<td width="10%" align="center">{IN_SELECCION}</td>
+														<td width="10%" align="center">{IN_COD_INGRESO_PAGO}</td>
+														<td width="10%">{IN_FECHA_INGRESO_PAGO}</td>
+														<td width="40%">{IN_NOM_EMPRESA}</td>
+														<td width="15%" align="center">{IN_CANT_DOC}</td>
+														<td width="15%" align="right">{IN_MONTO_DOC}</td>
+													</tr>	
+													<!-- endBlock(ENVIO_INGRESOPAGO) -->
+												</table>
+												</div>
+                                        		<table width="1000" border="0" align="center" class="claro">
+													<tr>
+														<td align="left">
+															<input type="button" value="Marcar Todo" class="Button" onClick="marcar_todo('ENVIO_INGRESOPAGO', 'IN_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Desmarcar Todo" class="Button" onClick="desmarcar_todo('ENVIO_INGRESOPAGO', 'IN_SELECCION');" {DISABLE_BUTTON}>
+															<input type="button" value="Dejar selección" class="Button" onClick="dejar_seleccion('ENVIO_INGRESOPAGO', 'IN_SELECCION');" {DISABLE_BUTTON}>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<!--FIN INGRESO_PAGO-->
+										<!--FIN TabbedPanelsContentGroup-->
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<table width="1000" border="0" align="center">
+							<tr valign="middle">
+							  <td width="290" >{WI_BACK}</td>
+							  <td align="right">{WI_FIRST}{WI_PREV}</td>
+							  <td align="left">{WI_NEXT}{WI_LAST}</td>
+							  <td width="290"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+<!--
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+//-->
+</script>
+</body>
+</html>

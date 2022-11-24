@@ -1,0 +1,403 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>Sistema Grupo de Empresas Biggi</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script src="../../../../commonlib/trunk/script_js/SpryTabbedPanels.js" type="text/javascript"></script>
+<link href="../../../../commonlib/trunk/css/SpryTabbedPanels.css" rel="stylesheet" type="text/css"/>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../common_appl/ingreso_TE.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../common_appl/actualizar_precio.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../common_appl/change_precio.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../common_appl/common_cot_nv.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../empresa/help_empresa.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="nota_venta.js" type="text/javascript"></script>
+{WI_JAVA_SCRIPT}
+</head>
+<body {WI_ONLOAD}>
+<!-- DO NOT MOVE! The following AllWebMenus linking code section must always be placed right AFTER the BODY tag-->
+<!-- ******** BEGIN ALLWEBMENUS CODE FOR menu ******** -->
+<script type="text/javascript">var MenuLinkedBy="AllWebMenus [4]",awmMenuName="menu",awmBN="740";awmAltUrl="";</script>
+<script charset="UTF-8" src="{K_ROOT_URL}menu/menu.js" type="text/javascript"></script>
+<script type="text/javascript">{W_MENU}</script>
+<!-- ******** END ALLWEBMENUS CODE FOR menu ******** -->
+<form action="" method="post" name="input" id="input">
+<input name="wi_hidden" id="wi_hidden" type="hidden" value="">
+<table width="1013" border="0" align="center">
+	<tr bgcolor="#FFFFFF">
+	<!-- menu superior-->
+		<td width="1000"  height="51" align="center" id="awmAnchor-menu" style="width:100px; height:50px;">
+			<div style="color:blue; text-align:right; height:29px;"></div>
+			<div style="color:blue;text-align:right; font-family: Verdana,Arial,Helvetica,sans-serif;">{K_NOMBRE}</div>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>
+			<table width="1000" border="0">
+				<tr>
+					<td>
+						<table width="520" border="0">
+							<tr>
+								<td height="100%"><div class="titulo_central">{WI_RUTA_MENU}</div></td>
+								<td height="100%" align ="right"><b><div class="titulo_docto_anulada" style="font-size:18px;">{TITULO_ESTADO_NOTA_VENTA}</div></b></td>
+							</tr>
+							<tr>
+								<td colspan="2" height="0%"><div class="titulo_central">Fecha NV: {FECHA_NOTA_VENTA}</div></td>
+							</tr>
+						</table>
+					</td> 
+					<td width="68">{WI_BACK}</td>
+					<td width="68"></td>
+					<td width="68"></td>
+					<td width="68">{WI_FIRST}{WI_PREV}</td>
+					<td width="68">{WI_NEXT}{WI_LAST}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>
+			<table width="1000" border="0" align="center">
+				<tr>
+					<td height="95">
+						<table width="985" border="0" align="center">
+							<tr valign="top">
+								<td height="428">
+									<div id="TabbedPanels1" class="TabbedPanels">
+									<ul class="TabbedPanelsTabGroup">
+											<li class="TabbedPanelsTab" tabindex="0" style="display:{TAB_151005}">Nota Venta</li>
+											<li class="TabbedPanelsTab" tabindex="0" style="display:{TAB_151010}">Ítems</li>
+											<li class="TabbedPanelsTab" tabindex="0" style="display:{TAB_151020}">Compras</li>
+									</ul>
+									<div class="TabbedPanelsContentGroup">	
+										<!--INI NOTA VENTA-->
+										<div class="TabbedPanelsContent">							
+											<table width="100%" rules="none" border="1" align="center">							
+												<tr class="titulo_tabla">				
+													<td colspan="6" >DATOS GENERALES</td>
+												</tr>
+												<tr class="encabezado_right">
+													<td width="16%">Nº OC:</td>
+													<td width="16%" class="claro" align="left">{NRO_ORDEN_COMPRA}</td>
+													<td width="16%" class="claro"></td>
+													<td width="16%">Desde Cotización:</td>
+													<td width="16%" class="claro" align="left">{COD_COTIZACION}</td>
+													<td width="16%" class="claro"></td>
+												</tr>								
+												<tr class="encabezado_right">
+													<td>Vendedor 1:</td>
+													<td colspan="2" class="oscuro" align="left">{COD_USUARIO_VENDEDOR1} {PORC_VENDEDOR1} %</td>
+													<td>Vendedor 2:</td>
+													<td colspan="2" class="oscuro" align="left">{COD_USUARIO_VENDEDOR2} {PORC_VENDEDOR2}%</td>
+												</tr>
+												<tr class="encabezado_right">
+													<td>Referencia:</td>
+													<td class="claro" colspan="5" align="left">{REFERENCIA}</td>
+												</tr>
+												<tr class="encabezado_right" id="tr_anula" style="display:{TR_DISPLAY_ANULADA}">
+													<td>Anulación:</td>
+													<td class="claro" colspan="3" align="left">{MOTIVO_ANULA}</td>
+													<td class="claro" align="center">{FECHA_ANULA}</td>
+													<td class="claro" align="left">{COD_USUARIO_ANULA}</td>
+												</tr>
+											</table>
+											<table width="100%" rules="none" border="1" align="center">
+												<tr class="titulo_tabla">				
+													<td width="16%">EMPRESA</td>
+													<td width="16%"></td>
+													<td width="16%"></td>
+													<td width="16%"></td>
+													<td width="16%"></td>
+													<td width="16%"></td>
+												</tr>
+												<tr class="encabezado_right">
+													<td>Razón Social</td>
+													<td colspan="2" class="claro" align="left">{NOM_EMPRESA}</td>
+													<td>Alías:</td>
+													<td colspan="2" class="claro" align="left">{ALIAS}</td>
+												</tr>
+												<tr class="encabezado_right">
+													<td>Atención:</td>
+													<td colspan="5" class="oscuro" align="left">{COD_PERSONA}</td>
+												</tr>	
+											</table>
+											<table width="100%" border="0" align="center">
+												<tr>
+													<td width="500">
+														<table width="500" rules="none" border="1" align="left">
+															<tr class="titulo_tabla">
+																<td colspan="5">DOCUMENTOS</td>
+															</tr>
+															<tr class="encabezado_center">
+															  <td width="120" align="center">Tipo Docto.</td>
+															  <td width="157" align="center">Nº Docto.</td>
+															  <td width="55" align="center">%</td>
+															  <td>&nbsp;</td>
+														  </tr>
+															<tr height="10" class="claro">
+															  <td>Guía Despacho(s)</td>
+															  <td align="center"><!-- startBlock(GD_RELACIONADA) -->{NRO_GUIA_DESPACHO}{GD_SEPARADOR}<!-- endBlock(GD_RELACIONADA) --></td>
+															  <td align="center" id="por_despachar">{PORC_GD} %</td>
+															  <td align="center"><input type="button" value="por Despachar" class="button" onClick="return print_por_despachar_facturar('por_despachar');">
+															   </td>
+															</tr>
+															<tr height="10" class="oscuro">
+															  <td>Factura(s)</td>
+															  <td align="center"><!-- startBlock(FA_RELACIONADA) -->{NRO_FACTURA}{FA_SEPARADOR}<!-- endBlock(FA_RELACIONADA) --></td>
+															  <td align="center" id="por_facturar">{PORC_FACTURA} %</td>
+															  <td align="center"></td>
+														  </tr>
+															<tr height="10" class="claro">
+															  <td>Pago(s)</td>
+															  <td align="center"><!-- startBlock(PAGO_RELACIONADA) -->{COD_INGRESO_PAGO}{PAGO_SEPARADOR}<!-- endBlock(PAGO_RELACIONADA) --></td>
+															  <td align="center">{PORC_PAGOS} %</td>
+															  <td ></td>
+														  </tr>
+														</table>
+													</td>
+													<td width="400" valign="top">
+														<table width="400" border="1" align="center" rules="none">
+															<tr class="titulo_tabla">
+																<td colspan="5">TOTALES</td>
+				
+															</tr>
+															 <tr class="encabezado_right">
+				
+																<td width="110">Sub-Total:</td>
+																<td width="100" class="oscuro" align="right">{SUM_TOTAL}</td>
+				
+																<td width="110">Total Neto:</td>
+																<td width="100" class="oscuro" align="right">{TOTAL_NETO}</td>
+															 </tr>
+															 <tr class="encabezado_right">
+																<td>{PORC_DSCTO_MAX}{INGRESO_USUARIO_DSCTO1}{PORC_DSCTO1} Descto. 1:</td>
+																<td class="oscuro" align="right">{MONTO_DSCTO1}</td>
+				
+																<td>{PORC_IVA} IVA:</td>
+																<td class="oscuro" align="right">{MONTO_IVA}</td>
+															 </tr>
+															<tr class="encabezado_right">
+				
+																<td>{INGRESO_USUARIO_DSCTO2}{PORC_DSCTO2} Descto. 2:</td>
+																<td class="oscuro" align="right">{MONTO_DSCTO2}</td>
+				
+																<td>Total c/IVA:</td>
+																<td class="oscuro" align="right">{TOTAL_CON_IVA}</td>
+														  	</tr>
+														  	
+														  	<tr class="encabezado_right">
+																<td>{PORC_DSCTO_CORPORATIVO_STATIC}% Descto. Corporativo: </td>
+																<td class="oscuro" align="right">{MONTO_DSCTO_CORPORATIVO}</td>
+																<td>Saldo por Cobrar: </td>
+																<td class="oscuro" align="right"><strong>{TOTAL_POR_PAGAR}</strong></td>															
+															 </tr>
+														  	
+														  	<tr class="encabezado_right">
+														  		<td>Forma de Pago</td>
+														  		<td class="oscuro" align="left">{COD_FORMA_PAGO}</td>																	
+														 	</tr>
+												  		</table>
+													</td>
+												</tr>
+											</table>		
+										</div><!--FIN NOTA VENTA-->
+										<!--INI ITEMS-->
+										<div class="TabbedPanelsContent">
+											<table width="900" rules="none" border="1" align="left" class="claro"> 
+												<tr class="titulo_tabla">
+													<td colspan="11">ÍTEMS</td>
+												</tr>
+												<tr class="encabezado_center">
+													<th width="10%">IT</th>
+													<th width="45%">Descripción</th>
+													<th width="10%">Modelo</th>
+													<th width="10%">Cantidad</th>
+													<th width="10%">Precio</th>
+													<th width="10%">Total</th>
+												</tr>
+											</table>	
+											<div style="overflow-x:hidden; overflow-y:auto; width:900; height:150; margin-top:0em;">
+												<table width="900" rules="none" border="1" align="center" class="claro" id="ITEM_NOTA_VENTA">
+													<!-- startBlock(ITEM_NOTA_VENTA) -->
+													<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+														<td width="10%" align="center">{ITEM}</td>
+														<td width="45%" align="left">{NOM_PRODUCTO}</td>
+														<td width="10%" align="left"><strong>{COD_PRODUCTO}</strong></td>
+														<td width="10%" align="right">{CANTIDAD}</td>
+														<td width="10%" align="right">{PRECIO}{MOTIVO}</td>
+														<td width="10%" align="right"><div style="padding-right:20px;">{TOTAL}</div></td>
+													</tr>	
+													<!-- endBlock(ITEM_NOTA_VENTA) -->
+												</table>
+											</div>
+											<table width="900" rules="none" border="1" align="center">
+												<tr class="titulo_tabla" >				
+													<td colspan="6">ENTREGA</td>
+												</tr>
+												<tr class="encabezado_right">
+													<td width="16%">Fecha Entrega:</td>
+													<td width="16%" class="claro" align="left">{FECHA_ENTREGA}</td>
+													<td width="16%" class="claro"></td>
+													<td width="16%" class="claro"></td>
+													<td width="16%" class="claro"></td>
+													<td width="16%" class="claro"></td>
+												</tr>
+												<tr class="encabezado_right">
+													<td colspan="3" align="center">Obs. de Despacho:</td>
+													<td colspan="3" align="center">Notas de Impresión:</td>
+												</tr>
+												<tr class="encabezado_right">
+													<td colspan="3" class="oscuro" align="center">{OBS_DESPACHO}</td>
+													<td colspan="3" class="oscuro" align="center">{OBS}</td>
+												</tr>
+											</table>			
+										</div>
+										<!--FIN ITEMS-->
+										<!--INI COMPRAS-->
+										<div class="TabbedPanelsContent">										
+											<table width="100%" rules="none" border="1" align="center" class="claro">
+												<tr class="titulo_tabla">				
+													<td colspan="6">ORDENES DE COMPRA</td>
+												</tr>
+												<tr class="encabezado_center">
+													<th width="100">N&deg; OC </th>
+													<th width="100">Fecha</th>
+													<th width="450">Raz&oacute;n Social</th>
+													<th width="110">Total Neto</th>
+													<th width="110">Total IVA</th>
+													<th width="110">Total c/IVA</th>
+												</tr>
+											</table>
+											<div style="overflow-x:hidden; overflow-y:auto; height:120; margin-top:0em;">															
+												<table width="100%" rules="none" border="1" align="center" class="claro" id="ORDEN_COMPRA">	
+													<!-- startBlock(ORDEN_COMPRA) -->
+													<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">		
+														<td width="100" align="right">
+														<label class="oc_nula">{ANULADA}&nbsp;&nbsp;</label>
+														{COD_ORDEN_COMPRA}{COD_ESTADO_ORDEN_COMPRA}</td>
+														<td width="100" align="center">{FECHA_ORDEN_COMPRA}</td>
+														<td width="450" align="left">{OC_NOM_EMPRESA}</td>
+														<td width="110" align="right">{OC_TOTAL_NETO}</td>   
+														<td width="110" align="right">{OC_MONTO_IVA}</td>   
+														<td width="110" align="right"><div style="padding-right:20px;">{OC_TOTAL_CON_IVA}</div></td>
+													</tr>
+													<!-- endBlock(ORDEN_COMPRA) -->															
+													<tr class="titulo_2_tabla_right">
+														<td colspan="3">Total:</td>
+														<td width="110" align="right">{SUM_OC_TOTAL_NETO}</td>
+														<td width="110" align="right">{SUM_OC_MONTO_IVA}</td>
+														<td width="110" align="right" style="padding-right:20px;">{SUM_OC_TOTAL_CON_IVA}</td>
+													</tr>
+												</table>
+											</div>
+											<table width="100" rules="none" border="1" align="center">
+												<tr>
+													<td valign="top">
+														<table align="center" width="400"  rules="none" border="2">
+															<tr class="titulo_tabla">
+																<th colspan="3" class="titulo_tabla">RESULTADO</th>
+																<th></th>
+															</tr>
+															<tr class="oscuro">
+																<td width="90"></td>
+																<td colspan = "2" width="220">Venta Neta</td>
+																<td width="90" align="right">{STATIC_TOTAL_NETO2}</td>
+															</tr>
+															<tr class="claro">
+																<td align="right">{PORC_DSCTO_CORPORATIVO}%</td>
+																<td width="200">Descto. Corporativo {CANT_CAMBIO_PORC_DESCTO_CORP}</td>
+																<td width="20"><input name="" id="BOTON_HISTORIA_CORPORATIVO" type="button" class="Button" value="Log" onClick="historia_corporativo();" {DISABLE_BUTTON}></td>
+																<td align="right">{MONTO_DSCTO_CORPORATIVO}</td>
+															</tr>
+															<tr class="claro">
+																<td width="90"></td>
+																<td colspan = "2" width="220">Venta Neta Final</td>
+																<td width="90" align="right">{VENTA_NETA_FINAL}</td>
+															</tr>
+															<tr class="oscuro">
+																<td align="right">{PORC_GF}%</td>
+																<td colspan = "2">Gasto Fijo</td>
+																<td align="right">{MONTO_GASTO_FIJO}</td>
+															</tr>
+															<tr class="claro">
+																<td></td>
+																<td colspan = "2">Compra Neta Total</td>
+																<td align="right">{SUM_OC_TOTAL}</td>
+															</tr>
+															<tr class="encabezado_right">
+																<td align="right">{PORC_RESULTADO}%</td>
+																<td colspan = "2">Resultado</td>
+																<td align="right">{RESULTADO}</td>
+															</tr>
+														</table>
+													</td>
+													<td valign="top">
+														<table align="center" width="400"  rules="none" border="2">
+															<tr class="titulo_tabla">
+																<th colspan="2" class="titulo_tabla">REMANENTE</th>
+																<th></th>
+															</tr>
+															<tr class="oscuro">
+																<td width="90" align="right">{STATIC_PORC_RESULTADO}%</td>
+																<td width="220">Resultado</td>
+																<td width="90" align="right">{STATIC_RESULTADO}</td>
+															</tr>
+															<tr class="claro">
+																<td align="right">{PORC_AA}%</td>
+																<td>Aporte a Administraci&oacute;n </td>
+																<td align="right">{MONTO_DIRECTORIO}</td>
+															</tr>
+															<tr class="oscuro">
+																<td align="right">{PORC_VENDEDOR1_R}%</td>
+																<td>Participaci&oacute;n  {VENDEDOR1}</td>
+																<td align="right">{COMISION_V1}</td>
+															</tr>
+															<tr class="claro">
+																<td align="right">{PORC_VENDEDOR2_R}%</td>
+																<td>Participaci&oacute;n {VENDEDOR2}</td>
+																<td align="right">{COMISION_V2}</td>
+															</tr>
+															<tr class="oscuro">
+																<td align="right">{PORC_GV}%</td>
+																<td>Participaci&oacute;n Gte. Vta. {GTE_VTA}</td>
+																<td align="right">{COMISION_GV}</td>
+															</tr>
+															<tr class="claro">
+																<td align="right">{PORC_ADM}%</td>
+																<td>Participaci&oacute;n Administración</td>
+																<td align="right">{COMISION_ADM}</td>
+															</tr>
+															<tr class="encabezado_right">
+																<td></td>	
+																<td>Remanente</td>
+																<td align="right">{REMANENTE}</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+										</div>
+										<!--FIN COMPRAS-->
+										</div><!--FIN TabbedPanelsContentGroup-->
+									</div><!--FIN TabbedPanels-->
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>			
+    	</td>
+  	</tr>
+</table>
+</form>
+<script type="text/javascript">
+<!--
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+var TabbedPanels2 = new Spry.Widget.TabbedPanels("TabbedPanels2");
+var TabbedPanels3 = new Spry.Widget.TabbedPanels("TabbedPanels3");
+//-->
+</script>
+</body>
+</html>

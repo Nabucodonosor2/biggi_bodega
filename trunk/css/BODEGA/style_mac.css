@@ -1,0 +1,404 @@
+body {
+	background-color: #CCCCCC;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+/** #######	TITULOS SUPERIORES	######*/
+
+.tit_superior {
+	font-size: 10px;
+	font-weight: bold; 
+	color: #666666;
+}
+
+input[type='submit']:disabled.boton{
+	font-family: verdana, arial, sans-serif;
+    font-size: 8pt;
+    font-weight: bold;    
+    background-color:#DADADA;
+    color: #333333;
+    border-color:#FFFFFF;
+    height:25px;
+    padding:5px:
+}
+
+input[type='submit']:enabled.boton{
+	font-family: verdana, arial, sans-serif;
+    font-size: 8pt;
+    font-weight: bold;    
+    background-color:#003366;
+    color: #FFF;
+    border-color:#FFFFFF;
+    height:25px;
+    padding:5px:
+}
+
+.prueba{
+	color:#00FF00;
+	font-size:24px;	
+}
+
+.titulo_central {
+	font-size: 18px;
+	font-weight: bold;
+	text-align:left;	
+}
+
+.titulo_central_parametro {
+	font-size: 14px;
+	font-weight: bold;
+	text-align:left;	
+}
+
+.titulo_docto_anulada {
+	font-size: 17px;
+	font-weight: bold;
+	text-align:center;
+	color:#B40404;	
+}
+
+.titulo_deuda_cruzada {
+	font-size: 15px;
+	font-weight: bold;
+	text-align:left;
+	color:#B40404;	
+}
+
+.oscuro_decl{
+	background-color:#D8D8D8;
+	font-size: 13px;
+	font-weight: bold;
+	color: #0000FF;
+	height:23px;
+}
+
+	/** #######	ENCABEZADO DE TABLAS	######*/
+
+
+.encabezado_center{
+	background-color:#919191;
+	font-size: 11px;
+	font-weight:bold;	
+	color: #FFF;
+	text-align:center;
+	height:23px;
+}
+
+.encabezado_left{
+	background-color:#919191;
+	font-size: 11px;
+	font-weight:bold;	
+	color: #FFF;
+	text-align:left;
+	height:23px;
+}
+
+.encabezado_right{
+	background-color:#919191;
+	font-size: 11px;
+	font-weight:bold;	
+	color: #FFF;
+	text-align:right;
+	height:23px;
+}
+
+
+.letra_azul{
+	color:#0000FF;
+	 background-color:#00FF00;
+}
+
+.titulo_tabla{
+	background-color:#EAEAEA;
+	font-size: 9px;
+	font-weight:bold;	
+	color: #000066;
+	text-align:left;
+	padding-top:9px;
+}
+
+
+.titulo_2_tabla_center{
+	background-color:#B0B0B0;		
+	color:#000;
+	text-align:center;
+	font-size:11px;
+	font-weight:bolder;
+}
+
+.titulo_2_tabla_right{
+	background-color:#B0B0B0;		
+	color:#000;
+	text-align:right;
+	font-size:11px;
+	font-weight:bolder;
+}
+
+.titulo_2_tabla_left{
+	background-color:#B0B0B0;		
+	color:#000;
+	text-align:left;
+	font-size:11px;
+	font-weight:bolder;
+}
+
+
+.subtitulo_oscuro_right{
+	background-color:#B0B0B0;		
+	color:#000;
+	text-align:right;
+	font-size:12px;
+		
+}
+
+
+/** #######	COLORES DE ELECCION EN TABLAS	######*/
+.dwt_folder{
+	background-color:#80BFFF;
+	font-size: 11px;
+	font-weight:100;
+	color:#000000;
+	height:23px;
+}
+.claro{
+	background-color:#EAEAEA;
+	font-size: 11px;
+	font-weight:100;
+	color:#000000;
+	height:23px;
+}
+.linea_selected{
+	background-color:#00FF00;
+	font-size: 11px;
+	font-weight:100;
+	color:#000000;
+	height:23px;
+}
+
+.claro_imagen{		
+	font-size: 11px;
+	font-weight:100;
+	color:green;
+	height:23px;
+	}
+
+.oscuro{
+	background-color:#D8D8D8;
+	font-size: 11px;
+	font-weight:100;
+	color: #000;
+	height:23px;
+}
+
+
+.pie_de_pagina{
+	background-color:#919191;
+	font-size: 10px;
+	font-weight:bold;	
+	color: #FFF;
+	text-align:center;
+}
+
+.pie_de_pagina a:hover{text-decoration:none;}
+.pie_de_pagina a{text-decoration:none;}
+
+.link{
+	font-size: 9px;
+	font-weight:bold;	
+	color:#993333;
+}
+
+/** #######	INPUT FORM ######*/
+
+.drop_down{
+	font-size: 9px;
+	text-align:left;
+}
+
+.input_text{
+	font-size: 10px;
+	text-align:left;
+}
+
+.input_num{
+	font-size: 10px;
+	text-align:right;
+}
+
+.button{
+	font-size: 9px;
+	text-align:center;
+}
+
+.cant_paginas {
+	font-size: 12px;
+	font-weight: bold; 
+	color: #666666;
+	text-align:center;
+}
+/** #######	ESPECIALES OCUPADO EN MENU-PERFILES	######*/
+
+.titulo_detalle {
+	background-color:#9F9F9F;
+	color:#000000;
+	font-size:13px;					
+	font-weight:bold;
+	text-align:left;
+	height:23px;	
+}
+
+.titulo_detalle2 {
+	background-color: #BABDB7;
+	color:#666666;
+	font-size:11px;					
+	font-weight:bold;
+	text-align:left;
+	height:20px;	
+}
+
+
+.sub_titulo_detalle {
+	background-color:#EAEAEA;
+	font-size: 12px;	
+	color:#000000;
+	text-align:left;
+	padding-left:2em;	
+}
+ /** ocupado en "TABLAS PARAMETRICAS" */
+.sub_titulo_detalle2 {
+	background-color:#EAEAEA;
+	font-size: 11px;	
+	color:#000000;
+	text-align:left;
+	padding-left:6em;
+	/** texto en mayuscula font-variant:small-caps;*/	
+}
+
+.espacio_entre_tablas {
+	background-color:#EAEAEA;
+	color:#000000;
+	height:10px;
+}
+
+
+/**  OCUPADOS EN LAS WINDOWS MODAL*/ 
+
+.content_wm{
+	background-color: #E5E5E5;
+	text-align:center;
+	font-size:14px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+.msg_wm {
+	color:#000;
+	text-align:center;
+	font-size:11px;
+	font-weight:bolder;
+	font-family:"Times New Roman", Times, serif;
+}
+
+.table_wm{
+	font-size: 11px;
+	font-weight: bold; 
+	color: #FFF;
+	margin-top:1em;
+	border:#000033 1px solid;
+	margin-left:2px;
+	background: #919191;
+}
+
+
+.table2_wm{
+	font-size: 10px;
+	font-weight: bold; 
+	color: #666666;	
+	border-left: #000066  1px solid;
+	border-bottom:#000066  1px solid;
+	border-right: #000066  1px solid;
+	margin-left:2px;
+	background-color:#CCCCCC;	
+}
+
+.titulo_tabla_wm{
+	background-color: #E5E5E5;
+	font-size: 12px;
+	font-weight:bold;	
+	color: #000066;
+	text-align:left;
+	padding-top:9px;
+	padding-bottom:15px;
+	margin-left:-0.6em;
+	width:350px;	
+}
+
+.moneda tr td{
+	font-size:9px;	
+}
+.moneda td input{
+	font-size:9px;	
+}
+
+/** #######	ESPECIALES OCUPADO EN INFORMES	######*/
+
+.tabla_informe{
+	font-size: 10px;	 
+	color: #666666;	
+	border:#919191 solid 1px;	
+	background-color:#BACCDA;	
+	padding:10px;
+}
+
+.tabla_informe td.negrita{
+	font-size: 9px;
+	font-weight:bold;
+	color: #333;	
+}
+
+.claro_informe{
+	background-color:#BACCDA;	
+	font-size: 11px;
+	font-weight:100;
+	color:#000000;
+	height:23px;
+}
+
+.oscuro_informe{
+	background-color:#FFF;
+	font-size: 11px;
+	font-weight:100;
+	color: #000;
+	height:23px;
+}
+.encabezado_center_informe{
+	background-color:#919191;
+	font-size: 11px;
+	font-weight:bold;	
+	color: #FFF;
+	text-align:center;
+	height:23px;
+}
+
+.tit_superior_informe{
+	font-size: 14px;	
+	font-weight:bold;		
+	color: #325785;
+	text-align:center;	
+}
+
+
+.progress-bar {
+    border: 1px solid #56577A; 
+    width: 200px; 
+    margin: 5px; 
+    padding: 1px; 
+    background: #fff;
+ 	float: left;
+ }
+ 
+.bar {
+    height: 15px;
+ 	font-size: 11px;
+ 	text-indent:-9000px;
+}

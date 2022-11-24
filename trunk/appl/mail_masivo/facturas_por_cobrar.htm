@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Sistema Grupo de Empresas Biggi</title>
+</head>
+<body bgcolor="FFFFFF" text="171717">
+Sr(a). {NOM_VENDEDOR}
+<p>Ud tiene {TOTAL_REGISTROS}   facturas por cobrar, por un total de <strong>$ {TOTAL_SALDO}</strong></p>
+<p>Le recordamos que es parte de su gestion el agilizar estas cobranzas.</p>
+<p>Las facturas mas antiguas son:</p>
+<table width="75%" align="center" id="FA_ANTIGUA" border="1" bordercolor="171717">
+  <tbody>
+    <tr>
+      <td width="13%">
+      <div align="center"><strong>N&ordm; Factura</strong></div>
+      </td>
+      <td width="13%">
+      <div align="center"><strong>Fecha</strong></div>
+      </td>
+      <td width="50%">
+      <div align="center"><strong>Cliente</strong></div>
+      </td>
+      <td width="15%">
+      <div align="center"><strong>Monto</strong></div>
+      </td>
+      <td width="8%">
+      <div align="center"><strong>%</strong></div>
+      </td>
+    </tr>
+    <!-- startBlock(FA_ANTIGUA) -->
+    <tr id="{DW_TR_ID}">
+      <td>
+      <div align="center">{NRO_FACTURA}</div>
+      </td>
+      <td>
+      <div align="center">{FECHA_FACTURA}</div>
+      </td>
+      <td>{NOM_EMPRESA}</td>
+      <td>
+      <div align="right">{MONTO}</div>
+      </td>
+      <td>
+      <div align="right">{PORC}</div>
+      </td>
+    </tr>
+    <!-- endBlock(FA_ANTIGUA) -->
+  </tbody>
+</table>
+<p>Y las facturas con montos mas altos son:</p>
+<table width="75%" align="center" id="FA_ALTAS" border="1" bordercolor="171717">
+  <tbody>
+    <tr>
+      <td width="13%">
+      <div align="center"><strong>N&ordm; Factura</strong></div>
+      </td>
+      <td width="13%">
+      <div align="center"><strong>Fecha</strong></div>
+      </td>
+      <td width="50%">
+      <div align="center"><strong>Cliente</strong></div>
+      </td>
+      <td width="15%">
+      <div align="center"><strong>Monto</strong></div>
+      </td>
+      <td width="8%">
+      <div align="center"><strong>%</strong></div>
+      </td>
+    </tr>
+    <!-- startBlock(FA_ALTAS) -->
+    <tr id="{DW_TR_ID}">
+      <td>
+      <div align="center">{NRO_FACTURA}</div>
+      </td>
+      <td>
+      <div align="center">{FECHA_FACTURA}</div>
+      </td>
+      <td>{NOM_EMPRESA}</td>
+      <td>
+      <div align="right">{MONTO}</div>
+      </td>
+      <td>
+      <div align="right">{PORC}</div>
+      </td>
+    </tr>
+    <!-- endBlock(FA_ALTAS) -->
+  </tbody>
+</table>
+<p>Atte.</p>
+<p>Comercial Biggi</p>
+<p>Este mensaje ha sido enviado por nuestro servidor de base de datos.</p>
+<p><br>
+<strong>Total detalle Facturas por Cobrar</strong></p>
+<table width="75%" align="center" id="FA_TODAS" border="1" bordercolor="171717">
+  <tbody>
+    <tr>
+      <td width="13%">
+      <div align="center"><strong>N&ordm; Factura</strong></div>
+      </td>
+      <td width="13%">
+      <div align="center"><strong>Fecha</strong></div>
+      </td>
+      <td width="50%">
+      <div align="center"><strong>Cliente</strong></div>
+      </td>
+      <td width="15%">
+      <div align="center"><strong>Monto</strong></div>
+      </td>
+      <td width="8%">
+      <div align="center"><strong>%</strong></div>
+      </td>
+    </tr>
+    <!-- startBlock(FA_TODAS) -->
+    <tr id="{DW_TR_ID}">
+      <td>
+      <div align="center">{NRO_FACTURA}</div>
+      </td>
+      <td>
+      <div align="center">{FECHA_FACTURA}</div>
+      </td>
+      <td>{NOM_EMPRESA}</td>
+      <td>
+      <div align="right">{MONTO}</div>
+      </td>
+      <td>
+      <div align="right">{PORC}</div>
+      </td>
+    </tr>
+    <!-- endBlock(FA_TODAS) -->
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>Sistema Grupo de Empresas Biggi</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="cotizacion.js" type="text/javascript"></script><script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../common_appl/ingreso_TE.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../common_appl/common_cot_nv.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../empresa/help_empresa.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="factura.js" type="text/javascript"></script>
+<script type="text/javascript">
+function sumar(){
+	document.getElementById('HIZO_CLICK_0').value = 'S';
+	document.output.submit();
+   	return true;
+}
+</script>
+{WO_JAVA_SCRIPT}
+</head>
+<body {WI_ONLOAD}>
+<!-- DO NOT MOVE! The following AllWebMenus linking code section must always be placed right AFTER the BODY tag-->
+<!-- ******** BEGIN ALLWEBMENUS CODE FOR menu ******** -->
+<script type="text/javascript">var MenuLinkedBy="AllWebMenus [4]",awmMenuName="menu",awmBN="740";awmAltUrl="";</script>
+<script charset="UTF-8" src="{K_ROOT_URL}menu/menu.js" type="text/javascript"></script>
+<script type="text/javascript">{W_MENU}</script>
+<!-- ******** END ALLWEBMENUS CODE FOR menu ******** -->
+<form action="" method="post" name="output" id="output">
+<input name="wo_hidden" id="wo_hidden" type="hidden" value="">
+<table width="1050" border="0" align="center">
+	<tr bgcolor="#FFFFFF">
+		<!-- menu superior-->
+		<td width="1000"  height="30" align="center" id="awmAnchor-menu" style="width:100px; height:50px;"></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>
+			<table width="1000" border="0">
+				<tr>
+					<td>
+						<table width="592" border="0">
+							<tr>
+								<td height="100%"><div class="titulo_central">{WO_RUTA_MENU}</div></td>
+							</tr>
+							<tr>
+								<td height="0%"><div class="tit_superior"><font color="#999999">{WO_FECHA_ACTUAL}</font></div></td>
+							</tr>
+							<tr>
+								<td height="0%"><div class="tit_superior"><font color="#999999">{WO_NOM_USUARIO}</font></div></td>
+							</tr>
+						</table>
+					</td>
+					<td style="display:none"><input name="b_compromiso" id="b_compromiso" src="../../images/b_compromiso.jpg" type="image" 
+					onMouseDown="MM_swapImage('b_compromiso','','../../images/b_compromiso_click.jpg',1)" onMouseUp="MM_swapImgRestore()" 
+					onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('b_compromiso','','../../images/b_compromiso_over.jpg',1)" />					</td>
+					<td>{WO_CREATE}</td>
+        			<td>{WO_ADD}</td>
+					<td>{WO_EXPORT}</td>						
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>	  
+			<table width="1000" border="0" align="center" height="570">
+				<tr bgcolor="#FFFFFF" height="520">
+					<td valign="top">
+						<table width="1000" border="0" align="center">
+							<tr class="encabezado_center">
+								<th width="5%">Detalle</th>
+								<th width="7%">{H_NRO_FACTURA}</th>
+								<th width="8%">{H_FECHA_FACTURA}</th>
+								<th width="10%">{H_RUT}</th>
+								<th width="32%">{H_NOM_EMPRESA}</th>
+								<th width="5%">{H_INI_USUARIO}</th>
+								<th width="8%">{H_NOM_ESTADO_DOC_SII}</th>
+								<th width="9%">{H_TIPO_FA}</th>
+								<th width="9%">{H_TOTAL_CON_IVA}</th>
+								<th width="7%">{H_COD_DOC}</th>
+								 
+							</tr>
+						</table>
+					<div style="overflow-x:hidden; overflow-y:auto; height:476; width=746";>						
+						<table width="1000" border="0" align="center">
+							<!-- startBlock(wo_registro) -->
+							<tr class="{WO_TR_CSS}">
+								<td width="5%" align="center">{WO_DETALLE}</td>
+								<td width="7%" align="center">{NRO_FACTURA}</td>
+								<td width="8%" align="center">{FECHA_FACTURA}</td>
+								<td width="10%" align="right">{RUT}-{DIG_VERIF}</td>
+								<td width="32%">{NOM_EMPRESA}</td>
+								<td width="5%">{INI_USUARIO}</td>
+								<td width="8%">{NOM_ESTADO_DOC_SII}</td>
+								<td width="9%">{TIPO_FA}</td>
+								<td width="9%" align="right">{TOTAL_CON_IVA}</td>
+							    <td width="7%" align="center">{COD_DOC}</td>								 								
+							</tr>
+							<!-- endBlock(wo_registro) -->
+						</table>
+					</div>
+					</td>
+				</tr>
+				<tr bgcolor="#FFFFFF" style="display:{DISPLAY_SUMAR}">
+					<td valign="top">
+						<table width="1000" align="center" class="tabla_informe" style="width: 1000px">
+							<tr>
+								<td height="0%">
+									<div id="loader" style="display: none;" align="center">
+										<img src="../../images_appl/ajax-loader.gif">
+									</div>
+								</td>	
+								<td width="10" align="right">{CHECK_SUMAR}</td>								
+								<td width="119" align="left" class="negrita">{HIZO_CLICK}<font size="1">SUMAR TOTAL CON IVA:</font></td>
+								<td width="90" align="right">
+									<strong>
+										<font size="2">{SUM_TOTAL_CON_IVA}</font>
+									</strong>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>		
+				<tr bgcolor="#FFFFFF" height="28">
+					<td>						
+						<table width="1000" border="0" align="center">
+							<tr valign="middle">
+								<td width="290" >{WO_BACK}</td>
+								<td align="right">{WO_FIRST}{WO_PREV}</td>
+								<td align="center" class="cant_paginas" width="230">{WO_PAGES}</td>
+								<td align="left">{WO_NEXT}{WO_LAST}</td>
+								<td width="180"></td>
+							</tr>
+						</table> 
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
+	
+	

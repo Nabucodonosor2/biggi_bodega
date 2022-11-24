@@ -1,0 +1,45 @@
+<Report>
+	<Font name="Arial" size="7" style="" id="ArialSmall"/>
+	<Font name="Arial" size="7" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold"/>
+	<Font name="Arial" size="8" style="" id="Arial"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold_header"/>	
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	
+	<PageHeader>	
+		<Cell text="" height="55%" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="ANEXO FACTURA Nº {strNRO_FACTURA}" width="100%" align="C" newline="1" font="ArialBoldBigB"/>
+		<Cell text="Cliente: {strNOM_EMPRESA}" width="100%" align="C"  font="ArialBoldBlue" newline="1"/>
+		<Cell text="" height="4" newline="1"/>	
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{ITEM}" width="10%" align="C" border="LRTB" font="Arial"/>	
+		<Cell text="{COD_PRODUCTO}" width="10%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{NOM_PRODUCTO}" width="50%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{CANTIDAD}" width="10%" align="R" border="LRTB" font="Arial"/>	
+		<Cell text="{PRECIO}" width="10%" align="R" border="LRTB" font="Arial"/>	
+		<Cell text="{TOTAL}" width="10%" align="R" border="LRTB" font="Arial" format="N0,." newline="1"/>
+	</Content>
+	<Group local="COD_ARRIENDO">
+		 <Variable name="sum_total" function="SUM" value="TOTAL"/>
+		<GroupHeader>				
+			<Cell height="12" newline="1"/>
+			<Cell text="Contrato:" width="10%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{COD_ARRIENDO} {NOM_ARRIENDO} {REFERENCIA}" width="90%" align="L"  font="ArialBoldBlue" newline="1"/>
+	
+			<Cell text="" height="5" newline="1" />			
+			<Cell text="Item" width="10%" align="C" border="LRTB" font="ArialSmallBlue"/>		
+			<Cell text="Modelo" width="10%" align="C" border="LRTB" font="ArialSmallBlue"/>
+			<Cell text="Descripción" width="50%" align="C" border="LRTB" font="ArialSmallBlue"/>		
+			<Cell text="Cantidad" width="10%" align="C" border="LRTB" font="ArialSmallBlue"/>
+			<Cell text="Precio" width="10%" align="C" border="LRTB" font="ArialSmallBlue"/>
+			<Cell text="Total" width="10%" align="C" border="LRTB" font="ArialSmallBlue" newline="1"/>
+		</GroupHeader>
+		<GroupFooter>
+			<Cell text="Total" width="90%" align="R" font="ArialBold"/>	
+			<Cell text="{sum_total}" width="10%" border="LTRB" align="R" font="ArialBold" format="N0,." newline="1"/>
+		</GroupFooter> 
+	</Group>
+</Report>

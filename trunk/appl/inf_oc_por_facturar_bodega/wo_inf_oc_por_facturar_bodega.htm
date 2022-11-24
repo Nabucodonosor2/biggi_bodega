@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>Sistema Grupo de Empresas Biggi</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../common_appl/header_modelo.js" type="text/javascript"></script>
+<script charset="UTF-8" src="../common_appl/header_vendedor.js" type="text/javascript"></script>
+{WO_JAVA_SCRIPT}
+</head>
+<body {WO_ONLOAD}>
+<!-- DO NOT MOVE! The following AllWebMenus linking code section must always be placed right AFTER the BODY tag-->
+<!-- ******** BEGIN ALLWEBMENUS CODE FOR menu ******** -->
+<script type="text/javascript">var MenuLinkedBy="AllWebMenus [4]",awmMenuName="menu",awmBN="740";awmAltUrl="";</script>
+<script charset="UTF-8" src="{K_ROOT_URL}menu/menu.js" type="text/javascript"></script>
+<script type="text/javascript">{W_MENU}</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<!-- ******** END ALLWEBMENUS CODE FOR menu ******** -->
+<form action="" method="post" name="output" id="output">
+<input name="wo_hidden" id="wo_hidden" type="hidden" value="">
+<table width="1050" border="0" align="center">
+	<tr bgcolor="#FFFFFF">
+		<!-- menu superior-->
+		<td width="1000"  height="51" align="center" id="awmAnchor-menu" style="width:100px; height:50px;">
+			<div style="color:blue; text-align:right; height:29px;"></div>
+			<div style="color:blue;text-align:right; font-family: Verdana,Arial,Helvetica,sans-serif;">{K_NOMBRE}</div>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>
+			<table width="1000" border="0">
+				<tr>
+					<td>
+						<table width="592" border="0">
+							<tr>							
+								<td height="100%"><div class="titulo_central_parametro">{WO_RUTA_MENU}</div></td>
+								<td height="0%"><div class="tit_superior_informe"><font>{WO_NOM_FILTRO}</font></div></td>
+							</tr>
+						</table>
+					</td> 
+					<td></td>					
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>	  
+			<table width="1000" border="0" align="center" height="550">
+				<tr bgcolor="#FFFFFF" height="480">
+					<td valign="top">
+						<table width="1000" align="center">
+							<tr class="encabezado_center_informe">
+								<th width="5%">Detalle</th>
+								<th width="10%">{H_COD_ORDEN_COMPRA}</th>
+								<th width="10%">{H_FECHA_ORDEN_COMPRA}</th>
+								<td width="10%">{H_COD_NOTA_VENTA}</td>
+								<td width="6%">{H_COD_USUARIO_VENDEDOR}</td>
+								<th width="10%">{H_COD_PRODUCTO}</th>
+								<th width="19%">{H_NOM_PRODUCTO}</th>
+								<th width="10%">{H_CANTIDAD_OC}</th>
+								<th width="10%">{H_CANT_FA}</th>
+								<th width="10%">{H_CANT_POR_FACT}</th>
+							</tr>
+						</table>
+												
+						<table width="1000" align="center">
+							<!-- startBlock(wo_registro) -->
+							<tr class="{WO_TR_CSS}">
+								<td width="5%" align="center">{WO_DETALLE}</td>
+								<td width="10%" align="center">{COD_ORDEN_COMPRA}</td>
+								<td width="10%" align="center">{FECHA_ORDEN_COMPRA}</td>
+								<td width="10%" align="center">{COD_NOTA_VENTA}</td>
+								<td width="6" align="center">{COD_USUARIO_VENDEDOR}</td>
+								<td width="10%" align="left">{COD_PRODUCTO}</td>
+								<td width="19%" align="left">{NOM_PRODUCTO}</td>
+								<td width="10%" align="center">{CANTIDAD_OC}</td>
+								<td width="10%" align="center">{CANT_FA}</td>
+								<td width="10%" align="center">{CANT_POR_FACT}</td>
+							</tr>
+							<!-- endBlock(wo_registro) -->
+						</table>
+						
+					</td>
+				</tr>		
+				<tr bgcolor="#FFFFFF" height="28">
+					<td>						
+						<table width="1000" border="0" align="center">
+							<tr valign="middle">
+								<td width="290" >{WO_BACK}</td>
+								<td align="right">{WO_FIRST}{WO_PREV}</td>
+								<td align="center" class="cant_paginas" width="230">{WO_PAGES}</td>
+								<td align="left">{WO_NEXT}{WO_LAST}</td>
+								<td width="180"></td>
+							</tr>
+						</table> 
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

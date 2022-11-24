@@ -1,0 +1,60 @@
+<Report>
+	<Font name="Arial" size="7" style="" id="ArialSmall"/>
+	<Font name="Arial" size="7" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="" id="Arial"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold_header"/>	
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	<PageHeader>	
+		<Cell text="" height="55%" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="SALIDA BODEGA Nº {strCOD_ITEM_SALIDA_BODEGA}" width="100%" align="C" newline="1" font="ArialBoldBigB"/>
+		<Cell text="" height="4" newline="1"/>	
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{ITEM}" width="10%" align="C" border="LRTB" font="Arial"/>	
+		<Cell text="{COD_PRODUCTO}" width="15%" align="C" border="LRTB" font="Arial"/>	
+		<Cell text="{NOM_PRODUCTO}" width="60%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{CANTIDAD}" width="15%" align="R" border="LRTB" font="Arial"/>	
+	</Content>
+	<Group>
+		 
+		<GroupHeader>				
+			<Cell height="15" newline="1"/>
+			<Cell text="Fecha Salida: {FECHA_SALIDA_BODEGA}" width="70%" align="L"  font="ArialBold"/>
+			<Cell text="Bodega: {NOM_BODEGA}" height="12" width="30%" align="L"  font="Arial" newline="1"/>
+			<Cell text="Hora Salida: {HORA_SALIDA_BODEGA}" width="30%" align="L"  font="Arial" newline="1"/>
+			<Cell text="Documento                   :" width="22%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{TIPO_DOC}" width="30%" align="L" font="Arial" />
+			<Cell text="Orden Compra   :" width="18%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{COD_ORDEN_COMPRA_COMERCIAL}" width="40%" align="L" font="Arial" newline="1"/>
+			<Cell text="Nº Documento              :" width="22%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{NRO_DOC}" width="30%" align="L" font="Arial"/>
+			<Cell text="Nº NV                  :" width="18%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{COD_NOTA_VENTA}" width="40%" align="L" font="Arial" newline="1"/>
+			<Cell text="Fecha Documento        :" width="22%" align="L" font="ArialBoldBlue" />
+			<Cell text="{FECHA_DOC}" width="30%" align="L" font="Arial"/>
+			<Cell text="Vendedor           :" width="18%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{NOM_VENDEDOR}" width="20%" align="L" font="Arial" newline="1"/>
+			<Cell text="Referencia                     :" width="22%" align="L" font="ArialBoldBlue" />
+			<Cell text="{REFERENCIA}" width="50%" align="L" font="Arial"/>
+			<Cell text="" height="4" newline="1"/>
+			<Cell text="" height="4" newline="1"/>
+			<Cell text="" height="5" newline="1"/>		
+			<Cell text="Item" width="10%" align="C" border="LRTB" font="ArialBoldBlue"/>		
+			<Cell text="Modelo" width="15%" align="C" border="LRTB" font="ArialBoldBlue"/>
+			<Cell text="Equipo" width="60%" align="C" border="LRTB" font="ArialBoldBlue"/>		
+			<Cell text="Cantidad" width="15%" align="C" border="LRTB" font="ArialBoldBlue" newline="1"/>
+		</GroupHeader>
+		<GroupFooter>
+			<Cell height="30" newline="1"/>
+			<Cell text="" width="75%" align="L" font="Arial"/>
+			<Cell text="Fecha Impresión" width="15%" align="L" font="Arial"/>
+			<Cell text="{FECHA_IMPRESION}" width="10%" align="L" font="Arial" newline="1"/>
+			<Cell text="" width="75%" align="L" font="Arial"/>
+			<Cell text="Hora Impresión" width="15%" align="L" font="Arial"/>
+			<Cell text="{HORA_IMPRESION}" width="10%" align="L" font="Arial" newline="1"/>
+		</GroupFooter> 
+	</Group>
+</Report>

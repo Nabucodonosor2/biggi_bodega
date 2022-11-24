@@ -1,0 +1,40 @@
+<Report>
+	<Font name="Arial" size="7" style="" id="ArialSmall"/>
+	<Font name="Arial" size="7" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold"/>
+	<Font name="Arial" size="7" style="B" id="ArialBoldBlueItem" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="9" style="" id="Arial"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold_header"/>	
+	<PageHeader>	
+		<Cell text="" height="55%" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="EQUIPOS POR RECIBIR" width="100%"  align="C" newline="1" font="ArialBoldBigB"/>
+		<Cell text="{str_filtro}" width="100%" align="C" newline="1" font="ArialSmallBlue"/>
+		<Cell text="" height="4" newline="1"/>
+		<Cell text="" height="4" newline="1"/>
+		<Cell text="" height="4" newline="1"/>
+		<Cell text="Solic." width="5%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+		<Cell text="Fecha" width="9%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+		<Cell text="Nro. OC" width="5%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+		<Cell text="Proveedor" width="11%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+		<Cell text="Modelo EQ" width="9%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+		<Cell text="Descripción" width="40%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+		<Cell text="Solicitado" width="7%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+		<Cell text="Recibido" width="7%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+		<Cell text="Por Recibir" width="7%" align="C" border="LRTB" font="ArialBoldBlueItem" newline="1"/>	
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{COD_SOL_COMPRA}" width="5%" align="C" border="LRTB" font="'{TIPO}' == 'SC' ? 'ArialBold': 'Arial'"/>	
+		<Cell text="{FECHA_SOL_COMPRA}" width="9%" align="C" border="LRTB" font="'{TIPO}' == 'SC' ? 'ArialBold': 'Arial'"/>	
+		<Cell text="{NRO_OC}" width="5%" align="L" border="LRTB" font="'{TIPO}' == 'SC' ? 'ArialBold': 'Arial'"/>
+		<Cell text="{ALIAS_PROV}" width="11%" align="C" border="LRTB" font="'{TIPO}' == 'SC' ? 'ArialBold': 'Arial'"/>
+		<Cell text="{COD_PRODUCTO}" width="9%" align="L" border="LRTB" font="'{TIPO}' == 'SC' ? 'ArialBold': 'Arial'"/>
+		<Cell text="{NOM_PRODUCTO}" width="40%" align="L" border="LRTB" font="'{TIPO}' == 'SC' ? 'ArialBold': 'Arial'"/>	
+		<Cell text="{CANT_SOLICITADA}" width="7%" align="C" border="LRTB" font="'{TIPO}' == 'SC' ? 'ArialBold': 'Arial'"/>
+		<Cell text="{CANT_RECIBIDA}" width="7%" align="C" border="LRTB" format="N0,." font="'{TIPO}' == 'SC' ? 'ArialBold': 'Arial'"/>	
+		<Cell text="{CANT_POR_RECIBIR}" width="7%" align="C" border="LRTB" format="N0,." font="'{TIPO}' == 'SC' ? 'ArialBold': 'Arial'" newline="1"/>
+	</Content>
+	<Group local="ORDEN">
+	</Group>
+</Report>

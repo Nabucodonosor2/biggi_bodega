@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Imprimir Nota de Venta</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+body {
+	background-color: #E5E5E5;
+	text-align:center;
+	font-size:14px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+.msg {
+	color:#000;
+	text-align:center;
+	font-size:11px;
+	font-weight:bolder;
+}
+.table{
+	font-size: 11px;
+	font-weight: bold; 
+	color: #FFF;
+	margin-top:1em;
+	border:#000033 1px solid;
+	margin-left:2px;
+	background: #919191;
+}
+.table2{
+	font-size: 10px;
+	font-weight: bold; 
+	color: #666666;	
+	border-left: #000066  1px solid;
+	border-bottom:#000066  1px solid;
+	border-right: #000066  1px solid;
+	margin-left:2px;
+	background-color:#CCCCCC;	
+}
+.titulo_tabla{
+	background-color: #E5E5E5;
+	font-size: 12px;
+	font-weight:bold;	
+	color: #000066;
+	text-align:left;
+	padding-top:9px;
+	margin-left:-5px;
+	width:200px;	
+}
+-->
+</style>
+<script type="text/javascript">
+function get_returnVal() {
+	/* Se deben retornar 4 valores separados por "|"
+	   valor1 = "resumen" o "ampliada" o "marca"
+	   valor2 = "con_logo" o "sinlogo"
+	*/
+	var res = 	'';
+	if (document.getElementById('resumen').checked)
+		res = res + "resumen|";
+	else if (document.getElementById('marca').checked)
+		res = res + "marca|";
+	else if (document.getElementById('resultado').checked)
+		res = res + "resultado|";		
+
+	// con o sin logo
+	if (document.getElementById('logo').checked)
+		res = res + "logo|";
+	else if (document.getElementById('sinlogo').checked)
+		res = res + "sinlogo|";	
+	return res;
+}
+function show_tabla_lista_tecnica(showme) {
+	var tabla = document.getElementById('tabla_lista_tecnica');
+	if (showme) {
+		tabla.style.display = ''; 
+		window.innerHeight = 340; // aumenta el tamaño de la ventana de print en cotizacion
+	}
+	else{
+		tabla.style.display = 'none'; 
+		window.innerHeight = 170; // disminuye el tamaño de la ventana de print en cotizacion
+	}
+}
+</script>
+</head>
+<body>
+<div class="titulo_tabla_wm">&nbsp;&nbsp;Imprimir Nota de Venta N° {COD_NOTA_VENTA} </div>
+<form id="form1" name="form1" method="post" action="">
+	<table width="435" border="0" class="table2" align="left">  
+  		<tr align="left" class="table">
+    		<th width="130" align="left">Tipo Impresion</th>
+			<th align="left">Logos</th>
+  		</tr>
+  		<tr align="left"> 
+    	 	<td width="150" align="left">
+				<label><input name="tipo_impresion" type="radio"  id="resumen" value="1" checked="checked">Resumen</label>
+			</td>
+    	 	<td align="left">
+				<label><input name="conlogo" type="radio"  id="logo" value="1" checked="checked">Con logo</label>
+			</td>
+  		</tr>
+  		<tr align="left"> 
+    		<td width="150" align="left">
+				<label><input name="tipo_impresion" type="radio" id="marca" value="1"/>Marcas para Despacho</label>
+			</td>
+    		<td align="left">
+				<label><input name="conlogo" type="radio" id="sinlogo">Sin logo</label>
+			</td>
+  		</tr>
+  		<tr align="left"> 
+    		<td width="150" align="left">
+				<label><input name="tipo_impresion" type="radio" id="resultado"  value="1">Resultados</label>
+			</td>
+  		</tr>
+		<tr align="left"> 
+			<td width="300" align="left">
+			</td>
+			<td align="right">
+				<input name="OK" type="button" value="OK"  onclick="returnValue=get_returnVal(); window.close();"/>
+				<input name="Cancelar" type="button" value="Cancelar" onclick="window.close(); returnValue=null;"/>
+			</td>
+  		</tr>
+	</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+CREATE PROCEDURE spi_inf_oc_por_facturar_bodega(@ve_cod_usuario			numeric)
+as
+BEGIN
+
+	-- borra el resultado de informes anteriores del mismo usuario
+	delete INF_OC_POR_FACTURAR_BODEGA
+	where cod_usuario = @ve_cod_usuario
+	
+	INSERT INTO INF_OC_POR_FACTURAR_BODEGA(FECHA_INF_OC_POR_FACTURAR_BODEGA
+											,COD_USUARIO
+											,COD_ORDEN_COMPRA
+											,FECHA_ORDEN_COMPRA
+											,COD_ITEM_ORDEN_COMPRA
+											,COD_PRODUCTO
+											,NOM_PRODUCTO
+											,CANTIDAD_OC
+											,CANT_FA
+											,CANT_POR_FACT
+											,COD_NOTA_VENTA
+											,COD_USUARIO_VENDEDOR
+											,NOM_USUARIO)
+									SELECT getdate()
+											,@ve_cod_usuario
+											,O.COD_ORDEN_COMPRA
+											,FECHA_ORDEN_COMPRA
+											,COD_ITEM_ORDEN_COMPRA
+											,COD_PRODUCTO
+											,NOM_PRODUCTO
+											,CANTIDAD
+											,0
+											,0
+											,case 
+												when TIPO_ORDEN_COMPRA = 'ARRIENDO' then COD_DOC
+												when TIPO_ORDEN_COMPRA = 'NOTA_VENTA' then nv.COD_NOTA_VENTA
+											end COD_NOTA_VENTA
+											,(SELECT U.INI_USUARIO FROM USUARIO U WHERE U.COD_USUARIO = nv.COD_USUARIO_VENDEDOR1) COD_USUARIO_VENDEDOR
+											,(SELECT U.NOM_USUARIO FROM USUARIO U WHERE U.COD_USUARIO = nv.COD_USUARIO_VENDEDOR1) NOM_USUARIO
+									 from ITEM_ORDEN_COMPRA i, ORDEN_COMPRA o,NOTA_VENTA nv
+									 where o.COD_ORDEN_COMPRA > 175780
+									 and o.COD_EMPRESA = 1302    --todoinox
+									 and i.COD_ORDEN_COMPRA = o.COD_ORDEN_COMPRA
+									 and o.COD_NOTA_VENTA = nv.COD_NOTA_VENTA
+									 and O.COD_ESTADO_ORDEN_COMPRA = 1
+									 and dbo.f_oc_get_saldo_sin_faprov(O.COD_ORDEN_COMPRA) > 0
+									 AND i.FACTURADO_SIN_WS = 'N'
+									 
+	SELECT FECHA_INF_OC_POR_FACTURAR_BODEGA
+			,COD_USUARIO
+			,COD_ORDEN_COMPRA
+			,FECHA_ORDEN_COMPRA
+			,COD_NOTA_VENTA
+			,COD_USUARIO_VENDEDOR
+			,COD_ITEM_ORDEN_COMPRA
+			,COD_PRODUCTO
+			,NOM_PRODUCTO
+			,CANTIDAD_OC
+			,NOM_USUARIO
+	FROM INF_OC_POR_FACTURAR_BODEGA
+	where cod_usuario = @ve_cod_usuario
+	ORDER BY FECHA_INF_OC_POR_FACTURAR_BODEGA DESC
+END

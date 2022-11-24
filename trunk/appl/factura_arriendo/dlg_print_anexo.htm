@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Imprimir Cotizacion</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+function get_return_val() {
+	var vl_res = '';
+	
+	if (document.getElementById('PDF_0').checked)
+		vl_res = "PDF";
+	else if (document.getElementById('XLS_0').checked)
+		vl_res = "XLS";
+		
+	return vl_res;
+}
+</script>
+</head>
+<body class="content_wm">
+<div class="titulo_tabla_wm">&nbsp;&nbsp;Exportar Anexo Factura Arriendo N° {COD_COTIZACION} </div>
+<form id="form1" name="form1" method="post" action="">
+	<table width="435" border="0" class="table2_wm" align="left">  
+	
+		<tr class="claro">
+			<td colspan="6" align="left" class="titulo_tabla">Seleccione formato:</td>
+		</tr>	
+	
+  		<tr>
+    		<td>{PDF}</td>
+			<td>{XLS}</td>
+  		</tr>
+		<tr align="left"> 
+			<td width="96" height="26" align="left">			</td>
+			<td height="26" align="right" colspan="3">
+				<input name="OK" type="button" value="OK"  onclick="returnValue=get_return_val(); window.close();" class="button"/>
+				<input name="Cancelar" type="button" value="Cancelar" onclick="window.close(); returnValue=null;" class="button"/>
+		  </td>
+  		</tr>
+  </table>
+</form>
+</body>
+</html>

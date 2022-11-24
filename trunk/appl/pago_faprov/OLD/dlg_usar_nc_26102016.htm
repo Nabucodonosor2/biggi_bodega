@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title></title>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<link href="{W_CSS}" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+<!--
+body {
+	background-color: #E5E5E5;
+	text-align:center;
+	font-size:14px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+.msg {
+	color:#000;
+	text-align:center;
+	font-size:11px;
+	font-weight:bolder;
+}
+.table{
+	font-size: 11px;
+	font-weight: bold; 
+	color: #FFF;
+	margin-top:1em;
+	border:#000033 1px solid;
+	margin-left:2px;
+	background: #919191;
+}
+.table2{
+	font-size: 10px;
+	font-weight: bold; 
+	color: #666666;	
+	border-left: #000066  1px solid;
+	border-bottom:#000066  1px solid;
+	border-right: #000066  1px solid;
+	margin-left:2px;
+	background-color:#CCCCCC;	
+}
+.titulo_tabla{
+	background-color: #E5E5E5;
+	font-size: 12px;
+	font-weight:bold;	
+	color: #000066;
+	text-align:left;
+	padding-top:9px;
+	margin-left:-5px;
+	width:200px;	
+}
+.table_wm_2 {
+    background: none repeat scroll 0 0 #919191;
+    border: 1px solid #000033;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 2px;
+    margin-top: 0;
+}
+.titulo_tabla_2{
+	background-color: #CCCCCC;
+	font-size: 12px;
+	font-weight:bold;	
+	color: #000066;
+	text-align:left;
+	padding-top:9px;
+	margin-left:-5px;
+	width:200px;	
+}
+-->
+</style>
+<script type="text/javascript">
+function get_returnVal() {
+	var vl_res = 0;
+	var vl_res_string = '';
+	var vl_aTR = get_TR('PAGO_FAPROV_NCPROV');
+	for(i = 0 ; i < vl_aTR.length ; i++){
+		if(document.getElementById('SELECCION_'+i).checked){
+			var vl_total_con_iva = document.getElementById('TOTAL_CON_IVA_'+i).innerHTML;
+			var vl_nro_ncprov = document.getElementById('COD_NCPROV_'+i).value;
+			var vl_total_con_iva = vl_total_con_iva.replace(".","", 'g');
+			
+			vl_res = vl_res + parseInt(vl_total_con_iva);
+			vl_res_string = vl_res_string + vl_nro_ncprov + ';'
+		}
+	}	
+	return vl_res +'|'+vl_res_string+';';
+}
+</script>
+</head>
+<body>
+<div class="titulo_tabla_wm">&nbsp;&nbsp;Seleccion de NC</div>
+<form id="form1" name="form1" method="post" action="">
+	<table width="435" border="0" class="table2" align="left">  
+  		<tr>	
+  			<td>
+  				<table width="580" border="0" align="center" class="table_wm_2" id="tabla_item_nv">  					
+					<tr align="center">
+						<th width="10%">Sel.</th>
+    					<th width="15%">Numero NC</th>
+    					<th width="25%">Fecha NC</th>    					
+    					<th width="50%">Monto NC</th>
+  					</tr>
+				</table>
+				<div style="overflow-x:hidden; overflow-y:auto; height:185px;">
+					<table rules="none" border="1" align="center" id="PAGO_FAPROV_NCPROV" width="100%">
+						<!-- startBlock(PAGO_FAPROV_NCPROV) -->
+						<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+							<td width="10%">{SELECCION}</td>
+	    					<td width="15%">{COD_NCPROV}{NRO_NCPROV}</td>
+	    					<td width="25%">{FECHA_NCPROV}</td>    					
+	    					<td width="50%">{TOTAL_CON_IVA}</td>													
+						</tr>
+						<!-- endBlock(PAGO_FAPROV_NCPROV) -->
+					</table>
+				</div>
+  			</td>
+  		</tr>
+		<tr align="left"> 
+			<td align="right">
+				<input name="OK" type="button" value="OK"  onclick="returnValue=get_returnVal(); window.close();"/>
+				<input name="Cancelar" type="button" value="Cancelar" onclick="returnValue=null; window.close();"/>
+			</td>
+  		</tr>
+	</table>
+</form>
+</body>
+</html>

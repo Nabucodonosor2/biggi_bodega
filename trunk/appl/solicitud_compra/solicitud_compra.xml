@@ -1,0 +1,71 @@
+<Report>
+	<Font name="Arial" size="7" style="" id="ArialSmall"/>
+	<Font name="Arial" size="7" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="" id="Arial"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold_header"/>	
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	<PageHeader>	
+		<Cell text="" height="55%" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="SOLICITUD DE COMPRA Nº {strCOD_SOLICITUD}" width="100%" align="C" newline="1" font="ArialBoldBigB"/>
+		<Cell text="" height="4" newline="1"/>	
+	</PageHeader>
+	<Content font="Arial">	
+		<Cell text="{IT_COD_PRODUCTO}" width="20%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{IT_NOM_PRODUCTO}" width="50%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{IT_CANTIDAD}" width="10%" align="R" border="LRTB" font="Arial"/>	
+		<Cell text="{PRECIO}" width="10%" align="R" border="LRTB" font="Arial"/>	
+		<Cell text="{TOTAL}" width="10%" align="R" border="LRTB" font="Arial" format="N0,." newline="1"/>
+	</Content>
+	<Group>
+		 <Variable name="sum_total" function="SUM" value="TOTAL"/>
+		<GroupHeader>				
+			<Cell height="15" newline="1"/>
+			<Cell text="Fecha Solicitud: {FECHA_SOLICITUD_COMPRA}" width="70%" align="L" font="ArialBold" newline="1"/>
+			<Cell text="Hora Solicitud: {HORA_SOLICITUD_COMPRA}" width="30%" align="L" font="Arial" newline="1"/>
+			<Cell text="Nombre Producto :" width="18%" align="L" font="ArialBoldBlue"/>
+			<Cell text="{NOM_PRODUCTO}" width="50%" align="L" font="ArialBold" />
+			<Cell text="Cod. Equipo          :" width="17%" align="L" font="ArialBoldBlue" />
+			<Cell text="{COD_PRODUCTO}" width="19%" align="L" font="Arial" newline="1"/>
+			<Cell text="Proveedor :" width="11%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{NOM_EMPRESA}" width="57%" align="L" font="Arial" />
+			<Cell text="Emisor                   :" width="17%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{USUARIO}" width="30%" align="L" font="Arial" newline="1"/>
+			<Cell text="Referencia :" width="11%" align="L" font="ArialBoldBlue"/>
+			<Cell text="{REFERENCIA}" width="57%" align="L" font="Arial"/>
+			<Cell text="Estado Solicitud   :" width="17%" align="L" font="ArialBoldBlue"/>
+			<Cell text="{NOM_ESTADO_SOLICITUD_COMPRA}" width="30%" align="L" font="ArialBold" newline="1"/>
+			<Cell text="Cantidad    :" width="11%" align="L" font="ArialBoldBlue"/>
+			<Cell text="{CANTIDAD}" width="57%" align="L" font="Arial" />
+			<Cell text="Fecha Documento:" width="17%" align="L" font="ArialBoldBlue"/>
+			<Cell text="{FECHA_SOLICITUD}" width="19%" align="L" font="Arial" newline="1"/>
+			<Cell text="" height="4" newline="1"/>
+			<Cell text="" height="4" newline="1"/>
+			<Cell text="" height="5" newline="1"/>			
+			<Cell text="Modelo" width="20%" align="C" border="LRTB" font="ArialBoldBlue"/>
+			<Cell text="Equipo" width="50%" align="C" border="LRTB" font="ArialBoldBlue"/>		
+			<Cell text="Cantidad" width="10%" align="C" border="LRTB" font="ArialBoldBlue"/>
+			<Cell text="Precio [$]" width="10%" align="C" border="LRTB" font="ArialBoldBlue"/>
+			<Cell text="Total [$]" width="10%" align="C" border="LRTB" font="ArialBoldBlue" newline="1"/>
+		</GroupHeader>
+		<GroupFooter>
+			<Cell text="Total" width="90%" align="R" font="ArialBold"/>	
+			<Cell text="{sum_total}" width="10%" border="LTRB" align="R" font="ArialBold" format="N0,." newline="1"/>
+			<Cell text="" width="10%" newline="1"/>
+			<Cell height="30" newline="1"/>
+			<Cell text="" width="10%" align="L" font="Arial"/>
+			<Cell text="Recepcionado Por" width="20%" border="T" align="C" font="Arial"/>
+			<Cell text="" width="40%" align="L" font="Arial"/>
+			<Cell text="Entregado Por" width="20%" border="T" align="C" font="Arial"/>
+			<Cell height="30" newline="1"/>
+			<Cell text="" width="75%" align="L" font="Arial"/>
+			<Cell text="Fecha Impresión" width="15%" align="L" font="Arial"/>
+			<Cell text="{FECHA_IMPRESION}" width="10%" align="L" font="Arial" newline="1"/>
+			<Cell text="" width="75%" align="L" font="Arial"/>
+			<Cell text="Hora Impresión" width="15%" align="L" font="Arial"/>
+			<Cell text="{HORA_IMPRESION}" width="10%" align="L" font="Arial" newline="1"/>
+		</GroupFooter> 
+	</Group>
+</Report>

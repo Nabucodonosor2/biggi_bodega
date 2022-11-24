@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Sistema Grupo de Empresas Biggi</title>
+		<link href="http://190.196.2.10/commonlib/trunk/css/style_win.css" rel="stylesheet" type="text/css">
+		<link href="http://192.168.2.150/commonlib/trunk/css/style_win.css" rel="stylesheet" type="text/css">
+		<style type="text/css">
+		<!--
+		body {
+			background-color: #FFFFFF;
+		}
+		-->
+		</style>
+	</head>
+	<body>
+		<br>
+		<br>
+		Sr(a). {NOM_USUARIO}, hay {COUNT} Facturas que registran compromisos para hoy: {FECHA}
+		<br>
+		<br>
+		<table width="80%" rules="none" border="1" align="center" class="claro" id="BITACORA_FACTURA">
+			<tr>
+				<td>
+					<table>
+						<tbody>
+							<tr class="encabezado_right">
+								<td width="5%">
+									<div align="center"><strong>N° FA</strong></div>
+								</td>
+								<td width="5%">
+									<div align="center"><strong>Fecha</strong></div>
+								</td>
+								<td width="20%">
+									<div align="center"><strong>Cliente</strong></div>
+								</td>
+								<td width="5%">
+									<div align="center"><strong>Monto</strong></div>
+								</td>
+								<td width="30%">
+									<div align="center"><strong>Compromiso</strong></div>
+								</td>
+								<td width="15%">
+									<div align="center"><strong>Contacto y Teléfono</strong></div>
+								</td>
+							</tr>
+							 <!-- startBlock(BITACORA_FACTURA) -->
+							<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+								<td>
+									<div align="right">{NRO_FACTURA}</div>
+								</td>
+								<td>
+									<div align="center">{FECHA}</div>
+								</td>
+								<td>
+									<div align="left">{NOM_EMPRESA}</div>
+								</td>
+								<td>
+									<div align="right">{TOTAL_CON_IVA}</div>
+								</td>
+								<td>
+									<div align="left">{GLOSA_COMPROMISO}</div>
+								</td>
+								<td>
+									<div align="left">{CONTACTO}{FONO}</div>
+								</td>
+							</tr>
+							<!-- endBlock(BITACORA_FACTURA) -->
+						</tbody>
+					</table>
+				</td>	
+			</tr>
+		</table>
+		<p />
+		<table width="100%">
+			<tr>
+				<td>
+					<p>Atte.</p>
+					<p>Comercial Biggi</p>
+					<p>Este mensaje ha sido enviado por nuestro servidor de base de datos.</p>
+					<p><br>
+				</td>
+			</tr>
+		</table>
+		<p /><p />
+	</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Productos que variaron su Precio</title>
+<script charset="iso-8859-1" src="{K_ROOT_URL}../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script type="text/javascript">
+// DIALOG Required Code
+	var prntWindow = getParentWindowWithDialog(); //$(top)[0];
+
+	var $dlg = prntWindow && prntWindow.$dialog;
+
+	function getParentWindowWithDialog() {
+		var p = window.parent;
+		var previousParent = p;
+		while (p != null) {
+			if ($(p.document).find('#iframeDialog').length) return p;
+
+			p = p.parent;
+
+			if (previousParent == p) return null;
+
+			// save previous parent
+
+			previousParent = p;
+		}
+		return null;
+	}
+
+	function setWindowReturnValue(value) {
+		if ($dlg) $dlg.returnValue = value;
+		window.returnValue = value; // in case popup is called using showModalDialog
+
+	}
+
+	function getWindowReturnValue() {
+		// in case popup is called using showModalDialog
+
+		if (!$dlg && window.returnValue != null)
+			return window.returnValue;
+
+		return $dlg && $dlg.returnValue;
+	}
+
+	if ($dlg) window.dialogArguments = $dlg.dialogArguments;
+	if ($dlg) window.close = function() { if ($dlg) $dlg.dialogWindow.dialog('close'); };
+	// END of dialog Required Code
+
+    function closeMe() {
+        setWindowReturnValue(null);
+        $dlg.dialogWindow.dialog('close');
+    }
+    function okMe() {
+        setWindowReturnValue('1');
+        $dlg.dialogWindow.dialog('close');
+    }
+</script>
+
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+</head>
+
+<body class="content_wm">
+<div class="titulo_tabla_wm" style="width:300px; margin-bottom:-9px;">&nbsp;&nbsp;Productos que variaron su Precio </div>
+<table width="648" border="0" align="left" class="table_wm" height="20">
+  <tr align="left">
+    <th width="108" align="center">IT</th>
+    <th width="78">Modelo</th>
+	<th width="178">Descripción</th>
+	<th width="130" align="right">Precio Cot. Original</th>
+	<th width="130" align="right">Precio Actual </th>
+  </tr>
+</table>
+<div style="overflow-x:hidden; overflow-y:auto; margin-top:34px;">
+	<table width="648" border="0" class="table2_wm" align="left" >  
+		<!-- startBlock(PRODUCTO) -->
+	  <tr class="{DW_TR_CSS}" align="left"> 
+		<td width="108" align="center">{ITEM}</td>
+		<td width="78">{COD_PRODUCTO}</td> 
+		<td width="178">{NOM_PRODUCTO}</td> 
+		<td width="130" align="right">{PRECIO}</td> 
+		<td width="130" align="right">{PRECIO_VENTA_PUBLICO}</td> 
+	  </tr>
+		<!-- endBlock(PRODUCTO) -->		
+	</table>
+</div>
+<table width="133" border="0" align="center" style="margin-top:2px;" height="20">
+  	<tr align="left">
+	  <td width="73">{W_AUTORIZA}</td>
+		<td width="60"><input type="button" value="Precio Actual" onclick="okMe();" class="button"></td>
+	</tr>
+</table>
+
+</body>
+</html>

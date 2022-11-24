@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Imprimir Nota de Venta</title>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+body {
+	background-color: #E5E5E5;
+	text-align:center;
+	font-size:14px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+.msg {
+	color:#000;
+	text-align:center;
+	font-size:11px;
+	font-weight:bolder;
+}
+.table{
+	font-size: 11px;
+	font-weight: bold; 
+	color: #FFF;
+	margin-top:1em;
+	border:#000033 1px solid;
+	margin-left:2px;
+	background: #919191;
+}
+.table2{
+	font-size: 10px;
+	font-weight: bold; 
+	color: #666666;	
+	border-left: #000066  1px solid;
+	border-bottom:#000066  1px solid;
+	border-right: #000066  1px solid;
+	margin-left:2px;
+	background-color:#CCCCCC;	
+}
+.titulo_tabla{
+	background-color: #E5E5E5;
+	font-size: 12px;
+	font-weight:bold;	
+	color: #000066;
+	text-align:left;
+	padding-top:9px;
+	margin-left:-5px;
+	width:200px;	
+}
+-->
+</style>
+<script type="text/javascript">
+function get_returnVal() {	
+	var result = '';
+	var aTR = get_TR('ITEM_NOTA_VENTA');
+	for (var i=0; i<aTR.length; i++) {
+		var record = get_num_rec_field(aTR[i].id);
+		var cant_nv = document.getElementById("CANTIDAD_NV_" + i).innerHTML;		
+		var cant_marca = document.getElementById('CANTIDAD_MARCA_' + record).value;
+
+		cant_nv 	= parseFloat(cant_nv);
+		cant_marca 	= parseFloat(cant_marca.replace(',', '.', 'g'));
+		
+		if (cant_marca  > 0)
+			result = result + document.getElementById('ITEM_NV_' + i).value + "|" + cant_marca + "|";
+		
+	}	
+	return result;
+	
+}
+
+function valida_cant_nv(nro_inicio){
+	
+		var cant_nv 	= document.getElementById("CANTIDAD_NV_" + nro_inicio).innerHTML;		
+		var cant_marca 	= document.getElementById('CANTIDAD_MARCA_' + nro_inicio).value;
+	
+		cant_nv 	= parseFloat(cant_nv);
+		cant_marca 	= parseFloat(cant_marca);
+		
+		if(cant_nv < cant_marca){						
+			alert('Atencion : Cantidad de Marca ingresada debe igual o menor a la Cantidad NV');
+			document.getElementById('CANTIDAD_MARCA_' + nro_inicio).value = document.getElementById("CANTIDAD_NV_" + nro_inicio).innerHTML;			
+		}
+				
+}
+</script>
+</head>
+<body>
+<div class="titulo_tabla_wm">&nbsp;&nbsp;Marcas para Despacho de Nota de Venta N° {COD_NOTA_VENTA} </div>
+<form id="form1" name="form1" method="post" action="">
+	<table width="580" border="0" class="table2">  		
+  		<tr align="left">
+    		<td>				
+				<!-- inicio tabla tecnica oculta--> 
+				<table width="580" border="0" align="center" class="table_wm" id="tabla_item_nv">  					
+					<tr align="center">
+    					<th width="50">Item</th>
+    					<th width="106">Cod. Producto</th>    					
+    					<th width="278">Nom. Producto</th>
+    					<th width="68">Cant. NV</th>
+    					<th width="78">Cant. Marca</th>
+  					</tr>
+				</table>
+				<div style="overflow-x:hidden; overflow-y:auto; height:240;">
+				<table rules="none" border="1" align="center" id="ITEM_NOTA_VENTA">
+				<!-- startBlock(ITEM_NOTA_VENTA) -->
+					<tr class="{DW_TR_CSS}" id="{DW_TR_ID}" align="center">
+						<td><input type="hidden" id="{ITEM_NV}" name="{ITEM_NV}" value="{COD_ITEM_NOTA_VENTA}"></input></td>						
+						<td width="50">{ITEM}</td>
+						<td width="106">{COD_PRODUCTO}</td>
+						<td width="278" align="left">{NOM_PRODUCTO}</td>
+						<td width="68"><div id="{CANTIDAD_NV}" name="{CANTIDAD_NV}">{CANTIDAD}</div></td>	
+						<td width="78"><input type="text" value="0"  onfocus="this.style.border='1px solid #FF0000'" onblur="this.style.border='';" onkeypress="return onlyNumbers(this, event,1 , 1);" size="5" id="{CANTIDAD_MARCA}" name="{CANTIDAD_MARCA}" class="input_text" onChange="valida_cant_nv({NRO_INICIO});" style=""/></td>												
+					</tr>
+				<!-- endBlock(ITEM_NOTA_VENTA) -->
+				</table>
+				<!-- fin tabla tecnica oculta-->
+			</div>	
+  	</table>  	
+	<table align="center"> 
+		<tr align="left">		
+			<td align="center">
+				<input name="OK" type="button" value="OK" onclick="returnValue=get_returnVal(); window.close();"/> 
+				<input name="Cancelar" type="button" value="Cancelar" onclick="returnValue=null; window.close();"/>
+			</td>
+  		</tr>	
+	</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<Report>
+	<Font name="Arial" size="7" style="" id="ArialSmall"/>
+	<Font name="Arial" size="8" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="BU" id="ArialBoldU"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="11" style="B" id="ArialBoldBlueBig" red="0" green="0" blue="128"/>	
+	<Font name="Arial" size="9" style="" id="Arial"/>
+	<Font name="Arial" size="10" style="B" id="Arial_cheque"/>
+	<Font name="Arial" size="9" style="" id="ArialBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="8.5" style="" id="ArialItem"/>
+	<!-- borrar <Font name="Arial" size="9" style="B" id="ArialBoldBlueItem" red="0" green="0" blue="128"/>-->
+		<Font name="Arial" size="9" style="BU" id="ArialBoldUItem"/>
+	
+	<PageHeader>	
+		<Cell text="" height="7" newline="1" />
+		<Cell text="" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="" height="0" newline="1"/>		
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{NRO_FAPROV}" width="10%" border="LR" align="C" font="Arial"  redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'S'"/>
+		<Cell text="{FECHA_FAPROV}" width="12%" border="R" align="C" font="Arial"  redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'S'"/>
+		<Cell text="{MONTO_ASIGNADO}" width="18%" border="R" align="R" format="N0,." font="Arial"  redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'S'" newline="1"/>
+				
+		<Cell text="{NRO_FAPROV}" width="10%" border="LR" align="C" font="Arial"  redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+		<Cell text="{FECHA_FAPROV}" width="12%" border="R" align="C" font="Arial"  redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+		<Cell text="{MONTO_ASIGNADO}" width="18%" border="R" align="R" format="N0,." font="Arial"  redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+		<Cell text="{ORDENES_COMPRA}" width="30%" border="R" align="R" font="Arial"  redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+		<Cell text="{NOTAS_DE_VENTA}" width="30%" border="R" align="R" font="Arial"  redl="192" greenl="192" bluel="192" newline="1" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+
+		<Cell text="" border="B" newline="1" height="1" redl="199" greenl="199" bluel="199"/>		
+	</Content>
+	<Group local="COD_PAGO_FAPROV">
+		<GroupHeader>				
+			<Cell text="PAGO PARTICIPACION   COD. {strCOD_PAGO_FAPROV}" width="100%" newline="1" font="ArialBoldBigB" visible="'{ORIGEN_FAPROV}' == 'PARTICIPACION'"/>
+			<Cell text="PAGO PROVEEDOR   COD. {strCOD_PAGO_FAPROV}" width="100%" newline="1" font="ArialBoldBigB" visible="'{ORIGEN_FAPROV}' == 'ORDEN_COMPRA'"/>
+			<Cell text="" border="B" newline="1" height="1" redl="199" greenl="199" bluel="199"/> 
+			<Cell text="" height="4" newline="1"/>
+
+			<Cell text="Santiago, {FECHA_IMPRESO}" align="L" font="ArialBoldBlue"  newline="1"/>
+			<Cell text="Datos Generales" font="ArialBoldBlueBig" newline="1"/>
+			<Cell text="" height="5" width="100%" border="LRT" redl="192" greenl="192" bluel="192" newline="1" />			
+			<Cell text="" width="2%" border="L"  redl="192" greenl="192" bluel="192"/>
+			<Cell text="Impreso Por: " width="15%" align="L" font="ArialBoldBlue"/>
+			<Cell text="{USUARIO_CAMBIO}" width="20%" align="L" font="Arial"/>
+			<Cell text="Fecha: " width="16%" align="R" font="ArialBoldBlue"/>
+			<Cell text="{FECHA_CAMBIO}" width="47%" border="R" font="Arial" redl="192" greenl="192" bluel="192" newline="1"/>
+			<Cell text="" height="5" border="LRB" redl="192" greenl="192" bluel="192" newline="1" />			
+			<Cell text="" newline="1" />		
+			
+			<Cell text="Empresa Directorio" font="ArialBoldBlueBig" width="100%" newline="1" visible="'{PAGO_DIRECTORIO}' == 'S'"/>	
+			<Cell text="Datos Proveedor" font="ArialBoldBlueBig" width="100%" newline="1" visible="'{PAGO_DIRECTORIO}' == 'N'"/>	
+			
+			<Cell text="" newline="1" height="5" width="100%" border="LRT" redl="192" greenl="192" bluel="192"/>			
+			<Cell text="" width="2%" border="L"  redl="192" greenl="192" bluel="192"/>
+			
+			<Cell text="Nombre  :" width="11%" font="ArialBoldBlue" visible="'{PAGO_DIRECTORIO}' == 'S'"/>
+			<Cell text="Proveedor  :" width="11%" font="ArialBoldBlue" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+			
+			<Cell text="{NOM_EMPRESA}" width="67%" font="ArialBold"/>
+			<Cell text="Rut:" width="6%" align="R" font="ArialBoldBlue"/>
+			<Cell text="{RUT}" width="10%" font="ArialBold" format="N0,."/>
+			<Cell text="- {DIG_VERIF}" width="4%" border="R" font="ArialBold" redl="192" greenl="192" bluel="192" newline="1"/>
+										
+			<Cell text="" width="2%" border="L"  redl="192" greenl="192" bluel="192"/>
+			<Cell text="Dirección   :" width="11%" font="ArialBoldBlue"/>
+			<Cell text="{DIRECCION} - {NOM_COMUNA} - {NOM_CIUDAD}" width="87%" font="Arial" border="R" redl="192" greenl="192" bluel="192" newline="1"/>
+			<Cell text="" width="2%" border="L"  redl="192" greenl="192" bluel="192"/>
+			<Cell text="Teléfono    :" width="11%" font="ArialBoldBlue"/>
+			<Cell text="{TELEFONO}" width="33%" font="Arial" redl="192" greenl="192" bluel="192"/>
+			<Cell text="" width="54%" border="R"  redl="192" greenl="192" bluel="192" visible="'{FAX}' == NULL"  newline="1"/>
+			<Cell text="Fax:  " width="16%" font="ArialBoldBlue" visible="'{FAX}' != NULL"/>
+			<Cell text="{FAX}" width="38%" font="Arial" border="R" redl="192" greenl="192" bluel="192" visible="'{FAX}' != NULL" newline="1"/>
+			<Cell text="" height="5" border="LRB" redl="192" greenl="192" bluel="192" newline="1" />			
+			<Cell text="" newline="1" />				
+			
+			<Cell text="Datos Documento" font="ArialBoldBlueBig" newline="1"/>
+			<Cell text="" newline="1" height="5" width="100%" border="LRT" redl="192" greenl="192" bluel="192"/>			
+			<Cell text="" width="2%" border="L"  redl="192" greenl="192" bluel="192"/>
+			<Cell text="Tipo            :" width="11%" font="ArialBoldBlue"/>
+			<Cell text="{NOM_TIPO_PAGO_FAPROV}" width="24%" font="Arial_cheque"/>
+			<Cell text="Cuenta Corriente:" width="16%" font="ArialBoldBlue"/>
+			<Cell text="{NOM_CUENTA_CORRIENTE}" width="22%" align="L" font="Arial"/>
+			<Cell text="" width="4%"/>
+			<Cell text="Nro.    :" width="7%" font="ArialBoldBlue"/>	
+			<Cell text="{NRO_DOCUMENTO}" width="14%" border="R" align="L" font="Arial" redl="192" greenl="192" bluel="192" newline="1"/>
+			
+			<Cell text="" width="2%" border="L"  redl="192" greenl="192" bluel="192"/>
+			<Cell text="Paguese a :" width="11%" font="ArialBoldBlue"/>
+			<Cell text="{PAGUESE_A}" width="24%" font="Arial"/>
+			<Cell text="Fecha                   :" width="16%" font="ArialBoldBlue"/>
+			<Cell text="{FECHA_DOCUMENTO}" width="22%" align="L" font="Arial"/>
+			<Cell text="" width="4%"/>
+			<Cell text="Monto:" width="7%" font="ArialBoldBlue"/>
+			<Cell text="{MONTO_DOCUMENTO}" width="14%" font="Arial" format="N0,." border="R" redl="192" greenl="192" bluel="192" newline="1"/>
+			<Cell text="" newline="1" height="5" border="LRB" redl="192" greenl="192" bluel="192"/>			
+			<Cell text="" newline="1" />	
+			<Cell text="" newline="1" />			 
+						
+			<Cell text="Pago Participación" font="ArialBoldBlueBig" newline="1" visible="'{PAGO_DIRECTORIO}' == 'S'"/>
+			<Cell text="Facturas" font="ArialBoldBlueBig" newline="1" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+			
+			<Cell text="Código" width="10%" border="LRTB" align="C" font="ArialBoldBlue" redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'S'"/>
+			<Cell text="Fecha" width="12%" align="C" border="LRTB" font="ArialBoldBlue" redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'S'"/>
+			<Cell text="Monto Pagado" width="18%" align="C" border="LRTB" font="ArialBoldBlue" redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'S'" newline="1"/>
+			
+			<Cell text="Nro. FA" width="10%" border="LRTB" align="C" font="ArialBoldBlue" redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+			<Cell text="Fecha" width="12%" align="C" border="LRTB" font="ArialBoldBlue" redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+			<Cell text="Monto Pagado" width="18%" align="C" border="LRTB" font="ArialBoldBlue" redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+			<Cell text="Ordenes de Compra" width="30%" align="C" border="LRTB" font="ArialBoldBlue" redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+			<Cell text="Notas de Venta" width="30%" align="C" newline="1" border="LRTB" font="ArialBoldBlue" redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+		</GroupHeader>
+		<GroupFooter>
+				<Cell text="" border="T" width="40%" redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'S'"/>
+				<Cell text="" border="T" width="100%" redl="192" greenl="192" bluel="192" visible="'{PAGO_DIRECTORIO}' == 'N'"/>
+		</GroupFooter>
+	</Group>
+	<PageFooter>		
+		<Cell text="" border="T" font="ArialSmall" absY="-40" redl="199" greenl="199" bluel="199" newline="1" />
+		<Cell text="www.biggi.cl  -  info@biggi.cl" width="100%" align="C" newline="1" font="ArialSmallBlue"/>
+	</PageFooter>	
+</Report>

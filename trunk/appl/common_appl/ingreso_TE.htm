@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title></title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script type="text/javascript">
+function resultado(){
+	var v_descripcion  	= document.getElementById('NOM_TE_0');
+	var v_precio_venta	= document.getElementById('PRECIO_0');
+	var v_motivo 		= document.getElementById('MOTIVO_TE_0');
+	var v_tipo_te	 	= document.getElementById('COD_TIPO_TE_0');
+	
+	var v_autoriza_te	= document.getElementById('AUTORIZA_TE_0');
+	var v_motivo_autoriza	= document.getElementById('MOTIVO_AUTORIZA_TE_0');
+	var v_fecha_autoriza	= document.getElementById('FECHA_AUTORIZA_TE_0');
+	if(v_descripcion.value == ''){
+		alert('Debe ingresar Descripción del Producto');
+		return false;	
+	} else if(v_precio_venta.value == ''){
+		alert('Debe ingresar Precio de Venta del Producto');
+		return false;	
+	}else if(v_motivo.value == ''){
+		alert('Debe ingresar Motivo del TE');
+		return false;	
+	}else if(v_tipo_te.value == ''){
+		alert('Debe ingresar tipo de TE');
+		return false;	
+	}else if(v_autoriza_te.checked == true){
+		if(v_motivo_autoriza.value == ''){
+			alert('Debe ingresar Motivo de autorización de TE');
+			return false;
+		}	
+	}else if(v_motivo_autoriza.value != '' && v_fecha_autoriza.innerHTML == '')
+		if(v_autoriza_te.checked == false){
+			alert('Debe autorizar el TE');
+			return false;
+		}	
+	return true;		
+}
+function change_autoriza(ve_checkbox_autoriza) {
+	if (ve_checkbox_autoriza.checked) {
+		document.getElementById('NOM_USUARIO_AUTORIZA_TE_0').innerHTML = document.getElementById('NOM_USUARIO_SESSION_0').value;
+
+		var currentTime = new Date();
+		var month = currentTime.getMonth() + 1;
+		var day = currentTime.getDate();
+		var year = currentTime.getFullYear();
+		var hora = currentTime.getHours();
+		var minuto = currentTime.getMinutes();
+		var segundo = currentTime.getSeconds();
+		document.getElementById('FECHA_AUTORIZA_TE_0').innerHTML = sprintf("%02d/%02d/%04d %02d:%02d:%02d", day, month, year, hora, minuto, segundo); 
+	}
+	else {
+		document.getElementById('NOM_USUARIO_AUTORIZA_TE_0').innerHTML = '';
+		document.getElementById('FECHA_AUTORIZA_TE_0').innerHTML = '';
+	} 
+		
+}
+// DIALOG Required Code
+	var prntWindow = getParentWindowWithDialog(); //$(top)[0];
+
+	var $dlg = prntWindow && prntWindow.$dialog;
+
+	function getParentWindowWithDialog() {
+		var p = window.parent;
+		var previousParent = p;
+		while (p != null) {
+			if ($(p.document).find('#iframeDialog').length) return p;
+
+			p = p.parent;
+
+			if (previousParent == p) return null;
+
+			// save previous parent
+
+			previousParent = p;
+		}
+		return null;
+	}
+
+	function setWindowReturnValue(value) {
+		if ($dlg) $dlg.returnValue = value;
+		window.returnValue = value; // in case popup is called using showModalDialog
+
+	}
+
+	function getWindowReturnValue() {
+		// in case popup is called using showModalDialog
+
+		if (!$dlg && window.returnValue != null)
+			return window.returnValue;
+
+		return $dlg && $dlg.returnValue;
+	}
+
+	if ($dlg) window.dialogArguments = $dlg.dialogArguments;
+	if ($dlg) window.close = function() { if ($dlg) $dlg.dialogWindow.dialog('close'); };
+	// END of dialog Required Code
+
+    function okMe() {
+    	
+		if (resultado()){ 
+			returnValue=document.getElementById('NOM_TE_0').value + '|' + document.getElementById('PRECIO_0').value + '|' + document.getElementById('MOTIVO_TE_0').value + '|' + document.getElementById('COD_TIPO_TE_0').value +'|'+ document.getElementById('MOTIVO_AUTORIZA_TE_0').value; 
+			setWindowReturnValue(returnValue);
+			window.close(); 
+		}	
+		else 
+			return false;
+	}
+    function closeMe() {
+        setWindowReturnValue(null);
+        window.close();
+    }
+</script>
+
+</head>
+
+<body onload="document.getElementById('NOM_TE_0').focus();" class="content_wm">
+	<div class="titulo_tabla_wm" style="width:300px;">&nbsp;&nbsp;Definici&oacute;n tipo TE </div>
+		<table width="531" border="0" class="table2_wm" height="150" style="padding-left:1em; border-top:#000066 1px solid; height: 214px">
+			<tr align="left">
+				<th width="110" height="25" >Descripc&iacute;on</th>
+			    <th width="391" height="25">{NOM_TE}</th>
+			</tr>
+			<tr align="left">
+				<th width="110" height="25">Precio Venta </th>
+				<th width="391" height="25">{PRECIO}</th>
+			</tr>			
+			<tr align="left">
+				<th width="110" height="25">Tipo TE </th>
+				<th width="391" height="25">{COD_TIPO_TE}</th>
+			</tr>
+			<tr align="left">
+				<th width="110" height="25">Motivo TE </th>
+				<th width="391" height="55">{MOTIVO_TE}</th>
+			</tr>
+		</table>
+		
+		<div class="titulo_tabla_wm" style="display:{DISPLAY_AUTORIZA}; width:300px;">&nbsp;&nbsp;Autorización de TE</div>
+		<table width="531" border="0" class="table2_wm" style="display:{DISPLAY_AUTORIZA}; padding-left:1em; border-top:#000066 1px solid; height: 80px">
+			<tr align="left">
+				<th width="110">Autoriza</th>
+			    <th width="70" style="display:{VISIBLE_AUTORIZA_TE}">{AUTORIZA_TE}{NOM_USUARIO_SESSION}</th>
+			    <th width="351" aling="left">{NOM_USUARIO_AUTORIZA_TE}  -  {FECHA_AUTORIZA_TE}</th>
+			</tr>
+			<tr align="left">
+				<th width="110">Motivo</th>
+				<th colspan="2"">{MOTIVO_AUTORIZA_TE}</th>
+			</tr>
+		</table>
+		<table width="150" border="0" height="20" align="right">
+			<tr align="right">
+				<td><input type="button" {DISABLE_OK} value="Aceptar"onclick="okMe();" class="button"/>
+				</td>
+				<td><input type="button" value="Cancelar" onclick="closeMe();" class="button"></td>
+			</tr>
+		</table>
+</body>
+</html>

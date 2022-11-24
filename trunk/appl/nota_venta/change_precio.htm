@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Modificar Precios</title>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script type="text/javascript">
+function valida_precio() {
+	var precio_min = document.getElementById('PRECIO_MIN').value;
+	var precio_max = document.getElementById('PRECIO_MAX').value;
+	var precio_new = document.getElementById('PRECIO_NEW').value;
+	var motivo_new = trim(document.getElementById('MOTIVO_NEW').value);
+	var precio_actual = document.getElementById('PRECIO_ACTUAL').value;
+	if (parseFloat(precio_new) < parseFloat(precio_min)) {
+		alert("El precio mínimo es " + number_format(precio_min, 0, ',', '.'));
+    	document.getElementById('PRECIO_NEW').select();
+		return false;
+	}
+	else if (parseFloat(precio_new) > parseFloat(precio_max)) {
+		alert("El precio máximo es " + number_format(precio_max, 0, ',', '.'));
+    	document.getElementById('PRECIO_NEW').select();
+		return false;
+	}
+	else if (parseFloat(precio_actual) == parseFloat(precio_new)) {
+		alert("El precio no se ha modificado");
+    	document.getElementById('PRECIO_NEW').select();
+		return false;
+	}	
+	else if (motivo_new.length==0) {
+    alert("Debe ingresar el motivo de la modificación");
+    document.getElementById('MOTIVO_NEW').select();
+		return false;
+  }
+	return true;
+}
+</script>
+
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	background-color: #E5E5E5;
+	text-align:center;
+	font-size:14px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+-->
+</style>
+</head>
+<body onload="document.getElementById('PRECIO_NEW').focus();">
+<table>
+	<tr>
+		<td>
+			<table width="500" rules="none" border="1" align="left">							
+						<tr class="titulo_tabla">				
+							<td colspan="3" >RANGO PERMITIDO DE VARIACIÓN:</td>
+						</tr>
+						<tr class="encabezado_center">
+							<td width="150"> Mínimo</td>
+							<td width="150"> Nuevo</td>
+							<td width="150"> Máximo</td>
+						</tr>
+						<tr class="encabezado_right">
+							<td class="claro" align="center">{PRECIO_MIN}<input name="PRECIO_MIN" id="PRECIO_MIN" type="hidden" value="{PRECIO_MIN_H}"/></td>
+							<td class="claro" align="center">
+							<input name="PRECIO_NEW" id="PRECIO_NEW" type="text" size="8" class="input_num" value=
+							"{PRECIO_ACTUAL}" onkeypress="return onlyNumbers(this, event,0, 1);" onblur="this.style.border=''" onfocus="this.style.border='1px solid #FF0000'"/><input name="PRECIO_ACTUAL" id="PRECIO_ACTUAL" type="hidden" value="{PRECIO_ACTUAL_H}"/></td>
+							<td class="claro" align="center">{PRECIO_MAX}<input name="PRECIO_MAX" id="PRECIO_MAX" type="hidden" value="{PRECIO_MAX_H}"/></td>
+						</tr>
+						
+						
+						<tr class="titulo_tabla">				
+							<td colspan="3" >MOTIVO DE NUEVA MODIFICACIÓN:</td>
+						</tr>
+						<tr class="encabezado_right">
+							<td class="claro" align="left" colspan="3"><textarea name="MOTIVO_NEW" id="MOTIVO_NEW" rows="2" cols="60" type="text" value="" onblur="this.style.border=''" onfocus="this.style.border='1px solid #FF0000'"></textarea>
+							</td>
+						</tr>
+						<tr>				
+							<td colspan ="3">&nbsp;</td>
+						</tr>
+						<tr class="encabezado_right">
+							<td class="claro" colspan="2"></td>
+							<td class="claro" align="right"><input name="OK" type="button"  value="OK" onclick="if (!valida_precio()) return false; 
+							returnValue=document.getElementById('PRECIO_NEW').value + '|' + document.getElementById('MOTIVO_NEW').value; window.close();" class="button"/>
+							<input name="Cancelar" type="button" value="Cancelar" onclick="window.close(); returnValue=null;" class="button"/></td>
+						</tr>
+					</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="500" rules="none" border="0" align="left" class="espacio_entre_tablas">
+				<tr>				
+					<td></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	  <tr>
+		<td>
+			<table width="815" rules="none" border="1" align="left" class="claro">							
+				<tr class="titulo_tabla">				
+					<td colspan="5" >HISTORIAL DE MODIFICACIONES:</td>
+				</tr>
+				<tr class="encabezado_center">
+					<th width="150">Usuario</th>
+					<th width="105">Fecha</th>
+					<th width="105">Precio Anterior</th>
+					<th width="105">Precio Nuevo</th>
+					<th width="350">Motivo</th>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+				<table width="815" rules="none" border="1" align="left" class="claro">	
+				<!-- startBlock(MODIFICA_PRECIO) -->
+					<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+						<td width="150" align="left">{NOM_USUARIO}</td>
+						<td width="105" align="center">{FECHA_MODIFICA}</td>
+						<td width="105" align="center">{PRECIO_ANTERIOR}</td>
+						<td width="105" align="center">{PRECIO_NUEVO}</td>   
+						<td width="350" align="left">{MOTIVO}</td>  
+					</tr>
+				<!-- endBlock(MODIFICA_PRECIO) -->	
+				</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
+
+				

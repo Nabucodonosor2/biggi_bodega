@@ -1,0 +1,59 @@
+Use crontab
+
+To open crontab
+
+crontab -e
+
+If you need to run commands with administrative privileges
+
+sudo crontab -e
+
+Open crontab with your favorite editor.(By default it’s vi or will let you choose one from list)
+
+export EDITOR=gedit
+ 
+crontab -e
+
+You can append "export EDITOR=gedit" to your ~/.bashrc file if necessary.
+
+To list crontab content
+
+crontab -l
+
+To remove all your cron jobs
+
+crontab -r
+
+ 
+
+Crontab syntax
+
+*    *    *    *    *  command to be executed
+|    |    |    |    |
+|    |    |    |    |
+|    |    |    |    ------ day of week (0 - 6) (0 is Sunday, or use names)
+|    |    |    ----------- month (1 - 12)
+|    |    ---------------- day of month (1 - 31)
+|    --------------------- hour (0 - 23)
+-------------------------- min (0 - 59)
+
+Notes:
+
+    Comma-separated values can be used to run more than one instance of a particular command within a time period. Dash-separated values can be used to run a command continuously
+    You can use repeat pattern like */5  for every 5 minutes
+
+ 
+
+Crontab examples
+
+1.Run mycommand at 5:09am on January 1st plus every Monday in January
+
+09 05 1 1 1  mycommand
+
+2.Run mycommand at 05 and 35 past the hours of 2:00am and 8:00am on the 1st through the 28th of every January and July.
+
+05,35 02,08 1-28 1,7 *  mycommand
+
+3.Run mycommand every 5 minutes
+
+*/5 * * * *  mycommand

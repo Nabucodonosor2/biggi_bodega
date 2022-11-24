@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Modificaci&oacute;n Contrato</title>
+<link href="../../../../commonlib/trunk/css/style_win.css" rel="stylesheet" type="text/css">
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script type="text/javascript">
+function get_returnVal() {
+	var num_contrato = document.getElementById('num_contrato').value;
+	var res = '';
+	if(num_contrato==""){
+		alert("Ingrese un numero de contrato!");
+	}else{
+		res=num_contrato;
+		window.close();	
+	}
+}
+</script>
+</head>
+
+<body class="content_wm">
+    <form action="" method="post" name="input" id="input">
+        <table width="200" border="0" align="center">
+			<tr>
+				<td class="titulo_tabla_wm" colspan="3">Ingrese N&deg; de Contrato</td>
+			</tr>
+			<tr>
+				<td><input type="text" id="num_contrato" name="text" class="input_num" /></td>
+				<td><input name="OK" type="button" value="OK"  onclick="returnValue=get_returnVal()" class="button"/></td>
+				<td><input name="Cancelar" type="button" value="Cancelar" onclick="window.close(); returnValue=null;" class="button"/></td>
+			</tr>
+		</table>
+    </form>
+</body>
+</html>

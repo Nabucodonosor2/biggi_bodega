@@ -1,0 +1,39 @@
+<Report>
+	<Font name="Arial" size="11" style="" id="ArialSmall"/>
+	<Font name="Arial" size="8" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="BU" id="ArialBoldU"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="12" style="B" id="ArialBoldBlueBig" red="0" green="0" blue="128"/>	
+	<Font name="Arial" size="10" style="" id="Arial"/>
+	<Font name="Arial" size="9" style="" id="ArialBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="7.5" style="" id="ArialItem"/>
+	<Font name="Arial" size="7" style="I" id="ArialItem_I"/>
+	<Font name="Arial" size="8" style="B" id="ArialBoldBlueItem" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="9" style="I" id="Arial"/>
+	<PageHeader>
+		<Cell text="" height="45%" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="GD por Facturar" width="100%"  align="R" newline="1" font="ArialBoldBigB"/>
+		<Cell text="" height="4" newline="1"/>
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{NRO_GUIA_DESPACHO}" width="10%" border="LR" align="C" font="ArialItem"/>
+		<Cell text="{FECHA_GUIA_DESPACHO_STR}" width="10%" border="R" align="C" font="ArialItem"/>
+		<Cell text="{RUT} - {DIG_VERIF}" width="12%" border="LR" align="R" font="ArialItem"/>
+		<Cell text="{NOM_EMPRESA}" width="45%" border="R" font="ArialItem"/>
+		<Cell text="{COD_NOTA_VENTA}" width="10%" border="" align="C" font="ArialItem"/>
+		<Cell text="{FECHA_NOTA_VENTA_STR}" width="10%" border="LR" align="C" font="ArialItem" newline="1"/>
+	</Content>
+	<Group>
+		<GroupHeader>				
+			<Cell text="Número GD" width="10%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+			<Cell text="Fecha" width="10%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+			<Cell text="Rut" width="12%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+			<Cell text="Cliente" width="45%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+			<Cell text="NV" width="10%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+			<Cell text="Fecha NV" width="10%" align="C" border="LRTB" font="ArialBoldBlueItem" newline="1"/>
+		</GroupHeader>
+	</Group>
+</Report>

@@ -1,0 +1,42 @@
+<Report>
+	<Font name="Arial" size="7" style="" id="ArialSmall"/>
+	<Font name="Arial" size="7" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="15" style="B" id="ArialBoldBig"/>
+	<Font name="Arial" size="15" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="" id="Arial"/>
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	
+	<PageHeader>	
+		<Cell text="" height="55%" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="EMISOR: {strEMISOR}" align="L" font="Arial" width="50%"/>
+		<Cell text="PAGO PROVEEDOR N° {strCOD_PAGO_FAPROV}" width="50%" align="R" newline="1" font="ArialBoldBigB"/>
+		<Cell text="PROVEEDOR:" align="L" font="Arial" width="50%"/>
+		<Cell text="Santiago, {strFECHA_FAPROV}" align="R" font="Arial" width="50%" newline="1"/>
+		<Cell text="" height="4" newline="1"/>
+		<Cell text="{strNOM_EMPRESA} {strRUT}" width="100%" align="L" newline="1" font="ArialBoldBig"/>
+		
+		<Cell text="MONTO {strNOM_TIPO_PAGO_FAPROV}: ${strMONTO_PAGADO}.-" width="100%" align="L" newline="1" font="ArialBoldBig"/>
+		<Cell text="" height="10" newline="1"/>	
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{NRO_FAPROV}" width="25%" align="C" border="LRTB" font="Arial"/>	
+		<Cell text="{FECHA_FAPROV}" width="25%" align="C" border="LRTB" font="Arial"/>	
+		<Cell text="{TOTAL_CON_IVA}" width="25%" align="R" border="LRTB" format="N0,." font="Arial"/>	
+		<Cell text="{MONTO_PAGADO}" width="25%" align="R" border="LRTB" format="N0,." font="Arial" newline="1"/>	
+	</Content>
+	<Group local="COD_PAGO_FAPROV">
+		<GroupHeader>				
+			<Cell text="NRO FACTURA" width="25%" align="C" border="LRTB" font="ArialBold" redb="194" greenb="214" blueb="154"/>		
+			<Cell text="FECHA" width="25%" align="C" border="LRTB" font="ArialBold" redb="194" greenb="214" blueb="154"/>
+			<Cell text="TOTAL CON IVA" width="25%" align="C" border="LRTB" font="ArialBold" redb="194" greenb="214" blueb="154"/>		
+			<Cell text="MONTO PAGADO" width="25%" align="C" border="LRTB" font="ArialBold" newline="1" redb="149" greenb="179" blueb="215"/>
+		</GroupHeader>
+		<GroupFooter>
+			<Cell text="" width="50%" font="ArialBold"/>
+			<Cell text="Total Facturas:" width="25%" font="ArialBold" align="R" border="LRTB"/>
+			<Cell text="{strMONTO_TOTAL}" width="25%" align="R" border="LRTB" font="ArialBold"/>
+		</GroupFooter>
+	</Group>
+</Report>

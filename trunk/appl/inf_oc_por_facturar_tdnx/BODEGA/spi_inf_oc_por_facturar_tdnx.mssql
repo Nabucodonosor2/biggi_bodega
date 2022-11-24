@@ -1,0 +1,87 @@
+CREATE PROCEDURE spi_inf_oc_por_facturar_tdnx(@ve_cod_usuario	numeric
+											,@ve_inventario		varchar(1))
+as
+BEGIN
+	-- borra el resultado de informes anteriores del mismo usuario
+	delete INF_OC_POR_FACTURAR_TDNX
+	where cod_usuario = @ve_cod_usuario
+	
+	IF(@ve_inventario = 'S')	
+	BEGIN
+		
+		INSERT INTO INF_OC_POR_FACTURAR_TDNX(FECHA_INF_OC_POR_FACTURAR_TDNX
+											,COD_USUARIO
+											,COD_ORDEN_COMPRA
+											,FECHA_ORDEN_COMPRA
+											,COD_ITEM_ORDEN_COMPRA
+											,COD_PRODUCTO
+											,NOM_PRODUCTO
+											,CANTIDAD_OC
+											,CANT_FA
+											,CANT_POR_FACT
+											,COD_NOTA_VENTA)
+									SELECT getdate()
+											,@ve_cod_usuario
+											,O.COD_ORDEN_COMPRA
+											,FECHA_ORDEN_COMPRA
+											,COD_ITEM_ORDEN_COMPRA
+											,COD_PRODUCTO
+											,NOM_PRODUCTO
+											,CANTIDAD
+											,0
+											,0
+											,COD_DOC
+									 from ITEM_ORDEN_COMPRA i, ORDEN_COMPRA o
+									 where o.COD_ORDEN_COMPRA > 55676
+									 and o.COD_EMPRESA = 4    --todoinox
+									 and i.COD_ORDEN_COMPRA = o.COD_ORDEN_COMPRA
+									 and O.COD_ESTADO_ORDEN_COMPRA = 1
+									 and o.TIPO_ORDEN_COMPRA = 'SOLICITUD_COMPRA'
+									 and dbo.f_oc_por_llegar (i.cod_item_orden_compra) > 0
+	END
+	ELSE IF(@ve_inventario = 'N')		
+	BEGIN
+		INSERT INTO INF_OC_POR_FACTURAR_TDNX(FECHA_INF_OC_POR_FACTURAR_TDNX
+											,COD_USUARIO
+											,COD_ORDEN_COMPRA
+											,FECHA_ORDEN_COMPRA
+											,COD_ITEM_ORDEN_COMPRA
+											,COD_PRODUCTO
+											,NOM_PRODUCTO
+											,CANTIDAD_OC
+											,CANT_FA
+											,CANT_POR_FACT
+											,COD_NOTA_VENTA)
+									SELECT getdate()
+											,@ve_cod_usuario
+											,O.COD_ORDEN_COMPRA
+											,FECHA_ORDEN_COMPRA
+											,COD_ITEM_ORDEN_COMPRA
+											,COD_PRODUCTO
+											,NOM_PRODUCTO
+											,CANTIDAD
+											,0
+											,0
+											,COD_DOC
+									 from ITEM_ORDEN_COMPRA i, ORDEN_COMPRA o
+									 where o.COD_ORDEN_COMPRA > 55676 
+									 and o.COD_EMPRESA = 4    --todoinox
+									 and o.TIPO_ORDEN_COMPRA <> 'SOLICITUD_COMPRA'
+									 and i.COD_ORDEN_COMPRA = o.COD_ORDEN_COMPRA
+									 and O.COD_ESTADO_ORDEN_COMPRA = 1
+									 and dbo.f_oc_get_saldo_sin_faprov(O.COD_ORDEN_COMPRA) > 0
+	END
+	SELECT FECHA_INF_OC_POR_FACTURAR_TDNX
+			,COD_USUARIO
+			,COD_ORDEN_COMPRA
+			,FECHA_ORDEN_COMPRA
+			,COD_NOTA_VENTA
+			,COD_USUARIO_VENDEDOR
+			,COD_ITEM_ORDEN_COMPRA
+			,COD_PRODUCTO
+			,NOM_PRODUCTO
+			,CANTIDAD_OC 
+	FROM INF_OC_POR_FACTURAR_TDNX
+	where cod_usuario = @ve_cod_usuario
+	ORDER BY FECHA_INF_OC_POR_FACTURAR_TDNX DESC
+END

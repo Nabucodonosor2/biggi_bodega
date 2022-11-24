@@ -1,0 +1,37 @@
+<Report>
+	<Font name="Arial" size="7" style="" id="ArialSmall"/>
+	<Font name="Arial" size="7" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold"/>
+	<Font name="Arial" size="8" style="" id="Arial"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold_header"/>	
+	
+	<PageHeader>	
+		<Cell text="" height="55%" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="MANTENCION SISTEMA" width="100%"  align="C" newline="1" font="ArialBoldBigB"/>
+		<Cell text="{str_filtro}" width="100%" align="C" newline="1" font="ArialSmallBlue"/>
+		<Cell text="" height="4" newline="1"/>	
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{COD_MANTENCION_SW}" width="9%" align="C" border="LRTB" font="Arial"/>	
+		<Cell text="{FECHA_MANTENCION_SW}" width="9%" align="C" border="LRTB" font="Arial"/>	
+		<Cell text="{NOM_USUARIO}" width="19%" align="C" border="LRTB" font="Arial"/>	
+		<Cell text="{REFERENCIA}" width="57%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{HORAS}" width="6%" align="C" border="LRTB" font="Arial" newline="1"/>
+	</Content>
+	<Group local="INF_MANTENCION_SW">
+		<GroupHeader>				
+		<Cell text="" height="15" newline="1" />			
+			<Cell text="Nº Mantención" width="9%" align="C" border="LRTB" font="ArialSmallBlue"/>		
+			<Cell text="Fecha Creación" width="9%" align="C" border="LRTB" font="ArialSmallBlue"/>
+			<Cell text="Solicitante" width="19%" align="C" border="LRTB" font="ArialSmallBlue"/>		
+			<Cell text="Referencia" width="57%" align="L" border="LRTB" font="ArialSmallBlue"/>
+			<Cell text="Horas" width="6%" align="C" border="LRTB" font="ArialSmallBlue" newline="1"/>
+		</GroupHeader>
+		<GroupFooter>
+			<Cell text="Total Horas" width="94%" align="R" font="ArialBold"/>	
+			<Cell text="{HORAS_TOTAL}" width="6%" border="LTRB" align="C" font="ArialBold" newline="1"/>
+		</GroupFooter> 
+	</Group>
+</Report>

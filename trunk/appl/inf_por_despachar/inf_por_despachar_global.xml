@@ -1,0 +1,52 @@
+<Report>
+	<Font name="Arial" size="11" style="" id="ArialSmall"/>
+	<Font name="Arial" size="8" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="BU" id="ArialBoldU"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="12" style="B" id="ArialBoldBlueBig" red="0" green="0" blue="128"/>	
+	<Font name="Arial" size="10" style="" id="Arial"/>
+	<Font name="Arial" size="9" style="" id="ArialBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="7.5" style="" id="ArialItem"/>
+	<Font name="Arial" size="7" style="I" id="ArialItem_I"/>
+	<Font name="Arial" size="8" style="B" id="ArialBoldBlueItem" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="9" style="I" id="Arial"/>
+	<PageHeader>	
+		<Cell text="" height="55%" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="EQUIPOS POR DESPACHAR" width="100%"  align="R" newline="1" font="ArialBoldBigB"/>
+		<Cell text="" height="4" newline="1"/>	
+		<Cell text="Santiago, {str_fecha}" align="L" font="ArialBoldBlue"  newline="1"/>	
+		<Cell height="5" newline="1"/>
+		<Cell height="20" newline="1"/>
+		<Cell height="20" newline="1"/>						
+		<Cell text="N° NV" width="6%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+		<Cell text="Fecha" width="7%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+		<Cell text="Razón Social" width="20%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+		<Cell text="Vend" width="5%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+		<Cell text="Ítem" width="4%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+		<Cell text="Producto" width="23%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+		<Cell text="Módelo" width="10%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+		<Cell text="Cantidad" width="7%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+		<Cell text="x Desp." width="7%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+		<Cell text="Fecha Entrega" width="7%" border="LRTB" align="C" font="ArialBoldBlueItem"/>
+		<Cell text="Atraso" width="5%" align="C" newline="1" border="LRTB" font="ArialBoldBlueItem"/> 
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{COD_NOTA_VENTA}" width="6%" border="LR" align="C" font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'"/>
+		<Cell text="{FECHA_NOTA_VENTA}" width="7%" border="LR" align="C" font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'"/>
+		<Cell text="{NOM_EMPRESA}" width="20%" nowrap="yes" border="LR" font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'"/>
+		<Cell text="{INI_USUARIO}" width="5%" border="LR" font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'"/>
+		<Cell text="{ITEM}" width="4%" border="LR" align="C" font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'"/>
+		<Cell text="{NOM_PRODUCTO}" width="23%" nowrap="yes" border="R" font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'"/>
+		<Cell text="{COD_PRODUCTO}" width="10%" border="R" font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'" />
+		<Cell text="{CANTIDAD}" width="7%" border="R" align="R" format="N1, " font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'"/>
+		<Cell text="{CANTIDAD_POR_DESPACHAR}" width="7%" border="R" align="R" format="N1, " font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'"/>
+		<Cell text="{FECHA_ENTREGA}" width="7%" border="LR" align="C" font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'"/>
+		<Cell text="{DIAS_ATRASO}" width="5%" border="LR" align="C" font="'{ES_COMPUESTO}' == 'H' ? 'ArialItem_I' : 'ArialItem'" newline="1"/>
+		<Cell height="20" newline="1"/>
+		<Cell height="20" newline="1"/>	
+		<Cell text="" border="B" newline="1" height="1" redl="199" greenl="199" bluel="199"/> 	
+	</Content>
+</Report>

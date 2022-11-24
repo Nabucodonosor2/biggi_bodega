@@ -1,0 +1,9 @@
+ALTER PROCEDURE [dbo].[spi_oc_facturada](@ve_lista_item_oc varchar(8000)
+									,@ve_origen		varchar(100))
+AS
+BEGIN
+	
+	select ITEM ,(dbo.f_fa_facturado_oc_ws(ITEM ,@ve_origen)) CANT_FA
+	from dbo.f_split(@ve_lista_item_oc,',')
+	
+END

@@ -1,0 +1,10 @@
+<Report>
+	<Font name="Arial" size="9" style="" id="Arial"/>
+	<PageHeader>	
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text=""/>		
+	</Content>
+	<PageFooter>		
+	</PageFooter>
+</Report>

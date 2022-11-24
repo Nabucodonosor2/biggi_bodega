@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>Sistema Grupo de Empresas Biggi</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+{WI_JAVA_SCRIPT}
+</head>
+<body {WI_ONLOAD}>
+<!-- DO NOT MOVE! The following AllWebMenus linking code section must always be placed right AFTER the BODY tag-->
+<!-- ******** BEGIN ALLWEBMENUS CODE FOR menu ******** -->
+<script type="text/javascript">var MenuLinkedBy="AllWebMenus [4]",awmMenuName="menu",awmBN="740";awmAltUrl="";</script>
+<script charset="UTF-8" src="{K_ROOT_URL}menu/menu.js" type="text/javascript"></script>
+<script type="text/javascript">{W_MENU}</script>
+<!-- ******** END ALLWEBMENUS CODE FOR menu ******** -->
+<form action="" method="post" name="input" id="input">
+<input name="wi_hidden" id="wi_hidden" type="hidden" value="">
+<table width="1050" border="0" align="center">
+	<tr bgcolor="#FFFFFF">
+	<!-- menu superior-->
+		<td width="1000"  height="51" align="center" id="awmAnchor-menu" style="width:100px; height:50px;">
+			<div style="color:blue; text-align:right; height:29px;"></div>
+			<div style="color:blue;text-align:right; font-family: Verdana,Arial,Helvetica,sans-serif;">{K_NOMBRE}</div>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>
+			<table width="1000" border="0">
+				<tr>
+					<td>
+						<table width="724" border="0">
+							<tr>
+								<td height="100%"><div class="titulo_central">{WI_RUTA_MENU}</div></td>
+							</tr>
+							<tr>
+								<td height="0%"><div class="tit_superior"><font color="#999999">{WI_FECHA_ACTUAL}</font></div></td>
+							</tr>
+							<tr>
+								<td height="0%"><div class="tit_superior"><font color="#999999">{WI_FECHA_MODIF}</font></div></td>
+							</tr>
+						</table>
+					</td> 
+					<td width="68"></td>
+					<td width="68">{WI_PRINT}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+	  	<td>
+			<table width="1000" border="0" align="center">
+				<tr>
+					<td height="95" valign="top">
+						<table width="1015" border="0" align="center" >
+							<tr valign="top">
+								<td>						
+										<div style="height:526px;" class="claro">
+										<table width="1000" rules="none" border="1" align="center">			
+											<tr class="titulo_tabla">				
+												<td colspan="8">DATOS GENERALES</td>
+											</tr>
+											<tr class="encabezado_right">
+												<td width="124">Código:</td>
+												<td width="125" class="claro" align="left">{COD_ORDEN_PAGO}</td>
+												<td width="124">Fecha:</td>
+												<td width="125" class="claro" align="left">{FECHA_ORDEN_PAGO}</td>
+												<td width="124">Tipo:</td>
+												<td width="125" class="claro" align="left">{COD_TIPO_ORDEN_PAGO}</td>
+												<td width="124">Emisor:</td>
+												<td width="125" class="claro" align="left">{NOM_USUARIO}</td>
+											</tr>							
+										</table>
+										<table width="1000" rules="none" border="0" align="center" class="espacio_entre_tablas">
+											<tr>
+												<td></td>
+											</tr>
+										</table>
+										<table width="1000" rules="none" border="1" align="center">			
+											<tr class="titulo_tabla">				
+												<td colspan="8">DATOS NOTA DE VENTA</td>
+											</tr>
+											<tr class="encabezado_right">
+												<td width="124">Nº NV:</td>
+												<td width="125" class="claro" align="left">{COD_NOTA_VENTA}</td>
+												<td width="124">Fecha:</td>
+												<td width="125" class="claro" align="left">{FECHA_NOTA_VENTA}</td>
+												<td width="124">Vendedor1:</td>
+												<td width="125" class="claro" align="left">{COD_USUARIO_VENDEDOR1}</td>
+												<td width="124">Vendedor2:</td>
+												<td width="125" class="claro" align="left">{COD_USUARIO_VENDEDOR2}</td>
+											</tr>
+											<tr class="encabezado_right">
+												<td>Rut:</td>
+												<td class="oscuro" align="left">{RUT_NV}-{DIG_VERIF_NV}</td>
+												<td>Alias:</td>
+												<td class="oscuro" align="left">{ALIAS_NV}</td>
+												<td>Razón Social:</td>
+												<td colspan = "3" class="oscuro" align="left">{NOM_EMPRESA_NV}</td>
+											</tr>
+											<tr class="encabezado_right">
+												<td>Referencia:</td>
+												<td colspan = "7" class="claro" align="left">{REFERENCIA}</td>
+											</tr>						
+										</table>
+										<table width="1000" rules="none" border="0" align="center" class="espacio_entre_tablas">
+											<tr>
+												<td></td>
+											</tr>
+										</table>
+										<table width="1000" rules="none" border="1" align="center">
+											<tr>
+												<td valign="center">
+										
+													<table align="center" width="540" rules="none" border="3">		
+														<tr class="titulo_tabla">
+															<td colspan="2">TOTALES</td>
+														</tr>
+														<tr class="encabezado_right">
+															<td width="166">Nº NV:</td>
+															<td width="374" class="claro" align="left">{COD_NOTA_VENTA}</td>
+														</tr>
+														<tr class="encabezado_right">
+															<td>Tipo:</td>
+															<td align="left" class="oscuro">{COD_TIPO_ORDEN_PAGO}</td>
+														</tr>
+														<tr class="encabezado_right">
+															<td>Razón Social OP:</td>
+															<td align="left" class="claro">{NOM_EMPRESA}</td>
+														</tr>
+													  	<tr class="encabezado_right">
+															<td>Total Comisión:</td>
+															<td align="left" class="oscuro">{TOTAL_NETO}</td>
+														</tr>
+													</table>
+												</td>
+												<td valign="top">
+													<table align="right" width="410"  rules="none" border="1">
+														<tr class="titulo_tabla">
+															<th colspan="3" class="titulo_tabla">RESULTADOS NOTA DE VENTA</th>
+														</tr>
+														<tr class="oscuro">
+															<td width="80"></td>
+															<td width="250">Venta Neta</td>
+															<td width="80" align="right">{TOTAL_NETO_NV}</td>
+														</tr>
+														<tr class="claro">
+															<td align="right">{PORC_DSCTO_CORPORATIVO}%</td>
+															<td>Descto. Corporativo</td>
+															<td align="right">{MONTO_DSCTO_CORPORATIVO}</td>
+														</tr>
+														<tr class="oscuro">
+															<td></td>
+															<td>Venta Neta Final</td>
+															<td align="right">{VENTA_NETA_FINAL}</td>
+														</tr>
+														<tr class="claro">
+															<td align="right">{PORC_GF}%</td>
+															<td>Gasto Fijo</td>
+															<td align="right">{MONTO_GASTO_FIJO}</td>
+														</tr>
+														<tr class="oscuro">
+															<td></td>
+															<td>Compra Neta Total</td>
+															<td align="right">{SUM_OC_TOTAL}</td>
+														</tr>
+														<tr class="claro">
+															<td align="right">{PORC_RESULTADO}%</td>
+															<td>Resultado</td>
+															<td align="right">{RESULTADO}</td>
+														</tr>
+														<tr class="oscuro">
+															<td align="right">{PORC_AA}%</td>
+															<td>Aporte a Administraci&oacute;n </td>
+															<td align="right">{MONTO_DIRECTORIO}</td>
+														</tr>
+														<tr class="claro">
+															<td align="right">{PORC_VENDEDOR1}%</td>
+															<td>Participaci&oacute;n  {VENDEDOR1}</td>
+															<td align="right">{COMISION_V1}</td>
+														</tr>
+														<tr class="oscuro">
+															<td align="right">{PORC_VENDEDOR2}%</td>
+															<td>Participaci&oacute;n {VENDEDOR2}</td>
+															<td align="right">{COMISION_V2}</td>
+														</tr>
+														<tr class="claro">
+															<td align="right">{PORC_GV}%</td>
+															<td>Participaci&oacute;n Gte. Vta. {GTE_VTA}</td>
+															<td align="right">{COMISION_GV}</td>
+														</tr>
+														<tr class="oscuro">
+															<td align="right">{PORC_ADM}%</td>
+															<td>Participaci&oacute;n Administración</td>
+															<td align="right">{COMISION_ADM}</td>
+														</tr>
+														<tr class="claro">
+															<td></td>	
+															<td>Remanente</td>
+															<td align="right">{REMANENTE}</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>		
+									</div>	
+								</td>
+							</tr>
+						</table>
+						<table width="1000" border="0" align="center">
+				<tr valign="middle">
+					  <td width="290" >{WI_BACK}</td>
+					  <td align="right">{WI_FIRST}{WI_PREV}</td>
+					  <td align="left">{WI_NEXT}{WI_LAST}</td>
+					  <td width="290"></td>
+				</tr>
+			</table> 		
+					</td>	
+				</tr>  
+			</table>
+		</td>
+	</tr>
+</table>		
+</form>
+</body>
+</html>

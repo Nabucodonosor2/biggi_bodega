@@ -1,0 +1,29 @@
+<Report>
+	<Font name="Arial" size="7" style="" id="ArialSmall"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold_header"/>	
+	<Font name="Arial" size="10" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="11" style="" id="Arial"/>
+	<PageHeader>	
+		<Cell text="" height="55%" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="INVENTARIO 'BODEGA STOCK BIGGI'" width="100%"  align="C" newline="1" font="ArialBoldBigB"/>
+		<Cell text="{str_filtro}" width="100%" align="C" newline="1" font="ArialSmallBlue"/>
+		<Cell text="" height="4" newline="1"/>
+		<Cell text="" height="4" newline="1"/>
+		<Cell text="" height="4" newline="1"/>	
+		<Cell text="" width="5%" align="C" border="LRTB" font="ArialSmallBlue"/>		
+		<Cell text="MODELO" width="10%" align="C" border="LRTB" font="ArialSmallBlue"/>		
+		<Cell text="EQUIPO" width="65%" align="C" border="LRTB" font="ArialSmallBlue"/>
+		<Cell text="STOCK" width="10%" align="C" border="LRTB" font="ArialSmallBlue"/>
+		<Cell text="POR RECIBIR" width="10%" align="C" border="LRTB" font="ArialSmallBlue" newline="1"/>
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{ROWNUMBER}" width="5%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{COD_PRODUCTO}" width="10%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{NOM_PRODUCTO}" nowrap="yes" width="65%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{CANTIDAD}" width="10%" align="C" border="LRTB" font="Arial"/>
+		<Cell text="{POR_RECIBIR}" width="10%" align="C" border="LRTB" format="N0,." font="Arial" newline="1"/>	
+	</Content>
+</Report>

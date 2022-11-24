@@ -1,0 +1,8 @@
+CREATE PROCEDURE spu_inf_oc_por_facturar_bodega(@ve_cod_usuario	numeric(10))
+AS
+BEGIN
+	
+	DELETE INF_OC_POR_FACTURAR_BODEGA
+	WHERE COD_USUARIO = @ve_cod_usuario
+	
+END

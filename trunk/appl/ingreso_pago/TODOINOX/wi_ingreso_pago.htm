@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>SISTEMA GESTIÓN Y CONTROL DE HORAS</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script src="../../../../commonlib/trunk/script_js/SpryTabbedPanels.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../empresa/help_empresa.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="ingreso_pago.js" type="text/javascript"></script>
+<link href="../../../../commonlib/trunk/css/SpryTabbedPanels.css" rel="stylesheet" type="text/css"/>
+{WI_JAVA_SCRIPT}
+</head>
+<body {WI_ONLOAD}>
+<!-- DO NOT MOVE! The following AllWebMenus linking code section must always be placed right AFTER the BODY tag-->
+<!-- ******** BEGIN ALLWEBMENUS CODE FOR menu ******** -->
+<script type="text/javascript">var MenuLinkedBy="AllWebMenus [4]",awmMenuName="menu",awmBN="740";awmAltUrl="";</script>
+<script charset="UTF-8" src="{K_ROOT_URL}menu/menu.js" type="text/javascript"></script>
+<script type="text/javascript">{W_MENU}</script>
+<!-- ******** END ALLWEBMENUS CODE FOR menu ******** -->
+<form action="" method="post" name="input" id="input">
+<input name="wi_hidden" id="wi_hidden" type="hidden" value="">
+<input name="wi_current_tab_page" id="wi_current_tab_page" type="hidden" value="">
+<table width="1050" border="0" align="center">
+	<tr bgcolor="#FFFFFF">
+	<!-- menu superior-->
+		<td width="1000"  height="51" align="center" id="awmAnchor-menu" style="width:100px; height:50px;"></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>
+			<table width="1000" border="0">
+				<tr>
+					<td>
+						<table width="520" border="0">
+						<tr>
+							<td height="100%"><div class="titulo_central">{WI_RUTA_MENU}</div></td>
+						</tr>
+						<tr>
+							<td height="0%"><div class="tit_superior"><font color="#999999">{WI_FECHA_ACTUAL}</font></div></td>
+						</tr>
+						<tr>
+							<td height="0%"><div class="tit_superior"><font color="#999999">{WI_FECHA_MODIF}</font></div></td>
+						</tr>
+						</table>
+					</td> 
+					<td width="68">{WI_PRINT}</td>
+					<td width="68">{WI_NO_SAVE}</td>
+					<td width="68">{WI_SAVE}</td>
+					<td width="68">{WI_MODIFY}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td>
+			<table width="1000" border="0" align="center">
+				<tr>
+					<td>
+						<table width="1000" border="0" align="center">
+							<tr valign="top">
+								<td height="528">
+									<div id="TabbedPanels1" class="TabbedPanels">
+										<ul class="TabbedPanelsTabGroup">
+											<li class="TabbedPanelsTab" tabindex="0" style="display:{TAB_203505}">Ingreso Pago</li>
+											<li class="TabbedPanelsTab" tabindex="0">Doctos</li>
+										</ul>
+										<div class="TabbedPanelsContentGroup">
+											  <!--INI INGRESO_PAGO-->
+											<div class="TabbedPanelsContent">	  
+												<table width="1000" rules="none" border="1" align="center">
+                                                	<tr class="titulo_tabla">
+                                                  		<td colspan="6">DATOS GENERALES</td>
+                                                	</tr>
+                                                	<tr class="encabezado_right">
+	                                                	<td width="166">Nº Ingreso:</td>
+	                                                	<td width="166" class="claro" align="left">{COD_INGRESO_PAGO}</td>
+	                                                	<td width="166">Fecha:</td>
+	                                                	<td width="166" class="claro" align="left">{FECHA_INGRESO_PAGO}</td>
+	                                                	<td width="166">Emisor:</td>
+	                                                	<td width="166" class="claro" align="left">{NOM_USUARIO}</td>
+                                                	</tr>
+                                               	</table> 
+                                              	<p />
+												<table width="1000" rules="none" border="1" align="center">
+													<tr class="titulo_tabla">				
+														<td width="166">EMPRESA</td>
+														<td width="167">&nbsp;</td>
+														<td width="166">&nbsp;</td>
+														<td width="167">&nbsp;</td>
+														<td width="166">&nbsp;</td>
+														<td width="167">&nbsp;</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td width="166">Rut:</td>
+														<td width="167" class="claro" align="left">{RUT}-{DIG_VERIF}</td>
+														<td width="166">Alías:</td>
+														<td width="167" class="claro" align="left">{ALIAS}</td>
+														<td width="166">Código:</td>
+														<td width="167" class="claro" align="left">{COD_EMPRESA}</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td>Razón Social:</td>
+														<td colspan="6" class="oscuro" align="left">{NOM_EMPRESA}</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td>Estado:</td>
+														<td class="claro" align="left">{COD_ESTADO_INGRESO_PAGO}{NOM_ESTADO_INGRESO_PAGO}</td>
+														<td>Registrado Por:</td>
+														<td colspan="3" class="claro" align="left">{USUARIO_CAMBIO}{COD_USUARIO_ANULA}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{FECHA_CAMBIO}{FECHA_ANULA}</td>
+													</tr>
+													<tr class="encabezado_right">
+														<td>Proyecto Ingreso:</td>
+														<td colspan="5" class="oscuro" align="left">{COD_PROYECTO_INGRESO}</td>
+													</tr>
+													<tr class="encabezado_right" id="tr_anula" style="display:{TR_DISPLAY}">
+														<td>Anulación:</td>
+														<td colspan="5" class="claro" align="left">{MOTIVO_ANULA}</td>
+													</tr>
+												</table> 
+												<P />
+												<table width="1000" rules="none" border="1" align="center" class="claro">	
+													<tr class="titulo_tabla">				
+														<td colspan="1">DOCUMENTO DE PAGO</td>
+														<td colspan="7">&nbsp;</td>
+													</tr>
+													<tr class="encabezado_center">
+														<th width="15%">Tipo Documento</th>
+														<th width="15%">Fecha</th>
+														<th width="15%">Nº Documento</th>
+														<th width="30%">Banco</th>
+														<th width="15%">Monto</th>
+														<th width="10%">Eliminar</th>
+													</tr>
+												</table>	
+												<table width="1000" rules="none" border="0" align="center" class="claro">
+													<tr>
+														<td>								
+														<div style="overflow-x:hidden; overflow-y:auto; height:153; margin-top:0em;">
+															<table width="1000" rules="none" border="1" align="center" class="claro" id="DOC_INGRESO_PAGO">								
+																<!-- startBlock(DOC_INGRESO_PAGO) -->
+																 <tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+																 	<td width="15%" align="left">{COD_DOC_INGRESO_PAGO}{COD_TIPO_DOC_PAGO}{COD_TIPO_DOC_PAGO_H}</td>
+																	<td width="15%" align="center">{FECHA_DOC}</td>
+																	<td width="15%" align="center">{NRO_DOC}</td>
+																	<td width="30%" align="left">{COD_BANCO}</td>
+																	<td width="15%" align="right">{MONTO_DOC}{MONTO_DOC_C}</td>   
+																	<td width="10%" align="center">{ELIMINAR_DOC_INGRESO_PAGO}</td>   
+																</tr>	
+																<!-- endBlock(DOC_INGRESO_PAGO) -->
+															 </table>
+														</div>
+														</td>
+													</tr>
+												</table>
+												<table width="1000" align="center" border="1" rules="none">											
+													<tr class="encabezado_right">
+														<td width="75%">Total:</td>
+														<td width="15%" class="claro" align="right">{SUM_MONTO_DOC_C}</td>
+														<td width="15%"></td>
+													</tr>
+												</table>
+												<table width="999" align="center" border="0" rules="none">											
+													<tr class="claro">
+														<td colspan="1" align="left">{AGREGAR_DOC_INGRESO_PAGO}</td>
+														<td colspan="7" class="claro" align="right">
+															<input type="button" value="Factura Compra" class="Button" onClick="usar_factura_compra();" {DISABLE_BUTTON}>
+															<input type="button" value="Nota Crédito" class="Button" onClick="usar_nota_credito();" {DISABLE_BUTTON}>
+															<input type="button" value="Anticipo" class="Button" onClick="usar_anticipo();" {DISABLE_BUTTON}>														
+														</td>
+													</tr>
+												</table>
+											</div>
+											<!--FIN INGRESO_PAGO-->
+											<!--INI DOCTOS-->
+											<div class="TabbedPanelsContent">
+												<table width="1000" rules="none" border="1" align="center">
+                                            		<tr class="titulo_tabla">
+                                                		<td colspan="6">DATOS GENERALES</td>
+                                               		</tr>
+                                             	    <tr class="encabezado_right">
+                                                  		<td width="166">Nº Ingreso:</td>
+                                                  		<td width="166" class="claro" align="left">{COD_INGRESO_PAGO}</td>
+                                                  		<td width="166">Fecha:</td>
+                                                  		<td width="166" class="claro" align="left">{FECHA_INGRESO_PAGO}</td>
+                                                  		<td width="166">Emisor:</td>
+                                                  		<td width="166" class="claro" align="left">{NOM_USUARIO}</td>
+                                                	</tr>
+                                               	</table>
+												<P />
+												<table width="1000" rules="none" border="1" align="center">
+												<tr>
+													<td>										
+														<div id="TabbedPanels2" class="TabbedPanels">
+															<ul class="TabbedPanelsTabGroup">
+																<li class="TabbedPanelsTab" tabindex="0" style="display:{TAB_203510}">Facturas</li>
+																<li class="TabbedPanelsTab" tabindex="0" style="display:{TAB_203515}">Notas de Venta</li>
+															</ul>
+															<div class="TabbedPanelsContentGroup">																
+																<!--FACTURAS-->
+																<div class="TabbedPanelsContent">
+																	<table width="1000" rules="none" border="1" align="center" class="claro">
+																		<tr class="titulo_tabla">
+																			<td colspan="11">FACTURAS</td>
+																		</tr>
+																		<tr class="encabezado_center">
+																			<th width="4%"></th>
+																			<th width="9%">Nº FA</th>
+																			<th width="7%">Fecha</th>
+																			<th width="50%">Referencia</th>
+																			<th width="10%">Monto FA</th>
+																			<th width="10%">Monto Pago</th>
+																			<th width="10%">Saldo FA</th>
+																		</tr>
+																	</table>
+																	<div style="overflow-x:hidden; overflow-y:auto; height:200; margin-top:0em;">
+																		<table width="1000" rules="none" border="1" align="center" class="claro" id="INGRESO_PAGO_FACTURA">
+																		<!-- startBlock(INGRESO_PAGO_FACTURA) -->
+																			 <tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+																				<td width="4%" align="center">{SELECCION}</td>
+																			 	<td width="9%" align="center">{NRO_FACTURA}{COD_DOC}</td>
+																				<td width="7%" align="center">{FECHA_FACTURA}</td>
+																				<td width="50%">{REFERENCIA}</td>
+																				<td width="10%" align="right">{SALDO}{SALDO_C}</td>
+																				<td width="10%" align="right">{MONTO_ASIGNADO}{MONTO_ASIGNADO_C}<label style="display:{DISPLAY_CERO};">0</label></td>
+																				<td width="10%" align="right"><div style="padding-right:20px;">{SALDO_T}</div></td>													
+																			 </tr>
+																		<!-- endBlock(INGRESO_PAGO_FACTURA) -->
+																		</table>
+																	</div> 
+																	<table width="1000" border="1" rules="none" align="center" class="claro">
+					                                                	<tr class="encabezado_right">
+					                                                		<td width="70%">TOTAL{TOTAL}</td>
+					                                                		<td width="10%" class="claro">{SUM_SALDO_C}</td>
+					                                                		<td width="10%" class="claro">{SUM_MONTO_ASIGNADO_C}</td>
+					                                                		<td width="10%" class="claro"><div style="padding-right:20px;">{SUM_SALDO_T}</div></td>
+					                                               		</tr>
+					                                               	</table>
+																</div>
+																<!--FIN FACTURAS-->
+																<!--INI NV-->
+																<div class="TabbedPanelsContent">
+																	<table width="1000" rules="none" border="1" align="center" class="claro">
+																		<tr class="titulo_tabla">
+																			<td colspan="11">NOTAS DE VENTA</td>
+																		</tr>
+																		<tr class="encabezado_center">
+																			<th width="4%"></th>
+																			<th width="9%">Nº NV</th>
+																			<th width="7%">Fecha</th>
+																			<th width="50%">Referencia</th>
+																			<th width="10%">Monto NV</th>
+																			<th width="10%">Monto Pago</th>
+																			<th width="10%">Saldo NV</th>
+																		</tr>
+																	</table>
+																	<div style="overflow-x:hidden; overflow-y:auto; height:200; margin-top:0em;">
+																		<table width="1000" rules="none" border="1" align="center" class="claro" id="INGRESO_PAGO_NOTA_VENTA">
+																		<!-- startBlock(INGRESO_PAGO_NOTA_VENTA) -->
+																			 <tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+																				<td width="4%" align="center">{SELECCION_NV}</td>
+																				<td width="9%" align="center">{COD_DOC_NV}</td>
+																				<td width="7%" align="center">{FECHA_NOTA_VENTA}</td>
+																				<td width="50%">{REFERENCIA_NV}</td>
+																				<td width="10%" align="right">{SALDO_NV}{SALDO_C_NV}</td>
+																				<td width="10%" align="right">{MONTO_ASIGNADO_NV}{MONTO_ASIGNADO_C_NV}<label style="display:{DISPLAY_CERO_NV};">0</label></td>
+																				<td width="10%" align="right"><div style="padding-right:20px;">{SALDO_T_NV}</div></td>													
+																			 </tr>
+																		<!-- endBlock(INGRESO_PAGO_NOTA_VENTA) -->
+																		</table>
+																	</div> 
+																	<table width="1000" border="1" rules="none" align="center" class="claro">
+					                                                	<tr class="encabezado_right">
+					                                                		<td width="70%">TOTAL{TOTAL_NV}</td>
+					                                                		<td width="10%" class="claro">{SUM_SALDO_C_NV}</td>
+					                                                		<td width="10%" class="claro">{SUM_MONTO_ASIGNADO_C_NV}</td>
+					                                                		<td width="10%" class="claro"><div style="padding-right:20px;">{SUM_SALDO_T_NV}</div></td>
+					                                               		</tr>
+					                                               	</table>
+																</div>
+																<!--FIN NV-->
+															</div><!--FIN TabbedPanelsContentGroup -->
+															<P />
+															<table width="1000" border="0" rules="none" align="center" class="claro">
+																<tr class="titulo_tabla">
+																	<td colspan="4">DIFERENCIAS MENORES</td>
+																	<td colspan="2">ANTICIPOS</td>
+																</tr>
+																<tr class="encabezado_right">
+																	<td width="166">Otros Ingresos:</td>
+																	<td width="166" class="claro" align="left">{OTRO_INGRESO}</td>	                                               				
+																	<td width="166">Gastos Varios:</td>
+																	<td width="166" class="claro" align="left">{OTRO_GASTO}</td>
+																	<td width="166">Anticipos:</td>
+																	<td width="166" class="claro" align="left">{OTRO_ANTICIPO}{COD_USUARIO_CONFIRMA}</td>	
+																</tr>
+																<tr>
+																	<td></td>
+																</tr>
+															</table>
+														</div><!--FIN TabbedPanels2 -->													
+													</td>																
+												</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>	
+						</table>
+						<table width="1000" border="0" align="center">
+							<tr valign="middle">
+							  <td width="290" >{WI_BACK}</td>
+							  <td align="right">{WI_FIRST}{WI_PREV}</td>
+							  <td align="left">{WI_NEXT}{WI_LAST}</td>
+							  <td width="290"></td>
+							</tr>
+						</table>							
+					</td>	 
+				</tr>  
+			</table>
+		</td>
+	</tr>
+</table>		
+</form>
+<script type="text/javascript">
+<!--
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+var TabbedPanels2 = new Spry.Widget.TabbedPanels("TabbedPanels2");
+//-->
+</script>
+</body>
+</html>

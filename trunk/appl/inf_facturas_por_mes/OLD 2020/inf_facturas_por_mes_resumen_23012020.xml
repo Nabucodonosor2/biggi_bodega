@@ -1,0 +1,60 @@
+<Report>
+	<Font name="Arial" size="11" style="" id="ArialSmall"/>
+	<Font name="Arial" size="9" style="" id="Arial_correo"/>
+	<Font name="Arial" size="7.5" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="BU" id="ArialBoldU"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="12" style="B" id="ArialBoldBlueBig" red="0" green="0" blue="128"/>	
+	<Font name="Arial" size="10" style="" id="Arial"/>
+	<Font name="Arial" size="9" style="B" id="ArialBoldBlueSmall" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="8.7" style="" id="ArialItem"/>
+	<Font name="Arial" size="9" style="B" id="ArialBoldBlueItem" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="9" style="BU" id="ArialBoldUItem"/>
+	
+	<PageHeader>	
+		<Cell text="" height="100" newline="1"/>		
+
+		<Cell text="" width="30%"/>		
+		<Cell text="FACTURAS POR MES" width="40%" align="C" font="ArialBoldBigB" newline="1"/>
+
+		<Cell text="" width="30%"/>		
+		<Cell text="Año: {strANO}" width="40%" align="C" font="ArialBoldBlue"  newline="1"/>
+		<Cell text="" width="30%"/>		
+		<Cell text="Desde: {strMES_DESDE}; Hasta: {strMES_HASTA}" width="40%" align="C" font="ArialBoldBlue" newline="1"/>
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="" height="50" newline2="1"/>		
+
+		<Cell text="" width="15%"/>
+		<Cell text="" width="25%" align="R" border="LRT" font="ArialItem"/>
+		<Cell text="Facturas" width="15%" align="C" border="LRT" font="ArialItem"/>
+		<Cell text="NC" width="15%" align="C" border="LRT" font="ArialItem"/>
+		<Cell text="Total" width="15%" align="C" border="LRT" font="ArialItem" newline2="1" />
+
+		<Cell text="" width="15%"/>
+		<Cell text="Cantidad:" width="25%" align="R" border="LRT" font="ArialItem"/>
+		<Cell text="{FA_CANT}" width="15%" align="R" border="LRT" font="ArialItem"/>
+		<Cell text="{NC_CANT}" width="15%" align="R" border="LRT" font="ArialItem"/>
+		<Cell text="{TOT_CANT}" width="15%" align="R" border="LRT" font="ArialItem" newline2="1" />
+		
+		<Cell text="" width="15%"/>
+		<Cell text="Total Neto:" width="25%" align="R" border="LR" font="ArialItem"/>
+		<Cell text="{FA_TOTAL_NETO}" width="15%" align="R" border="LR" font="ArialItem" format="N0,."/>
+		<Cell text="{NC_TOTAL_NETO}" width="15%" align="R" border="LR" font="ArialItem" format="N0,."/>
+		<Cell text="{TOT_TOTAL_NETO}" width="15%" align="R" border="LR" font="ArialItem" format="N0,." newline2="1" />
+		
+		<Cell text="" width="15%"/>
+		<Cell text="Total IVA:" width="25%" align="R" border="LR" font="ArialItem"/>
+		<Cell text="{FA_MONTO_IVA}" width="15%" align="R" border="LR" font="ArialItem" format="N0,." />
+		<Cell text="{NC_MONTO_IVA}" width="15%" align="R" border="LR" font="ArialItem" format="N0,." />
+		<Cell text="{TOT_MONTO_IVA}" width="15%" align="R" border="LR" font="ArialItem" format="N0,." newline2="1" />
+
+		<Cell text="" width="15%"/>
+		<Cell text="Total con IVA:" width="25%" align="R" border="LRB" font="ArialItem"/>
+		<Cell text="{FA_TOTAL_CON_IVA}" width="15%" align="R" border="LRB" font="ArialItem" format="N0,." />
+		<Cell text="{NC_TOTAL_CON_IVA}" width="15%" align="R" border="LRB" font="ArialItem" format="N0,." />
+		<Cell text="{TOT_TOTAL_CON_IVA}" width="15%" align="R" border="LRB" font="ArialItem" format="N0,." newline2="1"/>
+	</Content>
+</Report>

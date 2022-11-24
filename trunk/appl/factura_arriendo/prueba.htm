@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../empresa/help_empresa.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="dlg_selecciona_arriendo.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="agregar_factura.js" type="text/javascript"></script>
+<style>
+   .margenDerecho {
+       padding-right: 20px;
+   }
+</style>
+</head>
+<body>
+	<table width="1000" rules="none" border="1" align="center">
+  		<tr>
+    		<td colspan="11">SELECCIONE EL CLEINTE A FACTURAR</td>
+  		</tr>
+  		<tr>
+			<td height="24" colspan="3" valign="top">Rut :</td>
+			<td colspan="2" valign="top">{RUT}-{DIG_VERIF}</td>
+		 	<td colspan="3" valign="top"><!--DWLayoutEmptyCell-->&nbsp;</td>
+			<td width="75" valign="top">Alias : </td>
+  			<td colspan="4" valign="top">{ALIAS}</td>
+			<td width="75" valign="top">Código : </td>
+  			<td colspan="4" valign="top">{COD_EMPRESA}</td>
+  		</tr>
+    	<tr>
+    		<td height="24" colspan="3" valign="top">Razon Social :</td>
+  			<td colspan="10" valign="top">{NOM_EMPRESA}</td>
+  		</tr>
+	</table>
+	<table width="1000" rules="none" border="1" align="center">
+		<tr>
+			<td colspan="11">SELECCIONE LOS CONTRATOS A FACTURAR</td>
+		</tr>
+		<tr>
+			<th width="10%">Selección</th>
+			<th width="10%">N° Contrato</th>
+			<th width="20%">Nombre</th>
+			<th width="50%">Referencia</th>
+			<th width="10%">Total Neto</th>
+		</tr>
+	</table>
+	<table width="1000" rules="none" border="1" align="center" id="ARRIENDO">
+	</table>
+	<table width="1000" border="0" align="center">
+		<tr>
+			<td align="left">
+				<input type="button" value="Marcar Todo" class="Button"/>
+				<input type="button" value="Desmarcar Todo" class="Button"/>
+				<input type="button" value="Dejar selección" class="Button"/>
+			</td>
+		</tr>
+	</table>
+	<table width="1000" border="0" align="center" class="claro">
+		<tr>
+			<td align="left">
+				<input type="button" value="OK" class="Button" onclick="returnValue=get_return_value(); window.close();" />
+				<input type="button" value="Cancelar" class="Button"/>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

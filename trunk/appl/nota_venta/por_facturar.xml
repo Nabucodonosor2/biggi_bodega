@@ -1,0 +1,71 @@
+<Report>
+	<Font name="Arial" size="7" style="" id="ArialSmall"/>
+	<Font name="Arial" size="8" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="14" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="BU" id="ArialBoldU"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBlueBig" red="0" green="0" blue="128"/>	
+	<Font name="Arial" size="10" style="" id="Arial"/>
+	<Font name="Arial" size="10" style="" id="ArialBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="8.5" style="" id="ArialItem"/>
+	<Font name="Arial" size="9" style="B" id="ArialBoldBlueItem" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="8" style="B" id="ArialBoldBlueTotal" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="9" style="BU" id="ArialBoldUItem"/>
+	<Font name="Arial" size="9" style="B" id="ArialBoldItem"/>
+	
+	<PageHeader>	
+		<Cell text="" height="7" newline="1" />
+		<Cell text="" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="POR FACTURAR NOTA DE VENTA Nº {strCOD_NOTA_VENTA}" width="100%" align="R" newline="1" font="ArialBoldBigB"/>
+		<Cell text="" border="B" newline="1" height="1" redl="199" greenl="199" bluel="199"/>
+		<Cell text="" height="4" newline="1"/>		
+	</PageHeader>
+	<Content font="ArialItem">
+		<Cell text="{ITEM}" width="4%" border="LR" align="C" font="ArialItem"/>
+		<Cell text="{COD_PRODUCTO}" width="15%" border="R" font="ArialItem"/>
+		<Cell text="{NOM_PRODUCTO}" width="54%" border="LR" font="'{COD_PRODUCTO}' == null ? 'ArialBoldUItem' : 'ArialItem'"/>
+		<Cell text="{CANTIDAD}" width="8%" border="R" align="R" format="N1, " font="ArialItem"/>
+		<Cell text="{CANT_POR_FACTURAR}" width="19%" border="R" align="R" format="N1, " font="ArialItem" newline="1"/>
+				
+	</Content>
+	<Variable name="suma" function="SUM" value="CANT_POR_FACTURAR"/>
+	<Group local="COD_NOTA_VENTA">
+		<GroupHeader>				
+			<Cell text="" height="1" newline="1" />			
+			<Cell text="Santiago, {FECHA_NOTA_VENTA}" align="L" font="ArialBoldBlue"  newline="1"/>	
+			<Cell height="4" newline="1"/>	
+			<Cell text="Razón Social        :" width="18%" align="L" font="ArialBoldBlue"/>
+			<Cell text="{NOM_EMPRESA}" width="62%" border="B" align="L" font="ArialBold" redl="192" greenl="192" bluel="192"/>
+			<Cell text="Rut:" width="6%" align="R"  font="ArialBoldBlue"/>
+			<Cell text="{RUT}" width="10%" border="B" align="R" font="ArialBold" format="N0,." redl="192" greenl="192" bluel="192"/>
+			<Cell text="- {DIG_VERIF}" width="3%" border="B" align="L" font="ArialBold" redl="192" greenl="192" bluel="192" newline="1"/>
+									
+			<Cell text="Dirección Factura:" width="18%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{DIR_FACTURA}" width="81%" border="B" align="L" font="Arial" redl="192" greenl="192" bluel="192" newline="1"/>
+			<Cell text="Fono:" width="24%" align="R"  font="ArialBoldBlue"/>
+			<Cell text="{TELEFONO_F}" width="24%" border="B" align="L"  font="Arial" redl="192" greenl="192" bluel="192"/>
+			<Cell text="Fax:" width="6%" align="R"  font="ArialBoldBlue"/>
+			<Cell text="{FAX_F}" width="24%" border="B" align="L"  font="Arial" redl="192" greenl="192" bluel="192" newline="1"/>
+			
+			<Cell text="Vendedor              :" width="18%" align="L" font="ArialBoldBlue"/>
+			<Cell text="{NOM_USUARIO}" width="62%" align="L" border="B" font="Arial" redl="192" greenl="192" bluel="192" newline="1"/>
+			<Cell text="Atención Sr(a)      :" width="18%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{NOM_PERSONA}" width="62%" border="B" align="L"  font="Arial" redl="192" greenl="192" bluel="192" newline="1"/>
+			<Cell text="Referencia            :" width="18%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{REFERENCIA}" width="81%" border="B" align="L"  font="Arial" redl="192" greenl="192" bluel="192" newline="1"/>
+			<Cell text="" height="2" newline="1"/>						
+			
+			<Cell text="Item" width="4%" align="C" border="LRTB" font="ArialBoldBlueItem"/>	
+			<Cell text="Modelo" width="15%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+			<Cell text="Producto" width="54%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+			<Cell text="Cantidad" width="8%" align="C" border="LRTB" font="ArialBoldBlueItem"/>
+			<Cell text="Por facturar" width="19%" align="C" border="LRTB" font="ArialBoldBlueItem" newline="1"/>
+		</GroupHeader>
+		<GroupFooter>
+			  	<Cell text="TOTAL" align="R" border="T" width="81%" font="ArialBoldBlueTotal"/>
+				<Cell text="{suma}" width="19%" border="LRTB" align="R" font="ArialBoldItem" format="N1,. " newline="1"/>
+		</GroupFooter> 
+	</Group>
+</Report>

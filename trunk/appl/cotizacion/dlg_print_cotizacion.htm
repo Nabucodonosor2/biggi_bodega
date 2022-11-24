@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Imprimir Cotizacion</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script type="text/javascript">
+function get_returnVal() {
+	/* Se deben retornar 4 valores separados por "|"
+	   valor1 = "resumen" o "ampliada" o "lista_tecnica" o "pesos_y_medidas"
+	   valor2 = "electrico" y/o "gas" etc, sepatardos por ";"
+	   valor3 = "pdf" o "excel"
+	   valor4 = "con_logo" o "sinlogo"
+	   valor5 = "con_embalaje" o "sin_embalaje"
+	*/
+	var res = 	'';
+	if (document.getElementById('resumen').checked)
+		res = res + "resumen|";
+	else if (document.getElementById('ampliada').checked)
+		res = res + "ampliada|";
+	else if (document.getElementById('pesomedida').checked)
+		res = res + "pesomedida|";		
+	else if (document.getElementById('tecnica').checked)
+		res = res + "tecnica|";
+
+	// tipo impresion tecnica (si no es tecnica va ""
+	if (!document.getElementById('tecnica').checked)
+		res = res + "|";
+	else {
+		    // si seleccionaron lista tecnica se verifica que seleccionaron
+			if(document.getElementById('electrico').checked){
+				res = res + "electrico¬";
+			}
+			if(document.getElementById('gas').checked){
+				res = res + "gas¬";
+			}
+			if(document.getElementById('vapor').checked){
+				res = res + "vapor¬";
+			}
+			if(document.getElementById('agua').checked){
+				res = res + "agua¬";
+			}
+			if(document.getElementById('ventilacion').checked){
+				res = res + "ventilacion¬";
+			}
+			if(document.getElementById('desague').checked){
+				res = res + "desague¬";
+			}
+			res = res + "|";
+	}
+	// pdf o excel
+	if (document.getElementById('pdf').checked)
+		res = res + "pdf|";
+	//if (document.getElementById('excel').checked)
+	//	res = res + "excel|";
+	
+	// con o sin logo
+	if (document.getElementById('logo').checked)
+		res = res + "logo|";
+	else if (document.getElementById('sinlogo').checked)
+		res = res + "sinlogo|";
+		
+	// con o sin embalaje (siempre y cuando sea "pesomedida")
+	if(document.getElementById('pesomedida').checked){
+		if(document.getElementById('c_caja').checked)
+			res = res + "embalada|";
+		else
+			res = res + "noembalada|";
+	}
+	return res;
+}
+function show_tabla_lista_tecnica(showme_1ista_tecnica, showme_formato) {
+	var tabla_lista_tecnica = document.getElementById('tabla_lista_tecnica');
+	var tabla_formato = document.getElementById('tabla_formato');
+	//document.getElementById('excel').style.display = '';
+	if (showme_1ista_tecnica) {
+		tabla_lista_tecnica.style.display = ''; 
+		window.innerHeight = 340; // aumenta el tamaño de la ventana de print en cotizacion
+	}
+	else if (showme_formato){
+		tabla_lista_tecnica.style.display = 'none'; 
+		window.innerHeight = 225; // disminuye el tamaño de la ventana de print en cotizacion
+	}
+	else{
+		tabla_lista_tecnica.style.display = 'none'; 
+		window.innerHeight = 225; // disminuye el tamaño de la ventana de print en cotizacion
+	}
+	
+	show_embalaje();
+}
+function show_embalaje(){
+	if(document.getElementById('pesomedida').checked){
+		document.getElementById('div_embalaje').style.display = '';
+		window.innerHeight = 255;
+	}else
+		document.getElementById('div_embalaje').style.display = 'none';
+	
+}
+// DIALOG Required Code
+	var prntWindow = getParentWindowWithDialog(); //$(top)[0];
+
+	var $dlg = prntWindow && prntWindow.$dialog;
+
+	function getParentWindowWithDialog() {
+		var p = window.parent;
+		var previousParent = p;
+		while (p != null) {
+			if ($(p.document).find('#iframeDialog').length) return p;
+
+			p = p.parent;
+
+			if (previousParent == p) return null;
+
+			// save previous parent
+
+			previousParent = p;
+		}
+		return null;
+	}
+
+	function setWindowReturnValue(value) {
+		if ($dlg) $dlg.returnValue = value;
+		window.returnValue = value; // in case popup is called using showModalDialog
+
+	}
+
+	function getWindowReturnValue() {
+		// in case popup is called using showModalDialog
+
+		if (!$dlg && window.returnValue != null)
+			return window.returnValue;
+
+		return $dlg && $dlg.returnValue;
+	}
+
+	if ($dlg) window.dialogArguments = $dlg.dialogArguments;
+	if ($dlg) window.close = function() { if ($dlg) $dlg.dialogWindow.dialog('close'); };
+	// END of dialog Required Code
+
+    function okMe() {
+    	
+	returnValue=get_returnVal(); 
+	setWindowReturnValue(returnValue);
+	$dlg.dialogWindow.dialog('close');
+		
+	}
+    function closeMe() {
+        setWindowReturnValue(null);
+        $dlg.dialogWindow.dialog('close');
+    }
+</script>
+</head>
+<body class="content_wm">
+<div class="titulo_tabla_wm">&nbsp;&nbsp;Imprimir Cotizaci&oacute;n N° {COD_COTIZACION} </div>
+<form id="form1" name="form1" method="post" action="">
+	<table width="435" border="0" class="table2_wm" align="left">  
+  		<tr align="left" class="table_wm" height="26">
+    		<th align="left" colspan="3">Tipo Impresion</th>
+			<th width="119" align="left">Logos</th>
+  		</tr>
+  		<tr align="left" class="table2_wm" height="26"> 
+    	 	<td width="96" align="left">
+				<label><input name="tipo_impresion" type="radio"  id="resumen" value="1" checked="checked" onclick="show_tabla_lista_tecnica(false, true)">Resumen</label>
+		  </td>
+			<td colspan ="2">
+				<table border="0" id="tabla_formato"> 
+					<tr>
+						<td width="150" align="left">-<label><input name="formato" type="radio"  id="pdf" value="1" checked="checked">Pdf</label>{EXCEL}</td>
+					</tr>
+			  </table>
+		  </td>
+    	 	<td align="left">
+				<label><input name="conlogo" type="radio"  id="logo" value="1" checked="checked">Con logo</label>
+			</td>
+  		</tr>
+  		<tr align="left" height="26">  
+    		<td align="left" colspan="3">
+				<label><input name="tipo_impresion" type="radio" id="ampliada"  value="1" onclick="show_tabla_lista_tecnica(false, false)">Ampliada</label>
+			</td>
+    		<td align="left">
+				<label><input name="conlogo" type="radio" id="sinlogo">Sin logo</label>
+			</td>
+  		</tr>
+  		<tr align="left" height="26"> 
+    		<td align="left">
+				<label><input name="tipo_impresion" type="radio" id="pesomedida"  value="1" onclick="show_tabla_lista_tecnica(false, false)">Pesos y Medidas</label>
+			</td>
+			<td align="left" colspan="2">
+				<div id="div_embalaje" style="display:none">
+					<label><input name="embalaje" type="radio" id="c_caja"  value="1" onclick="show_embalaje();" checked="checked">C/ Emb.</input></label>
+					<label><input name="embalaje" type="radio" id="s_caja"  value="1" onclick="show_embalaje();">S/ Emb.</input></label>
+				</div>
+			</td>
+			<td align="left">
+			</td>
+  		</tr>
+  		<tr align="left" height="26"> 
+    		<td align="left" colspan="4">
+				<label><input name="tipo_impresion" type="radio" id="tecnica" value="1" onclick="show_tabla_lista_tecnica(true, false)">Técnica</label>
+			</td>
+  		</tr>
+		<tr>
+				<td>
+				<!-- inicio tabla tecnica oculta--> 
+				<table width="180" border="0" align="left" class="table_wm" id="tabla_lista_tecnica" style="display:none">
+  					<tr align="left">
+    					<th width="106" align="left">Seleccione Lista Técnica</th>
+  					</tr>
+					<tr align="left" class="table2_wm" style="display:{VISIBLE_ELECTRICO}"> 
+    					<td width="106" align="left">
+							<label><input name="electrico" type="checkbox"  id="electrico" value="1">Eléctrico</label>
+						</td>
+  					</tr>
+  					<tr align="left" class="table2_wm" style="display:{VISIBLE_GAS}"> 
+    					<td width="106" align="left">
+							<label><input name="gas" type="checkbox" id="gas"  value="1">Gas</label>
+						</td>
+  					</tr>
+  					<tr align="left" class="table2_wm" style="display:{VISIBLE_VAPOR}"> 
+    					<td width="106" align="left">
+							<label><input name="vapor" type="checkbox" id="vapor" value="1">Vapor</label>
+						</td>
+  					</tr>
+  					<tr align="left" class="table2_wm" style="display:{VISIBLE_AGUA}"> 
+    					<td width="106" align="left">
+							<label><input name="agua" type="checkbox" id="agua" value="1">Agua</label>
+						</td>
+  					</tr>
+  					<tr align="left" class="table2_wm" style="display:{VISIBLE_VENTILACION}"> 
+    					<td width="106" align="left">
+							<label><input name="ventilacion" type="checkbox" id="ventilacion" value="1">Ventilación</label>
+						</td>
+  					</tr>
+  					<tr align="left" class="table2_wm" style="display:{VISIBLE_DESAGUE}"> 
+    					<td width="106" align="left">
+							<label><input name="desague" type="checkbox" id="desague" value="1">Desague</label>
+						</td>
+  					</tr>
+				</table>
+				<!-- fin tabla tecnica oculta--> 
+		  </td>
+		</tr>
+		<tr align="left"> 
+			<td width="96" height="26" align="left">			</td>
+			<td height="26" align="right" colspan="3">
+				<input name="OK" type="button" value="OK"  onclick="okMe();" class="button"/>
+				<input name="Cancelar" type="button" value="Cancelar" onclick="closeMe();" class="button"/>
+		  </td>
+  		</tr>
+  </table>
+</form>
+</body>
+</html>

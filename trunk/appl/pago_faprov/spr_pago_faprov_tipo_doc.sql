@@ -1,0 +1,190 @@
+ALTER PROCEDURE [dbo].[spr_pago_faprov_tipo_doc](@ve_cod_pago_faprov numeric, @ve_cod_tipo_pago_faprov numeric)
+AS
+
+set LANGUAGE Spanish
+
+BEGIN
+	DECLARE @TEMPO TABLE
+			(COD_PAGO_FAPROV		NUMERIC NOT NULL
+			,COD_TIPO_PAGO_FAPROV	NUMERIC NOT NULL
+			,NRO_DOCUMENTO			NUMERIC NOT NULL
+			,PAGUESE_A				VARCHAR(100)NOT NULL
+			,FECHA_DOCUMENTO		VARCHAR(20)NOT NULL
+			,MONTO_DOCUMENTO		numeric NOT NULL
+			,AMBOS_TIPOS			VARCHAR(10) NULL
+			,TIPO_NOMINATIVO		VARCHAR(10) NULL
+			,TIPO_CRUZADO			VARCHAR(10) NULL
+			,NINGUN_TIPO			VARCHAR(10) NULL
+			,FECHA_IMPRESO			VARCHAR(25) NULL
+			,FECHA_CAMBIO			VARCHAR(20) NULL
+			,USUARIO_CAMBIO			VARCHAR(100) NULL
+			,RUT					NUMERIC NOT  NULL
+			,DIG_VERIF				VARCHAR(1)NOT NULL
+			,NOM_EMPRESA			VARCHAR(100) NOT NULL
+			,NOM_TIPO_PAGO_FAPROV	VARCHAR(100)NOT NULL
+			,NOM_CUENTA_CORRIENTE	VARCHAR(100)NOT NULL
+			,MONTO_ASIGNADO			numeric NOT NULL
+			,NRO_FAPROV				NUMERIC	NOT NULL
+			,ORIGEN_FAPROV			VARCHAR (20) NULL
+			,FECHA_FAPROV			VARCHAR(20)NOT NULL
+			,ORDENES_COMPRA			VARCHAR(100) NULL
+			,NOTAS_DE_VENTA			VARCHAR(100) NULL
+			,DIRECCION				VARCHAR(100) NULL
+			,NOM_COMUNA				VARCHAR(100) NULL
+			,NOM_CIUDAD				VARCHAR(100) NULL
+			,TELEFONO				VARCHAR(50) NULL
+			,FAX					VARCHAR(50) NULL
+			,DIA_PAGO_DOCUMENTO		NUMERIC NULL
+			,MES_PAGO_DOCUMENTO		VARCHAR(30) NULL
+			,AÑO_PAGO_DOCUMENTO		NUMERIC NULL
+			,PAGO_DIRECTORIO		VARCHAR(1))
+	
+	declare @vl_cod_usuario_dir numeric
+			,@vl_cod_empresa_dir numeric
+			,@kl_param_directorio numeric
+
+	set @kl_param_directorio = 31
+
+	select @vl_cod_usuario_dir = VALOR FROM PARAMETRO WHERE COD_PARAMETRO = @kl_param_directorio
+	select @vl_cod_empresa_dir = COD_EMPRESA FROM USUARIO WHERE COD_USUARIO = @vl_cod_usuario_dir
+ 		
+	insert into @TEMPO
+	SELECT	PF.COD_PAGO_FAPROV
+			,PF.COD_TIPO_PAGO_FAPROV
+			,PF.NRO_DOCUMENTO
+			,PF.PAGUESE_A
+			,convert(varchar(20), PF.FECHA_DOCUMENTO, 103) FECHA_DOCUMENTO
+			,PF.MONTO_DOCUMENTO
+			,PF.ES_NOMINATIVO +'-'+ PF.ES_CRUZADO AMBOS_TIPOS 
+			,PF.ES_NOMINATIVO +'-'+ PF.ES_CRUZADO TIPO_NOMINATIVO
+			,PF.ES_NOMINATIVO +'-'+ PF.ES_CRUZADO TIPO_CRUZADO
+			,PF.ES_NOMINATIVO +'-'+ PF.ES_CRUZADO NINGUN_TIPO
+			,dbo.f_format_date(getdate(), 3) FECHA_IMPRESO
+		-- datos historicos(despliega la fecha en que se cambia el estado_pago_faprov)-----
+			,(select TOP 1 convert(varchar(20), LG.FECHA_CAMBIO, 103) +'  '+ convert(varchar(20), LG.FECHA_CAMBIO, 8) FECHA_CAMBIO
+				from	LOG_CAMBIO LG, DETALLE_CAMBIO DC
+				where	LG.NOM_TABLA = 'PAGO_FAPROV' and
+						LG.KEY_TABLA = convert(varchar(100),PF.COD_PAGO_FAPROV) and
+						LG.COD_LOG_CAMBIO = DC.COD_LOG_CAMBIO and
+						DC.NOM_CAMPO = 'COD_ESTADO_PAGO_FAPROV' 
+						order by LG.FECHA_CAMBIO desc) FECHA_CAMBIO
+		-- datos historicos(despliega el usuario que cambia el estado_pago_faprov)-----
+			,(select TOP 1 U.NOM_USUARIO
+				from	LOG_CAMBIO LG, DETALLE_CAMBIO DC, USUARIO U
+				where	LG.NOM_TABLA = 'PAGO_FAPROV' and
+						LG.KEY_TABLA = convert(varchar(100),PF.COD_PAGO_FAPROV) and
+						LG.COD_LOG_CAMBIO = DC.COD_LOG_CAMBIO and
+						LG.COD_USUARIO = U.COD_USUARIO and 
+						DC.NOM_CAMPO = 'COD_ESTADO_PAGO_FAPROV' 
+						order by LG.FECHA_CAMBIO desc)USUARIO_CAMBIO
+			,E.RUT
+			,E.DIG_VERIF
+			,E.NOM_EMPRESA
+			,TPF.NOM_TIPO_PAGO_FAPROV
+			,CC.NOM_CUENTA_CORRIENTE
+			,PFF.MONTO_ASIGNADO
+			,F.NRO_FAPROV
+			,F.ORIGEN_FAPROV
+			,convert(varchar(20), F.FECHA_FAPROV, 103) FECHA_FAPROV
+			,dbo.f_oc_lista_por_pago_faprov(F.COD_FAPROV)ORDENES_COMPRA
+			,dbo.f_nv_lista_por_pago_faprov(F.COD_FAPROV)NOTAS_DE_VENTA
+			,S.DIRECCION
+			,COM.NOM_COMUNA
+			,CIU.NOM_CIUDAD
+			,S.TELEFONO 
+			,S.FAX
+			,DATEPART(day, FECHA_DOCUMENTO)DIA_PAGO_DOCUMENTO
+			,DATENAME(month, FECHA_DOCUMENTO) MES_PAGO_DOCUMENTO
+			,DATEPART(year, FECHA_DOCUMENTO)AÑO_PAGO_DOCUMENTO
+			--obtiene si el tipo de pago es directorio, para manejar distintos label en impresos
+			,case PF.COD_EMPRESA when @vl_cod_empresa_dir 
+				then 'S'
+			else
+				'N'
+			end PAGO_DIRECTORIO
+	FROM	PAGO_FAPROV PF	LEFT OUTER JOIN EMPRESA E ON PF.COD_EMPRESA = E.COD_EMPRESA
+							LEFT OUTER JOIN SUCURSAL S ON PF.COD_EMPRESA = S.COD_EMPRESA
+							LEFT OUTER JOIN COMUNA COM ON S.COD_COMUNA = COM.COD_COMUNA
+							LEFT OUTER JOIN CIUDAD CIU ON S.COD_CIUDAD = CIU.COD_CIUDAD
+			, TIPO_PAGO_FAPROV TPF, 
+			CUENTA_CORRIENTE CC, PAGO_FAPROV_FAPROV PFF, 
+			FAPROV F
+	WHERE	PF.COD_PAGO_FAPROV = @ve_cod_pago_faprov 
+	AND		TPF.COD_TIPO_PAGO_FAPROV = PF.COD_TIPO_PAGO_FAPROV
+	AND		CC.COD_CUENTA_CORRIENTE = PF.COD_CUENTA_CORRIENTE
+	AND		PFF.COD_PAGO_FAPROV = PF.COD_PAGO_FAPROV
+	AND		PFF.COD_FAPROV = F.COD_FAPROV
+	AND		S.DIRECCION_FACTURA = 'S'
+
+		
+	if(@ve_cod_tipo_pago_faprov = 1)	
+		SELECT	COD_PAGO_FAPROV
+				,COD_TIPO_PAGO_FAPROV
+				,NRO_DOCUMENTO
+				,PAGUESE_A
+				,FECHA_DOCUMENTO
+				,MONTO_DOCUMENTO
+				,AMBOS_TIPOS 
+				,TIPO_NOMINATIVO
+				,TIPO_CRUZADO
+				,NINGUN_TIPO
+				,FECHA_IMPRESO
+				-- datos historicos(despliega la fecha en que se cambia el estado_pago_faprov)-----
+				,FECHA_CAMBIO
+				-- datos historicos(despliega el usuario que cambia el estado_pago_faprov)-----
+				,USUARIO_CAMBIO
+				,RUT
+				,DIG_VERIF
+				,NOM_EMPRESA
+				,NOM_TIPO_PAGO_FAPROV
+				,NOM_CUENTA_CORRIENTE
+				,MONTO_ASIGNADO
+				,NRO_FAPROV
+				,ORIGEN_FAPROV
+				,FECHA_FAPROV
+				,ORDENES_COMPRA
+				,NOTAS_DE_VENTA
+				,DIRECCION
+				,NOM_COMUNA
+				,NOM_CIUDAD
+				,TELEFONO 
+				,FAX
+				,DIA_PAGO_DOCUMENTO
+				,MES_PAGO_DOCUMENTO
+				,AÑO_PAGO_DOCUMENTO
+				,PAGO_DIRECTORIO
+		   FROM @TEMPO
+			
+	
+	else if (@ve_cod_tipo_pago_faprov = 2)	
+		SELECT	COD_PAGO_FAPROV 
+				,COD_TIPO_PAGO_FAPROV
+				,NRO_DOCUMENTO
+				,PAGUESE_A
+				,FECHA_DOCUMENTO
+				,MONTO_DOCUMENTO
+				,FECHA_IMPRESO
+				-- datos historicos(despliega la fecha en que se cambia el estado_pago_faprov)-----
+				,FECHA_CAMBIO
+				-- datos historicos(despliega el usuario que cambia el estado_pago_faprov)-----
+				,USUARIO_CAMBIO
+				,RUT
+				,DIG_VERIF
+				,NOM_EMPRESA
+				,NOM_TIPO_PAGO_FAPROV
+				,NOM_CUENTA_CORRIENTE
+				,MONTO_ASIGNADO
+				,NRO_FAPROV
+				,ORIGEN_FAPROV
+				,FECHA_FAPROV
+				,ORDENES_COMPRA
+				,NOTAS_DE_VENTA
+				,DIRECCION
+				,NOM_COMUNA
+				,NOM_CIUDAD
+				,TELEFONO 
+				,FAX
+				,PAGO_DIRECTORIO
+		   FROM @TEMPO
+END
+go

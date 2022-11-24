@@ -1,0 +1,63 @@
+<Report>
+	<Font name="Arial" size="7" style="" id="ArialSmall"/>
+	<Font name="Arial" size="7" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="" id="Arial"/>
+	<Font name="Arial" size="8" style="B" id="ArialBold_header"/>	
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	<PageHeader>	
+		<Cell text="" height="55%" newline="1"/>		
+		<Cell text="PAG. {SectionPageNumber}/{snb}" align="R" font="ArialSmall" newline="1" />
+		<Cell text="MODIFICACION CONTRATO ARRIENDO Nº {strCOD_MOD_ARRIENDO}" width="100%" align="C" newline="1" font="ArialBoldBigB"/>
+		<Cell text="" height="4" newline="1"/>	
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{ITEM}" width="5%" align="C" border="LRTB" font="Arial"/>	
+		<Cell text="{NOM_PRODUCTO}" width="45%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{COD_PRODUCTO}" width="10%" align="L" border="LRTB" font="Arial"/>	
+		<Cell text="{CANTIDAD}" width="10%" align="R" border="LRTB" font="Arial"/>	
+		<Cell text="{PRECIO}" width="15%" align="R" border="LRTB" font="Arial"/>	
+		<Cell text="{TOTAL}" width="15%" align="R" border="LRTB" font="Arial" format="N0,." newline="1"/>
+	</Content>
+	<Group local="COD_MOD_ARRIENDO">
+
+		<GroupHeader>				
+			<Cell height="12" newline="1"/>
+			<Cell text="Santiago, {FECHA_ACTUAL}" width="30%" align="L"  font="Arial" newline="1"/>
+			<Cell text="Codigo Cliente:" width="85%" align="R"  font="ArialBoldBlue" />
+			<Cell text="{COD_EMPRESA}" width="15%" align="L" border="B" font="Arial" newline="1"/>
+			<Cell text="Nombre Empresa:" width="18%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{NOM_EMPRESA}" width="62%" align="L" border="B" font="ArialBold"/>
+			<Cell text="Rut:" width="5%" align="L" font="ArialBoldBlue"/>
+			<Cell text="{RUT}" width="10%" align="L" format="N0,." border="B" font="Arial"/>
+			<Cell text="- {DIG_VERIF}" width="5%" align="L" border="B" font="Arial" newline="1"/>
+			<Cell text="Referencia:" width="18%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{REFERENCIA}" width="82%" align="L" border="B" font="Arial" newline="1"/>
+			<Cell text="Meses de Arriendo:" width="18%" align="L"  font="ArialBoldBlue"/>
+			<Cell text="{NRO_MESES}" width="82%" align="L" border="B" font="Arial" newline="1"/>
+			<Cell text="" height="4" newline="1"/>
+			<Cell text="" height="4" newline="1"/>
+			<Cell text="" height="5" newline="1"/>		
+			<Cell text="Item" width="5%" align="C" border="LRTB" font="ArialBoldBlue"/>		
+			<Cell text="Equipo" width="45%" align="C" border="LRTB" font="ArialBoldBlue"/>
+			<Cell text="Modelo" width="10%" align="C" border="LRTB" font="ArialBoldBlue"/>		
+			<Cell text="Cantidad" width="10%" align="C" border="LRTB" font="ArialBoldBlue"/>
+			<Cell text="Precio Arriendo[$]" width="15%" align="C" border="LRTB" font="ArialBoldBlue"/>
+			<Cell text="Total Arriendo[$]" width="15%" align="C" border="LRTB" font="ArialBoldBlue" newline="1"/>
+		</GroupHeader>
+		<GroupFooter>
+			<Cell text="Total" width="85%" align="R" font="ArialBold"/>	
+			<Cell text="{TOTAL_NETO}" width="15%" border="LTRB" align="R" font="ArialBold" format="N0,." newline="1"/>
+			<Cell text="" width="10%" newline="1"/>
+
+			<Cell text="Todos los Valores No Incluyen IVA" width="50%" align="L" font="ArialBold" newline="1"/>
+			<Cell text="" width="10%" newline="1"/>
+			<Cell text="" width="10%" newline="1"/>
+			<Cell text="" width="10%" newline="1"/>
+			<Cell text="" width="10%" newline="1"/>
+			<Cell text="BIGGI RENTAL" width="30%" align="C" font="ArialBold" newline="1"/>
+			<Cell text="{NOM_USUARIO}" width="30%" align="C" font="Arial" newline="1"/>
+		</GroupFooter> 
+	</Group>
+</Report>

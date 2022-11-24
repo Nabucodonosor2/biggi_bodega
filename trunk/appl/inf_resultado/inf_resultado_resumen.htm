@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>Alianza Francesa</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script src="../../../../commonlib/trunk/script_js/SpryTabbedPanels.js" type="text/javascript"></script>
+<link href="../../../../commonlib/trunk/css/SpryTabbedPanels.css" rel="stylesheet" type="text/css"/>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="" type="text/javascript"></script>
+{WI_JAVA_SCRIPT}
+</head>
+<body>
+<!-- DO NOT MOVE! The following AllWebMenus linking code section must always be placed right AFTER the BODY tag-->
+<!-- ******** BEGIN ALLWEBMENUS CODE FOR menu ******** -->
+<script type="text/javascript">var MenuLinkedBy="AllWebMenus [4]",awmMenuName="menu",awmBN="740";awmAltUrl="";</script>
+<script charset="UTF-8" src="{K_ROOT_URL}menu/menu.js" type="text/javascript"></script>
+<script type="text/javascript">{W_MENU}</script>
+<!-- ******** END ALLWEBMENUS CODE FOR menu ******** -->
+<form action="" method="post" name="output" id="output">
+	<table width="1050" border="0" align="center">
+		<tr bgcolor="#FFFFFF">
+			<!-- menu superior-->
+			<td width="1000"  height="51" align="center" id="awmAnchor-menu" style="width:100px; height:50px;">
+				<div style="color:blue; text-align:right; height:29px;"></div>
+				<div style="color:blue;text-align:right; font-family: Verdana,Arial,Helvetica,sans-serif;">{K_NOMBRE}</div>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td>
+				<table width="1000" border="0">
+					<tr>
+						<td>
+							<table width="520" border="0">
+								<tr>
+									<td height="100%"><div class="titulo_central">Informes->Resultados->Resumen</div></td>
+								</tr>
+								<tr>
+									<td colspan="2" height="0%"><div class="tit_superior"><font color="#999999">Fecha Actual: {FECHA_ACTUAL}</font></div></td>
+								</tr>
+								<tr>
+									<td colspan="2" height="0%"><div class="tit_superior"><font color="#999999">{NOM_USUARIO}</font></div></td>
+								</tr>
+							</table>
+						</td> 
+						<td>
+							<input name="b_print" id="b_print_x" src="../../../../commonlib/trunk/images/b_print.jpg" type="image" onmouseover="MM_swapImage('b_print_x','','../../../../commonlib/trunk/images/b_print_over.jpg',1)" onmouseout="MM_swapImgRestore()" onmouseup="MM_swapImgRestore()" onmousedown="MM_swapImage('b_print_x','','../../../../commonlib/trunk/images/b_print_click.jpg',1)">
+							<input name="b_export" id="b_export_x" type="image" onmouseover="MM_swapImage('b_export_x','','../../../../commonlib/trunk/images/b_export_over.jpg',1)" onmouseout="MM_swapImgRestore()" onmouseup="MM_swapImgRestore()" onmousedown="MM_swapImage('b_export_x','','../../../../commonlib/trunk/images/b_export_click.jpg',1)" src="../../../../commonlib/trunk/images/b_export.jpg">
+						</td>
+						<td height="30"></td>					
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td>
+				<table width="1000" border="0" align="center" height="30">
+				</table>
+				<p/>
+				<form action="" method="post" name="input" id="input">
+					<div class="TabbedPanelsContent">
+						<div style="overflow-x: hidden; overflow-y: auto; height: 410; margin-top: -1em;">
+							<table width="1000" border="0" align="center">
+								<tr bgcolor="#FFFFFF">
+									<td valign="top">
+										<div style="overflow-x: auto; overflow-y: auto; height: 400; width: 1000;">
+											<table width="1000" border="0" align="center">
+												<tr class="encabezado_center">
+													<td width="45" rowspan="2">MES</td>
+													<td colspan="2">RESULTADOS</td>
+													<td colspan="3">DIRECTORIO</td>
+													<td colspan="3">GTE. VENTA</td>
+													<td colspan="3">ADMINISTRACION</td>
+													<td colspan="3">VENDEDOR</td>
+												</tr>
+												<tr class="encabezado_center">
+													<td width="45">%</td>
+													<td width="70">$</td>
+													<td width="45">%</td>
+													<td width="70">$</td>
+													<td width="70">$ Pagado</td>
+													<td width="45">%</td>
+													<td width="70">$</td>
+													<td width="70">$ Pagado</td>
+													<td width="45">%</td>
+													<td width="70">$</td>
+													<td width="70">$ Pagado</td>
+													<td width="45">%</td>
+													<td width="70">$</td>
+													<td width="70">$ Pagado</td>
+												</tr>
+												<!-- startBlock(ITEM_INF_RESULTADO) -->
+												<tr class="{DW_TR_CSS}" id="{DW_TR_ID}">
+													<td>{NOM_MES}</td>
+													<td align="right">{PORC_RESULTADO}</td>
+													<td align="right">{MONTO_RESULTADO}</td>
+													<td align="right">{PORC_DIRECTORIO}</td>
+													<td align="right">{MONTO_DIRECTORIO}</td>
+													<td align="right">{PAGO_DIRECTORIO}</td>
+													<td align="right">{PORC_GV}</td>
+													<td align="right">{MONTO_GV}</td>
+													<td align="right">{PAGO_GV}</td>
+													<td align="right">{PORC_ADM}</td>
+													<td align="right">{MONTO_ADM}</td>
+													<td align="right">{PAGO_ADM}</td>
+													<td align="right">{PORC_VENDEDOR}</td>
+													<td align="right">{MONTO_VENDEDOR}</td>
+													<td align="right">{PAGO_VENDEDOR}</td>
+												</tr>
+												<!-- endBlock(ITEM_INF_RESULTADO) -->
+												<tr class="oscuro">
+													<td>Totales</td>
+													<td align="right"></td>
+													<td align="right">{SUM_MONTO_RESULTADO}</td>
+													<td align="right"></td>
+													<td align="right">{SUM_MONTO_DIRECTORIO}</td>
+													<td align="right">{SUM_PAGO_DIRECTORIO}</td>
+													<td align="right"></td>
+													<td align="right">{SUM_MONTO_GV}</td>
+													<td align="right">{SUM_PAGO_GV}</td>
+													<td align="right"></td>
+													<td align="right">{SUM_MONTO_ADM}</td>
+													<td align="right">{SUM_PAGO_ADM}</td>
+													<td align="right"></td>
+													<td align="right">{SUM_MONTO_VENDEDOR}</td>
+													<td align="right">{SUM_PAGO_VENDEDOR}</td>
+												</tr>
+											</table>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<table border="0" align="center">
+							<tr>
+								<td><a href="inf_resultado_resumen.php">Resumen<a></td>
+								<td><a href="inf_resultado_mes.php?mes=1">Enero<a></td>
+								<td><a href="inf_resultado_mes.php?mes=2">Febrero<a></td>
+								<td><a href="inf_resultado_mes.php?mes=3">Marzo<a></td>
+								<td><a href="inf_resultado_mes.php?mes=4">Abril<a></td>
+								<td><a href="inf_resultado_mes.php?mes=5">Mayo<a></td>
+								<td><a href="inf_resultado_mes.php?mes=6">Junio<a></td>
+								<td><a href="inf_resultado_mes.php?mes=7">Julio<a></td>
+								<td><a href="inf_resultado_mes.php?mes=8">Agosto<a></td>
+								<td><a href="inf_resultado_mes.php?mes=9">Septiembre<a></td>
+								<td><a href="inf_resultado_mes.php?mes=10">Octubre<a></td>
+								<td><a href="inf_resultado_mes.php?mes=11">Noviembre<a></td>
+								<td><a href="inf_resultado_mes.php?mes=12">Diciembre<a></td>
+							</tr>
+						</table>
+					</div>
+				</form>
+			</td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

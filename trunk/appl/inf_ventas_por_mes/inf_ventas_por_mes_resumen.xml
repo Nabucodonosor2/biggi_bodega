@@ -1,0 +1,76 @@
+<Report>
+	<Font name="Arial" size="11" style="" id="ArialSmall"/>
+	<Font name="Arial" size="9" style="" id="Arial_correo"/>
+	<Font name="Arial" size="7.5" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="BU" id="ArialBoldU"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="12" style="B" id="ArialBoldBlueBig" red="0" green="0" blue="128"/>	
+	<Font name="Arial" size="10" style="" id="Arial"/>
+	<Font name="Arial" size="9" style="B" id="ArialBoldBlueSmall" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="8.7" style="" id="ArialItem"/>
+	<Font name="Arial" size="9" style="B" id="ArialBoldBlueItem" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="9" style="BU" id="ArialBoldUItem"/>
+	
+	<PageHeader>	
+		<Cell text="" height="100" newline="1"/>		
+
+		<Cell text="" width="30%"/>		
+		<Cell text="VENTAS POR MES" width="40%" align="C" font="ArialBoldBigB" newline="1"/>
+
+		<Cell text="" width="30%"/>		
+		<Cell text="Año: {strANO}" width="40%" align="C" font="ArialBoldBlue"  newline="1"/>
+		<Cell text="" width="30%"/>		
+		<Cell text="Desde: {strMES_DESDE}; Hasta: {strMES_HASTA}" width="40%" align="C" font="ArialBoldBlue" newline="1"/>
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="" height="50" newline2="1"/>		
+
+		<Cell text="" width="30%"/>
+		<Cell text="Cantidad NV:" width="25%" align="R" border="LRT" font="ArialItem"/>
+		<Cell text="{CANT_NV}" width="15%" align="R" border="LRT" font="ArialItem" newline2="1" />
+		
+		<Cell text="" width="30%"/>
+		<Cell text="Subtotal:" width="25%" align="R" border="LR" font="ArialItem"/>
+		<Cell text="{SUBTOTAL}" width="15%" align="R" border="LR" font="ArialItem" format="N0,." newline2="1" />
+		
+		<Cell text="" width="30%"/>
+		<Cell text="Descuentos (-):" width="25%" align="R" border="LR" font="ArialItem"/>
+		<Cell text="{MONTO_DSCTO}" width="15%" align="R" border="LR" font="ArialItem" format="N0,."/>
+		<Cell text="{PORC_DSCTO}" width="5%" align="R" font="ArialItem" format="N1,."/>		
+		<Cell text="%" width="10%" align="L" font="ArialItem" newline2="1" />		
+
+		<Cell text="" width="30%"/>
+		<Cell text="Total Neto:" width="25%" align="R" border="LR" font="ArialItem"/>
+		<Cell text="{TOTAL_NETO}" width="15%" align="R" border="LR" font="ArialItem" format="N0,." newline2="1"/>
+
+		<Cell text="" width="30%"/>
+		<Cell text="Descuentos corporativo (-):" width="25%" align="R" border="LR" font="ArialItem"/>
+		<Cell text="{MONTO_DSCTO_CORPORATIVO}" width="15%" align="R" border="LR" font="ArialItem" format="N0,."/>
+		<Cell text="{PORC_DSCTO_CORPORATIVO}" width="5%" align="R" font="ArialItem" format="N1,."/>		
+		<Cell text="%" width="10%" align="L" font="ArialItem" newline2="1" />		
+
+		<Cell text="" width="30%"/>
+		<Cell text="Descuentos Total:" width="25%" align="R" border="LR" font="ArialItem"/>
+		<Cell text="{MONTO_DSCTO_TOTAL}" width="15%" align="R" border="LR" font="ArialItem" format="N0,."/>
+		<Cell text="{PORC_DSCTO_TOTAL}" width="5%" align="R" font="ArialItem" format="N1,."/>		
+		<Cell text="%" width="10%" align="L" font="ArialItem" newline2="1" />		
+
+		<Cell text="" width="30%"/>
+		<Cell text="Total Venta:" width="25%" align="R" border="LR" font="ArialItem"/>
+		<Cell text="{TOTAL_VENTA}" width="15%" align="R" border="LR" font="ArialItem" format="N0,." newline2="1" />		
+
+		<Cell text="" width="30%"/>
+		<Cell text="Despachado Neto:" width="25%" align="R" border="LR" font="ArialItem"/>
+		<Cell text="{DESPACHADO_NETO}" width="15%" align="R" border="LR" font="ArialItem" format="N0,." newline2="1" />		
+
+		<Cell text="" width="30%"/>
+		<Cell text="Cobrado Neto:" width="25%" align="R" border="LR" font="ArialItem"/>
+		<Cell text="{COBRADO_NETO}" width="15%" align="R" border="LR" font="ArialItem" format="N0,." newline2="1" />		
+
+		<Cell text="" width="30%"/>
+		<Cell text="Por Cobrar Neto:" width="25%" align="R" border="LRB" font="ArialItem"/>
+		<Cell text="{POR_COBRAR_NETO}" width="15%" align="R" border="LRB" font="ArialItem" format="N0,." newline2="1" />		
+	</Content>
+</Report>

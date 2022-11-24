@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<title>Facturas por Clientes</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="inf_facturas_por_cliente.js" type="text/javascript"></script>
+<style type="text/css">
+	.dig_verif{
+		font-size: 12px;
+		text-align:left;
+	}
+</style>
+</head>
+<body>
+<!-- DO NOT MOVE! The following AllWebMenus linking code section must always be placed right AFTER the BODY tag-->
+<!-- ******** BEGIN ALLWEBMENUS CODE FOR menu ******** -->
+<script type="text/javascript">var MenuLinkedBy="AllWebMenus [4]",awmMenuName="menu",awmBN="740";awmAltUrl="";</script>
+<script charset="UTF-8" src="{K_ROOT_URL}menu/menu.js" type="text/javascript"></script>
+<script type="text/javascript">{W_MENU}</script>
+<!-- ******** END ALLWEBMENUS CODE FOR menu ******** -->
+	<table width="1050" border="0" align="center">
+		<tr bgcolor="#FFFFFF">
+			<!-- menu superior-->
+			<td width="1000"  height="51" align="center" id="awmAnchor-menu" style="width:100px; height:50px;">
+				<div style="color:blue; text-align:right; height:29px;"></div>
+				<div style="color:blue;text-align:right; font-family: Verdana,Arial,Helvetica,sans-serif;">{K_NOMBRE}</div>
+			</td>
+		</tr>
+		<tr bgcolor="#FFFFFF">
+	 		
+						<td>
+						<img src="../../images_appl/banner_informe.jpg" width="1050" height="120">
+						</td>  
+		</tr>
+		<tr bgcolor="#FFFFFF">
+			<td>
+				<table width="1000" border="0" align="center" height="30">
+				<tr>
+					<td></td>
+				</tr>
+				</table>
+				<p/>
+				<form action="crea_archivo_texto.php" method="post" name="form" id="form1">
+				<table width="1000" border="0" align="center" height="460">
+					<tr bgcolor="#FFFFFF" height="430">
+						<td valign="top">
+							<table width="400" border="0" align="center">
+								<tr class="titulo_central" align="center">
+									<td>FACTURAS POR CLIENTES</td>
+								</tr>
+								<tr>
+									<td height="20"></td>
+								</tr>
+							</table>
+							<table width="400" border="0" align="center">
+								<tr>
+									<td width="200" class="encabezado_right">Rut Empresa:</td>
+									<td class="dig_verif" width="200">{RUT} - {DIG_VERIF}</td>
+								</tr>
+								<tr>
+									<td width="200" class="encabezado_right">Fecha Inicial:</td>
+									<td width="200">{F_INICIAL}</td>
+								</tr>
+								<tr>
+									<td width="200" class="encabezado_right">Fecha Final:</td>
+									<td width="200">{F_TERMINO}{F_ACTUAL}</td>
+								</tr>
+								<tr>
+									<td colspan="2" height="10"></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="center">
+									  	<input type="submit" name="b_crea" id="b_crea" value="EXCEL" class="button"  onclick="if(!(valida_fecha())) return false; if(!(valida_datos())) return false;"/>
+									</td>								  				   
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr bgcolor="#FFFFFF" height="28">
+						<td>						
+							<table width="1000" border="0" align="center">
+								<tr valign="middle">
+								  <td width="290" >{WI_BACK}</td>
+								</tr>
+							</table> 
+						</td>
+					</tr>
+				</table>
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+	
+
+
+

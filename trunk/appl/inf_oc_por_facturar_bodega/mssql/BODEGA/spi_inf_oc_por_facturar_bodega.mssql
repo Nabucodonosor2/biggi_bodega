@@ -1,0 +1,51 @@
+CREATE PROCEDURE spi_inf_oc_por_facturar_bodega(@ve_origen						varchar(20)
+												,@ve_fecha_inf_por_facturar_tdnx	datetime
+												,@ve_cod_usuario					numeric(10)
+												,@ve_cod_orden_compra				numeric(10)
+												,@ve_fecha_orden_compra				datetime
+												,@ve_cod_item_orden_compra			numeric(10)
+												,@ve_cod_producto					varchar(20)
+												,@ve_nom_producto					varchar(100)
+												,@ve_cantidad_oc					numeric(14,4)
+												,@ve_cod_nota_venta					numeric(14,4)
+												,@ve_cod_usuario_vendedor			VARCHAR(4)
+												,@ve_nom_usuario					VARCHAR(100))
+as
+BEGIN
+	DECLARE @vl_cant_fa			numeric(14,4)
+		   ,@vl_cant_por_fact	numeric(14,4)
+		   
+	
+	set @vl_cant_fa			= dbo.f_fa_facturado_oc_ws(@ve_cod_item_orden_compra ,@ve_origen)
+	set @vl_cant_por_fact	= @ve_cantidad_oc - @vl_cant_fa
+		
+	INSERT INTO INF_OC_POR_FACTURAR_BODEGA(FECHA_INF_OC_POR_FACTURAR_BODEGA
+											,COD_USUARIO
+											,COD_ORDEN_COMPRA
+											,FECHA_ORDEN_COMPRA
+											,COD_ITEM_ORDEN_COMPRA
+											,COD_PRODUCTO
+											,NOM_PRODUCTO
+											,CANTIDAD_OC
+											,CANT_FA
+											,CANT_POR_FACT
+											,COD_NOTA_VENTA
+											,COD_USUARIO_VENDEDOR
+											,NOM_USUARIO)
+									VALUES(@ve_fecha_inf_por_facturar_tdnx
+											,@ve_cod_usuario
+											,@ve_cod_orden_compra
+											,@ve_fecha_orden_compra
+											,@ve_cod_item_orden_compra
+											,@ve_cod_producto
+											,@ve_nom_producto
+											,@ve_cantidad_oc
+											,@vl_cant_fa
+											,@vl_cant_por_fact
+											,@ve_cod_nota_venta
+											,@ve_cod_usuario_vendedor
+											,@ve_nom_usuario
+											)
+	
+	
+END

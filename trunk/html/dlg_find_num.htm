@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title></title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script charset="iso-8859-1" src="../../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script charset="iso-8859-1" src="../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
+<script type="text/javascript">
+	// DIALOG Required Code
+	var prntWindow = getParentWindowWithDialog(); //$(top)[0];
+
+	var $dlg = prntWindow && prntWindow.$dialog;
+
+	function getParentWindowWithDialog() {
+		var p = window.parent;
+		var previousParent = p;
+		while (p != null) {
+			if ($(p.document).find('#iframeDialog').length) return p;
+
+			p = p.parent;
+
+			if (previousParent == p) return null;
+
+			// save previous parent
+
+			previousParent = p;
+		}
+		return null;
+	}
+
+	function setWindowReturnValue(value) {
+		if ($dlg) $dlg.returnValue = value;
+		window.returnValue = value; // in case popup is called using showModalDialog
+
+	}
+
+	function getWindowReturnValue() {
+		// in case popup is called using showModalDialog
+
+		if (!$dlg && window.returnValue != null)
+			return window.returnValue;
+
+		return $dlg && $dlg.returnValue;
+	}
+
+	if ($dlg) window.dialogArguments = $dlg.dialogArguments;
+	if ($dlg) window.close = function() { if ($dlg) $dlg.dialogWindow.dialog('close'); };
+	// END of dialog Required Code
+
+    function okMe(){
+    	var vl_valor1 = document.getElementById('VALOR1_0').value;
+    	var vl_valor2 = document.getElementById('VALOR2_0').value;
+    	var vl_valor3 = document.getElementById('VALOR3_0').value;
+    	var returnValue = '';
+    	
+    	if(vl_valor1 != '' && vl_valor3 != ''){
+    		alert('Debe ingresar solo por un rango o por valores');
+    		return false;
+    	}
+    	
+    	if(vl_valor1 != '' || vl_valor2 != '')
+    		returnValue=vl_valor1+'|'+vl_valor2;
+    	else{
+    		var arr_valor = vl_valor3.split(',');
+    		for(i=0 ; i < arr_valor.length ; i++){
+    			if(arr_valor[i] != '')
+    				returnValue = returnValue + arr_valor[i] + ',';
+    			
+    		}
+    		
+    		returnValue = returnValue.substring(0, (returnValue.length - 1));
+    	}		
+    	
+	 	setWindowReturnValue(returnValue);
+	 	
+ 		if(returnValue!=''){
+ 			$dlg.dialogWindow.dialog('close');
+ 		}else
+ 			return false;
+	}
+    function closeMe() {
+        setWindowReturnValue(null);
+        $dlg.dialogWindow.dialog('close');
+    }
+</script>
+<style type="text/css">
+<!--
+.input_num{
+	font-size: 14px;
+	text-align:right;
+}
+.input_text{
+	font-size: 14px;
+	text-align:right;
+}
+.button{
+	font-size: 14px;
+	text-align:center;
+}
+.titulo_tabla_wm2 {
+    background-color: #E5E5E5;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000066;
+    text-align: left;
+    padding-top: 9px;
+    padding-bottom: 0px;
+    margin-left: -0.6em;
+}
+.titulo_tabla_wm3 {
+    background-color: #E5E5E5;
+    font-size: 10px;
+    font-weight: bold;
+    color: #000066;
+    text-align: left;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-left: -0.6em;
+}
+-->
+</style>
+</head>
+<body onLoad="window.document.find.VALOR1_0.focus();" class="content_wm">
+<div class="titulo_tabla_wm">&nbsp;&nbsp;&nbsp;{PROMPT}</div>
+	<form name="find">
+		<table>
+			<tr>
+				<td align="left">Desde: {VALOR1}</td>
+				<td align="left">Hasta: {VALOR2}</td>
+			</tr>
+			<tr>
+				<td class="titulo_tabla_wm2" colspan="2">{PROMPT2}</td>
+			</tr>
+			<tr>
+				<td class="titulo_tabla_wm3" colspan="2">(Separe con una coma los valores a buscar)</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="left">Valores: {VALOR3}</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+					<input name="OK" type="submit" value="OK" onclick="okMe();" class="button"/>
+					<input name="Cancelar" type="button" value="Eliminar filtro" onclick="closeMe();" class="button"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<Report>
+	<Font name="Arial" size="11" style="" id="ArialSmall"/>
+	<Font name="Arial" size="9" style="" id="Arial_correo"/>
+	<Font name="Arial" size="7.5" style="" id="ArialSmallBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="17" style="B" id="ArialBoldBigB" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="10" style="BU" id="ArialBoldU"/>
+	<Font name="Arial" size="10" style="B" id="ArialBold"/>
+	<Font name="Arial" size="10" style="B" id="ArialBoldBlue" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="12" style="B" id="ArialBoldBlueBig" red="0" green="0" blue="128"/>	
+	<Font name="Arial" size="10" style="" id="Arial"/>
+	<Font name="Arial" size="9" style="B" id="ArialBoldBlueSmall" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="7" style="" id="ArialItem"/>
+	<Font name="Arial" size="9" style="B" id="ArialBoldBlueItem" red="0" green="0" blue="128"/>
+	<Font name="Arial" size="9" style="BU" id="ArialBoldUItem"/>
+	
+	<PageHeader>	
+		<Cell text="" width="30%"/>		
+		<Cell text="RESULTADO RESUMEN" width="40%" align="C" font="ArialBoldBigB" newline="1"/>
+		<Cell text="" width="30%" newline="1"/>
+	</PageHeader>
+	<Content font="Arial">
+		<Cell text="{NOM_MES}" width="8.5%" align="L" border="LRTB" font="ArialItem"/>
+		<Cell text="{PORC_RESULTADO}" width="5.5%" align="R" border="LRTB" format="N2,." font="ArialItem"/>
+		<Cell text="{MONTO_RESULTADO}" width="8%" align="R" border="LRTB" format="N0,." font="ArialItem"/>
+		<Cell text="{PORC_DIRECTORIO}" width="6%" align="R" border="LRTB" format="N2,." font="ArialItem"/>
+		<Cell text="{MONTO_DIRECTORIO}" width="7%" align="R" border="LRTB" format="N0,." font="ArialItem"/>
+		<Cell text="{PAGO_DIRECTORIO}" width="7%" align="R" border="LRTB" format="N0,." font="ArialItem"/>
+		<Cell text="{PORC_GV}" width="6%" align="R" border="LRTB" format="N2,." font="ArialItem"/>
+		<Cell text="{MONTO_GV}" width="7%" align="R" border="LRTB" format="N0,." font="ArialItem"/>
+		<Cell text="{PAGO_GV}" width="7%" align="R" border="LRTB" format="N0,." font="ArialItem"/>
+		<Cell text="{PORC_ADM}" width="6%" align="R" border="LRTB" format="N2,." font="ArialItem"/>
+		<Cell text="{MONTO_ADM}" width="7%" align="R" border="LRTB" format="N0,." font="ArialItem"/>
+		<Cell text="{PAGO_ADM}" width="7%" align="R" border="LRTB" format="N0,." font="ArialItem"/>
+		<Cell text="{PORC_VENDEDOR}" width="6%" align="R" border="LRTB" format="N2,." font="ArialItem"/>
+		<Cell text="{MONTO_VENDEDOR}" width="7%" align="R" border="LRTB" format="N0,." font="ArialItem"/>
+		<Cell text="{PAGO_VENDEDOR}" width="7%" align="R" border="LRTB" format="N0,." font="ArialItem" newline="1"/>
+	</Content>
+	<Group>
+		<GroupHeader>
+			<Cell text="" width="8.5%" align="R" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="RESULTADOS" width="13.5%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="DIRECTORIO" width="20%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="GTE. VENTA" width="20%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="ADMINISTRACION" width="20%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="VENDEDOR" width="20%" align="C" border="LRT" font="ArialBoldBlueItem"  newline="1"/>
+			
+			<Cell text="MES" width="8.5%" align="C" border="LR" font="ArialBoldBlueItem"/>
+			<Cell text="Porc. %" width="5.5%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Monto $" width="8%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Porc. %" width="6%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Monto $" width="7%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Pagado $" width="7%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Porc. %" width="6%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Monto $" width="7%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Pagado $" width="7%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Porc. %" width="6%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Monto $" width="7%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Pagado $" width="7%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Porc. %" width="6%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Monto $" width="7%" align="C" border="LRT" font="ArialBoldBlueItem"/>
+			<Cell text="Pagado $" width="7%" align="C" border="LRT" font="ArialBoldBlueItem" newline="1"/>
+		</GroupHeader>
+	</Group>
+</Report>

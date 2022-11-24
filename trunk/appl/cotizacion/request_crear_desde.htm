@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Documento sin t&iacute;tulo</title>
+<link href="{W_CSS}" rel="stylesheet" type="text/css">
+<script charset="iso-8859-1" src="{K_ROOT_URL}../../commonlib/trunk/script_js/edit_filter.js" type="text/javascript"></script>
+<script type="text/javascript">
+function get_returnVal(){
+	var nro_cotizacion	= document.getElementById('NRO_COTIZACION_0').value;
+	var seleccion_coti_soli = document.getElementById('SELECCION_SOLICITUD_0').checked;
+	var seleccion_coti = document.getElementById('SELECCION_COTIZACION_0').checked;
+
+	if (nro_cotizacion == ''){ //lengh
+		alert('Debe Ingresar Nro. de Cotización ó Solicitud Cotización para continuar');
+		set_null();
+		return false;
+	}else{
+		if(seleccion_coti_soli == true){
+			return "SOLICITUD|" + nro_cotizacion;
+		}else if(seleccion_coti == true){
+			return "COTIZACION|" + nro_cotizacion;
+		}
+	}
+}
+</script>
+</head>
+<body onLoad="window.document.envio_cot.NRO_COTIZACION_0.focus();" class="content_wm">
+<div class="titulo_tabla_wm">&nbsp;&nbsp;Ingrese Nº de Cotización</div>
+	<form name="envio_cot">
+		<table>
+			<tr>
+				<td align="left">{SELECCION_SOLICITUD}</td>
+			</tr>
+			<tr>
+				<td align="left">{SELECCION_COTIZACION}</td>
+			</tr>
+			<tr>
+				<td align="center">{NRO_COTIZACION}</td>
+				<td>
+					<input name="OK" type="submit" value="OK" onclick="if(!(get_returnVal())) return false; else returnValue=get_returnVal();	window.close();" class="button"/>
+				</td>
+				<td>
+					<input name="Cancelar" type="button" value="Cancelar" onclick="returnValue=null; window.close();" class="button"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
