@@ -493,6 +493,17 @@ class wi_factura extends wi_factura_base {
 		}
 	}
 	
+	function procesa_event() {		
+		if((isset($_POST['b_back_x']) && session::is_set('FACTURA_DESDE_INF_X_FAC')) 
+			|| (isset($_POST['b_no_save_x']) && session::is_set('FACTURA_DESDE_INF_X_FAC'))
+				|| (isset($_POST['b_delete_x']) && session::is_set('FACTURA_DESDE_INF_X_FAC'))) {
+			session::un_set("FACTURA_DESDE_INF_X_FAC");
+			$url = "../../../../../commonlib/trunk/php/mantenedor.php?modulo=inf_oc_por_facturar_bodega&cod_item_menu=4097";
+			header ('Location:'.$url);
+		}else
+			parent::procesa_event();
+	}
+
 	function habilita_boton(&$temp, $boton, $habilita) {
 		parent::habilita_boton($temp, $boton, $habilita);
 		

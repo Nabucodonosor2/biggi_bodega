@@ -48,11 +48,13 @@
 			<table width="1000" border="0" align="center" height="550">
 				<tr bgcolor="#FFFFFF" height="480">
 					<td valign="top">
+						<input name="NRO_OC_INF_FACTURA" id="NRO_OC_INF_FACTURA" type="hidden">
 						<table width="1000" align="center">
 							<tr class="encabezado_center_informe">
-								<th width="10%">{H_COD_ORDEN_COMPRA}</th>
-								<th width="10%">{H_FECHA_ORDEN_COMPRA}</th>
-								<td width="10%">{H_COD_NOTA_VENTA}</td>
+								<th width="3%" style="display:{WO_DISPLAY_B_FACT_TH}"></th>
+								<th width="9%">{H_COD_ORDEN_COMPRA}</th>
+								<th width="9%">{H_FECHA_ORDEN_COMPRA}</th>
+								<td width="9%">{H_COD_NOTA_VENTA}</td>
 								<td width="5%">{H_COD_USUARIO_VENDEDOR}</td>
 								<th width="10%">{H_COD_PRODUCTO}</th>
 								<th width="25%">{H_NOM_PRODUCTO}</th>
@@ -65,9 +67,10 @@
 						<table width="1000" align="center">
 							<!-- startBlock(wo_registro) -->
 							<tr class="{WO_TR_CSS}">
-								<td width="10%" align="center">{COD_ORDEN_COMPRA}</td>
-								<td width="10%" align="center">{FECHA_ORDEN_COMPRA}</td>
-								<td width="10%" align="center">{COD_NOTA_VENTA}</td>
+								<td width="3%" align="center" style="display:{WO_DISPLAY_B_FACT}">{WO_FACTURA_OC}</td>
+								<td width="9%" align="center">{COD_ORDEN_COMPRA}</td>
+								<td width="9%" align="center">{FECHA_ORDEN_COMPRA}</td>
+								<td width="9%" align="center">{COD_NOTA_VENTA}</td>
 								<td width="5%" align="center">{COD_USUARIO_VENDEDOR}</td>
 								<td width="10%" align="left">{COD_PRODUCTO}</td>
 								<td width="25%" align="left">{NOM_PRODUCTO}</td>
