@@ -90,7 +90,7 @@ class wo_inf_oc_por_facturar_bodega extends wo_inf_oc_por_facturar_bodega_base {
 		$this->add_header(new header_date('FECHA_ORDEN_COMPRA', 'FECHA_ORDEN_COMPRA', 'Fecha OC'));
 
 		// COD_SOLICITUD DE COMPRA SE ALMACENARA EN COD_NOTA_VENTA PARA NO ALTERAR LA TABLA inf_oc_por_facturar_bodega
-		$this->add_header(new header_num('COD_NOTA_VENTA', 'COD_NOTA_VENTA', 'Nï¿½ NV'));
+		$this->add_header(new header_num('COD_NOTA_VENTA', 'COD_NOTA_VENTA', 'Nº NV'));
 
 		$sql = "SELECT DISTINCT COD_USUARIO_VENDEDOR,NOM_USUARIO FROM inf_oc_por_facturar_bodega WHERE COD_USUARIO_VENDEDOR NOT IN ('AH', 'PP', 'RE', 'VP') order by COD_USUARIO_VENDEDOR";
 		$this->add_header($control = new header_drop_down_string('COD_USUARIO_VENDEDOR', "COD_USUARIO_VENDEDOR", 'V1',$sql));
