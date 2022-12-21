@@ -498,7 +498,7 @@ class wi_factura extends wi_factura_base {
 			|| (isset($_POST['b_no_save_x']) && session::is_set('FACTURA_DESDE_INF_X_FAC'))
 				|| (isset($_POST['b_delete_x']) && session::is_set('FACTURA_DESDE_INF_X_FAC'))) {
 			session::un_set("FACTURA_DESDE_INF_X_FAC");
-			$url = "../../../../../commonlib/trunk/php/mantenedor.php?modulo=inf_oc_por_facturar_bodega&cod_item_menu=4097";
+			$url = $this->root_url."../../commonlib/trunk/php/mantenedor.php?modulo=inf_oc_por_facturar_bodega&cod_item_menu=4097";
 			header ('Location:'.$url);
 		}else
 			parent::procesa_event();
@@ -834,7 +834,7 @@ class wi_factura extends wi_factura_base {
 		if($DescuentoMonto1 <> 0){
 			$b['DscRcgGlobal'][0]['NroLinDR']	= 1;
 			$b['DscRcgGlobal'][0]['TpoMov']	= 'D'; //D(descuento) o R(recargo)
-			$b['DscRcgGlobal'][0]['TpoValor']= '$';//Indica si es Porcentaje o Monto “%” o “$”
+			$b['DscRcgGlobal'][0]['TpoValor']= '$';//Indica si es Porcentaje o Monto ï¿½%ï¿½ o ï¿½$ï¿½
 			$b['DscRcgGlobal'][0]['ValorDR']	= $DescuentoMonto1;
 			
 			$tiene_descuento = 'S';
@@ -844,7 +844,7 @@ class wi_factura extends wi_factura_base {
 		if($DescuentoMonto2 <> 0){
 			$b['DscRcgGlobal'][1]['NroLinDR']	= 2; 
 			$b['DscRcgGlobal'][1]['TpoMov']	= 'D'; //D(descuento) o R(recargo)
-			$b['DscRcgGlobal'][1]['TpoValor']= '$';//Indica si es Porcentaje o Monto “%” o “$”
+			$b['DscRcgGlobal'][1]['TpoValor']= '$';//Indica si es Porcentaje o Monto ï¿½%ï¿½ o ï¿½$ï¿½
 			$b['DscRcgGlobal'][1]['ValorDR']	= $DescuentoMonto2;
 			
 			$tiene_descuento = 'S';
@@ -881,7 +881,7 @@ class wi_factura extends wi_factura_base {
 
 		if(trim($RESP_EMITIR_DTE) <> ''){
 			$this->_load_record();
-		    print " <script>alert('Error al Emitir Dte, el documento ya tiene un intento de envío al SII.');</script>";
+		    print " <script>alert('Error al Emitir Dte, el documento ya tiene un intento de envï¿½o al SII.');</script>";
 		    return;
 		}
 		
@@ -894,7 +894,7 @@ class wi_factura extends wi_factura_base {
 				
 		if(count($result_log)>0){
 		    $this->_load_record();
-		    print " <script>alert('Error al Emitir Dte, el documento ya tiene un intento de envío al SII.');</script>";
+		    print " <script>alert('Error al Emitir Dte, el documento ya tiene un intento de envï¿½o al SII.');</script>";
 		    return;
 		}else{
 		    
@@ -916,7 +916,7 @@ class wi_factura extends wi_factura_base {
 		$response2 = str_replace("'", "''", $response);	// reemplaza ' por ''
 		
 		
-		//Guarda el response de la función emitir_dte.
+		//Guarda el response de la funciï¿½n emitir_dte.
 		$sp = 'spu_factura';
 		$param = "'SAVE_EMITIR_DTE' 
 								,$cod_factura 	--@ve_cod_factura
@@ -1180,7 +1180,7 @@ class wi_factura extends wi_factura_base {
 		$result_log = $db->build_results($Sql);
 				
 		if(count($result_log)>0){
-		    return 'Error al Eliminar Dte, el documento ya tiene un intento de envío al SII.';
+		    return 'Error al Eliminar Dte, el documento ya tiene un intento de envï¿½o al SII.';
 		}
 		else 
 			return '';
@@ -1314,7 +1314,7 @@ class wi_factura extends wi_factura_base {
 		}
 		if($count1 > 18){
 			$this->_load_record();
-			$this->alert('Se está ingresando más item que la cantidad permitida, favor contacte a IntegraSystem.');
+			$this->alert('Se estï¿½ ingresando mï¿½s item que la cantidad permitida, favor contacte a IntegraSystem.');
 			return false;
 		}	
 			
@@ -1356,7 +1356,7 @@ class wi_factura extends wi_factura_base {
 			$resul_total = $db->build_results($sql_total);
 			$total_con_iva = $resul_total[0]['TOTAL_CON_IVA'] ;
 			$total_en_palabras =  Numbers_Words::toWords($total_con_iva,"es"); 
-			$total_en_palabras = strtr($total_en_palabras, "áéíóú", "aeiou");
+			$total_en_palabras = strtr($total_en_palabras, "ï¿½ï¿½ï¿½ï¿½ï¿½", "aeiou");
 			$total_en_palabras = strtoupper($total_en_palabras);
 			
 			$db = new database(K_TIPO_BD, K_SERVER, K_BD, K_USER, K_PASS);
@@ -1457,7 +1457,7 @@ class wi_factura extends wi_factura_base {
 			$EMISOR_FACTURA		= $result_dte[0]['EMISOR_FACTURA'];		//Solicitado a VE por SP "EMISOR_FACTURA"
 			$NOM_COMUNA			= $result_dte[0]['NOM_COMUNA'];			//13 Comuna Recepcion
 			$NOM_CIUDAD			= $result_dte[0]['NOM_CIUDAD'];			//14 Ciudad Recepcion
-			$DP					= $result_dte[0]['DIRECCION'];			//15 Dirección Postal
+			$DP					= $result_dte[0]['DIRECCION'];			//15 Direcciï¿½n Postal
 			$COP				= $result_dte[0]['NOM_COMUNA'];			//16 Comuna Postal
 			$CIP				= $result_dte[0]['NOM_CIUDAD'];			//17 Ciudad Postal
 			
@@ -1546,7 +1546,7 @@ class wi_factura extends wi_factura_base {
 			//LINEA4
 			$NOM_COMUNA		= substr($NOM_COMUNA.$space, 0, 20);		//13 Comuna Recepcion
 			$NOM_CIUDAD		= substr($NOM_CIUDAD.$space, 0, 20);		//14 Ciudad Recepcion
-			$DP				= substr($DP.$space, 0, 60);				//15 Dirección Postal
+			$DP				= substr($DP.$space, 0, 60);				//15 Direcciï¿½n Postal
 			$COP			= substr($COP.$space, 0, 20);				//16 Comuna Postal
 			$CIP			= substr($CIP.$space, 0, 20);				//17 Ciudad Postal
 
@@ -1606,7 +1606,7 @@ class wi_factura extends wi_factura_base {
 			fwrite($handle, ' ');									// 0 space 2
 			fwrite($handle, $NOM_COMUNA.$this->separador);			//13 Comuna Recepcion
 			fwrite($handle, $NOM_CIUDAD.$this->separador);			//14 Ciudad Recepcion
-			fwrite($handle, $DP.$this->separador);					//15 Dirección Postal
+			fwrite($handle, $DP.$this->separador);					//15 Direcciï¿½n Postal
 			fwrite($handle, $COP.$this->separador);					//16 Comuna Postal
 			fwrite($handle, $CIP.$this->separador);					//17 Ciudad Postal
 			fwrite($handle, $TOTAL_NETO.$this->separador);			//18 Monto Neto
@@ -1654,13 +1654,13 @@ class wi_factura extends wi_factura_base {
 					$CANTIDAD_DETALLE = substr($CANTIDAD_DETALLE.$space, 0, 18);
 
 					//DATOS DE ITEM_FACTURA A EXPORTAR
-					fwrite($handle, $ORDEN.$this->separador);		//31 Número de Línea
-					fwrite($handle, $MODELO.$this->separador);		//32 Código item
+					fwrite($handle, $ORDEN.$this->separador);		//31 Nï¿½mero de Lï¿½nea
+					fwrite($handle, $MODELO.$this->separador);		//32 Cï¿½digo item
 					fwrite($handle, $NOM_PRODUCTO.$this->separador);//33 Nombre del Item
 					fwrite($handle, $CANTIDAD.$this->separador);	//34 Cantidad
 					fwrite($handle, $P_UNITARIO.$this->separador);	//35 Precio Unitario
 					fwrite($handle, $TOTAL.$this->separador);		//36 Valor por linea de detalle
-					fwrite($handle, $DESCRIPCION.$this->separador);	//37 personalizados Zona Detalles(Modelo ítem)
+					fwrite($handle, $DESCRIPCION.$this->separador);	//37 personalizados Zona Detalles(Modelo ï¿½tem)
 					fwrite($handle, $CANTIDAD_DETALLE.$this->separador);	//personalizados Zona Detalles SE REPITE $CANTIDAD
 				}
 				fwrite($handle, "\r\n");
@@ -1697,8 +1697,8 @@ class wi_factura extends wi_factura_base {
 				fwrite($handle, $TDR.$this->separador);			//38 Tipo documento referencia
 				fwrite($handle, $FR.$this->separador);			//39 Folio Referencia
 				fwrite($handle, $FECHA_R.$this->separador);		//40 Fecha de Referencia
-				fwrite($handle, $CR.$this->separador);			//41 Código de Referencia
-				fwrite($handle, $RER.$this->separador);			//42 Razón explícita de la referencia
+				fwrite($handle, $CR.$this->separador);			//41 Cï¿½digo de Referencia
+				fwrite($handle, $RER.$this->separador);			//42 Razï¿½n explï¿½cita de la referencia
 			}else{
 				$TIPO_COD_REF		= '801';
 				$NRO_OC_FACTURA		= $result_ref[0]['NRO_ORDEN_COMPRA'];	
@@ -1715,9 +1715,9 @@ class wi_factura extends wi_factura_base {
 				fwrite($handle, ' '); //0 space 2
 				fwrite($handle, $TIPO_COD_REF.$this->separador);			//TIPOCODREF. SOLI 
 				fwrite($handle, $NRO_OC_FACTURA.$this->separador);			//FOLIOREF......Folio Referencia
-				fwrite($handle, $FECHA_REF_OC.$this->separador);			//FECHA OC Código de Referencia
-				fwrite($handle, $CR.$this->separador);						//41 Código de Referencia
-				fwrite($handle, $RAZON_REF_OC.$this->separador);			//RAZON  KJNSK... Razón explícita de la referencia
+				fwrite($handle, $FECHA_REF_OC.$this->separador);			//FECHA OC Cï¿½digo de Referencia
+				fwrite($handle, $CR.$this->separador);						//41 Cï¿½digo de Referencia
+				fwrite($handle, $RAZON_REF_OC.$this->separador);			//RAZON  KJNSK... Razï¿½n explï¿½cita de la referencia
 			}
 			fclose($handle);
 			/*
@@ -1730,12 +1730,12 @@ class wi_factura extends wi_factura_base {
 			$NRO_FACTURA	= trim($NRO_FACTURA);
 			if (!$upload) {
 				$this->_load_record();
-				$this->alert('No se pudo enviar Fatura Electronica Nº '.$NRO_FACTURA.', Por favor contacte a IntegraSystem.');								
+				$this->alert('No se pudo enviar Fatura Electronica Nï¿½ '.$NRO_FACTURA.', Por favor contacte a IntegraSystem.');								
 			}else{
 				
 				if ($PORC_IVA == 0){
 					$this->_load_record();
-					$this->alert('Gestión Realizada con exíto. Factura Exenta Electronica Nº '.$NRO_FACTURA.'.');
+					$this->alert('Gestiï¿½n Realizada con exï¿½to. Factura Exenta Electronica Nï¿½ '.$NRO_FACTURA.'.');
 				}else{
 					
 					$this->_load_record();
@@ -1780,7 +1780,7 @@ class wi_factura extends wi_factura_base {
 							$this->alert('registro guardado');	
 							*//*
 					}
-					$this->alert('Gestión Realizada con exíto. Factura Electronica Nº '.$NRO_FACTURA.'.');
+					$this->alert('Gestiï¿½n Realizada con exï¿½to. Factura Electronica Nï¿½ '.$NRO_FACTURA.'.');
 				}								
 			}
 			unlink($fname);
