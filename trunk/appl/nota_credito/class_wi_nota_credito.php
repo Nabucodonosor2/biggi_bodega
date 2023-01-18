@@ -1462,15 +1462,16 @@ class wi_nota_credito_base extends w_cot_nv {
                 /**INI VALIDACION Nota de Crédito sin derecho a descontar débito**/
                 
                 $sql = "select DATEDIFF (month, FECHA_FACTURA, getdate()) +
-                 CASE
-                   WHEN DATEPART(day, FECHA_FACTURA) < DATEPART(day, getdate()) THEN 1 ELSE 0
-                 END DIF_FECHA
-                 from FACTURA where COD_FACTURA  = $COD_FACTURA";
+                                CASE
+                                    WHEN DATEPART(day, FECHA_FACTURA) < DATEPART(day, getdate()) THEN 1 ELSE 0
+                                END DIF_FECHA
+                        from FACTURA 
+                        where COD_FACTURA  = $COD_FACTURA";
                 
                 $RESULT = $db->build_results($sql);
                 $DIF_FECHA = $RESULT[0]['DIF_FECHA'];
                 
-                if($CodRef == 1 && $DIF_FECHA > 3){
+                if($CodRef == 1 && $DIF_FECHA > 6){
                     $a['Encabezado']['IndNoRebaja']	= 1;
                 }
                 /**FIN VALIDACION Nota de Crédito sin derecho a descontar débito**/
