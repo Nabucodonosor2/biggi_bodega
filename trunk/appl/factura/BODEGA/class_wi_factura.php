@@ -340,8 +340,10 @@ class wi_factura extends wi_factura_base {
 						else{
 							if($result['ITEM_ORDEN_COMPRA'][$i]['RP_CLIENTE_IT'] == 'N')
 								$precio = $this->maneja_precio($db, $cod_empresa, $cod_producto);
-							else
+							else{
 								$precio = $result['ITEM_ORDEN_COMPRA'][$i]['PRECIO'];
+								$this->alert('OC '.$cod_orden_compra.' se encuentra autorizada para respetar precio de compra.\nPor lo tanto, se respetarán los precios indicados por la OC.');
+							}		
 						}
 	
 					}else
