@@ -298,8 +298,13 @@ class wo_factura extends wo_factura_base {
 						,OC.COD_DOC
 						,E.COD_FORMA_PAGO_CLIENTE
 						,OC.OBS
-						,COD_ESTADO_ORDEN_COMPRA
-				FROM $bdName.dbo.ORDEN_COMPRA OC LEFT OUTER JOIN $bdName.dbo.NOTA_VENTA NV ON OC.COD_NOTA_VENTA = NV.COD_NOTA_VENTA
+						,COD_ESTADO_ORDEN_COMPRA ";
+
+		if($sistema == 'COMERCIAL'){	
+			$sql_ws .= ",OC.RP_CLIENTE ";
+		}
+
+		$sql_ws .= " FROM $bdName.dbo.ORDEN_COMPRA OC LEFT OUTER JOIN $bdName.dbo.NOTA_VENTA NV ON OC.COD_NOTA_VENTA = NV.COD_NOTA_VENTA
 													LEFT OUTER JOIN $bdName.dbo.ARRIENDO A ON OC.COD_DOC = A.COD_ARRIENDO
 					,$bdName.dbo.EMPRESA E
 				WHERE COD_ORDEN_COMPRA = $cod_orden_compra
@@ -314,10 +319,15 @@ class wo_factura extends wo_factura_base {
  						,COD_PRODUCTO
  						,NOM_PRODUCTO
  						,CANTIDAD
- 						,PRECIO
-				   FROM $bdName.dbo.ITEM_ORDEN_COMPRA 
-				   WHERE COD_ORDEN_COMPRA = $cod_orden_compra
-				   AND FACTURADO_SIN_WS = 'N'";
+ 						,PRECIO ";
+
+		if($sistema == 'COMERCIAL'){	
+			$sql_ws .= ",RP_CLIENTE_IT ";
+		}
+
+		$sql_ws .= " FROM $bdName.dbo.ITEM_ORDEN_COMPRA 
+				    WHERE COD_ORDEN_COMPRA = $cod_orden_compra
+				    AND FACTURADO_SIN_WS = 'N'";
 				
 		$result_ws = $db->build_results($sql_ws);
 		$result['ITEM_ORDEN_COMPRA'] = $result_ws;

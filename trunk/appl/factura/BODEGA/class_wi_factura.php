@@ -332,35 +332,21 @@ class wi_factura extends wi_factura_base {
 				$cant_para_stock = $this->cant_para_stock($result, $cod_item_oc, $i);
 				////////Manejo de precio publico e interno////////	
 				if($cod_producto != 'E' && $cod_producto != 'TE' && $cod_producto != 'I' && $cod_producto != 'F'){
-					$sql_emp = "SELECT COD_EMPRESA
-					FROM PRECIO_INT_EMP
-					WHERE COD_EMPRESA = $cod_empresa";
-			
-					$result_emp = $db->build_results($sql_emp);	
-					if(count($result_emp) != 0){		
-						$sql_precio_int = "SELECT  PRECIO_VENTA_INTERNO PRECIO_INT
-										   FROM 	PRODUCTO
-										   WHERE COD_PRODUCTO = '$cod_producto'";
-							
-						$result_precio = $db->build_results($sql_precio_int);
-						$precio = $result_precio[0]['PRECIO_INT'];
-						
-						if($precio == 0.00){
-							$sql_precio_pub = "SELECT  PRECIO_VENTA_PUBLICO PRECIO_PUB
-											   FROM 	PRODUCTO
-											   WHERE COD_PRODUCTO = '$cod_producto'";
-								
-							$result_prec_pub = $db->build_results($sql_precio_pub);
-							$precio = $result_prec_pub[0]['PRECIO_PUB'];
+					
+					if($ws_origen == 'COMERCIAL'){
+	
+						if($result['ORDEN_COMPRA'][0]['RP_CLIENTE'] == 'N')
+							$precio = $this->maneja_precio($db, $cod_empresa, $cod_producto);
+						else{
+							if($result['ITEM_ORDEN_COMPRA'][$i]['RP_CLIENTE_IT'] == 'N')
+								$precio = $this->maneja_precio($db, $cod_empresa, $cod_producto);
+							else
+								$precio = $result['ITEM_ORDEN_COMPRA'][$i]['PRECIO'];
 						}
-					}else{
-						$sql_precio_pub = "SELECT  PRECIO_VENTA_PUBLICO PRECIO_PUB
-										   FROM 	PRODUCTO
-										   WHERE COD_PRODUCTO = '$cod_producto'";
-								
-						$result_prec_pub = $db->build_results($sql_precio_pub);
-						$precio = $result_prec_pub[0]['PRECIO_PUB'];
-					}
+	
+					}else
+						$precio = $this->maneja_precio($db, $cod_empresa, $cod_producto);
+
 					///////Manejo Stock/////
 					$sql_stock="SELECT dbo.f_bodega_stock(COD_PRODUCTO, 2, GETDATE()) STOCK
 							  		  ,MANEJA_INVENTARIO
@@ -493,6 +479,42 @@ class wi_factura extends wi_factura_base {
 		}
 	}
 	
+	function maneja_precio($db, $cod_empresa, $cod_producto){
+		$precio = 0;
+
+		$sql_emp = "SELECT COD_EMPRESA
+					FROM PRECIO_INT_EMP
+					WHERE COD_EMPRESA = $cod_empresa";
+			
+		$result_emp = $db->build_results($sql_emp);	
+		if(count($result_emp) != 0){		
+			$sql_precio_int = "SELECT  PRECIO_VENTA_INTERNO PRECIO_INT
+								FROM 	PRODUCTO
+								WHERE COD_PRODUCTO = '$cod_producto'";
+				
+			$result_precio = $db->build_results($sql_precio_int);
+			$precio = $result_precio[0]['PRECIO_INT'];
+			
+			if($precio == 0.00){
+				$sql_precio_pub = "SELECT  PRECIO_VENTA_PUBLICO PRECIO_PUB
+									FROM 	PRODUCTO
+									WHERE COD_PRODUCTO = '$cod_producto'";
+					
+				$result_prec_pub = $db->build_results($sql_precio_pub);
+				$precio = $result_prec_pub[0]['PRECIO_PUB'];
+			}
+		}else{
+			$sql_precio_pub = "SELECT  PRECIO_VENTA_PUBLICO PRECIO_PUB
+								FROM 	PRODUCTO
+								WHERE COD_PRODUCTO = '$cod_producto'";
+					
+			$result_prec_pub = $db->build_results($sql_precio_pub);
+			$precio = $result_prec_pub[0]['PRECIO_PUB'];
+		}
+
+		return $precio;
+	}
+
 	function procesa_event() {		
 		if((isset($_POST['b_back_x']) && session::is_set('FACTURA_DESDE_INF_X_FAC')) 
 			|| (isset($_POST['b_no_save_x']) && session::is_set('FACTURA_DESDE_INF_X_FAC'))
