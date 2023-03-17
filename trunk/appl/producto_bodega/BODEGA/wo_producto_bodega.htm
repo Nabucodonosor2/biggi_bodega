@@ -4,9 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
 <title>Sistema Grupo de Empresas Biggi</title>
 <link href="{W_CSS}" rel="stylesheet" type="text/css">
-
 <script charset="iso-8859-1" src="../../../../commonlib/trunk/script_js/general.js" type="text/javascript"></script>
 <script charset="iso-8859-1" src="../common_appl/header_modelo.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function filtro(){
+		document.getElementById('HIZO_CLICK_0').value = 'S';
+		document.output.submit();
+		return true;
+	}
+</script>
 {WO_JAVA_SCRIPT}
 </head>
 <body {WO_ONLOAD}>
@@ -30,8 +36,8 @@
 		<td>
 			<table width="1000" border="0">
 				<tr>
-					<td>
-						<table width="592" border="0">
+					<td style="width: 248px;">
+						<table width="248" border="0">
 							<tr>
 								<td height="100%"><div class="titulo_central">{WO_RUTA_MENU}</div></td>
 							</tr>
@@ -42,10 +48,25 @@
 								<td height="0%"><div class="tit_superior"><font color="#999999">{WO_NOM_USUARIO}</font></div></td>
 							</tr>
 						</table>
-					</td> 
-					<td>{WO_ADD}</td>
-<td>{WO_EXPORT}</td>
-					<td></td>					
+					</td>
+					<td width="400" align="right">
+						<table width="400" border="0" class="tabla_informe" style="border-radius: 10px;">
+							<tr>
+								{HIZO_CLICK}
+								<td width="10%" align="right"><label>{CHECK_B_MARGEN}</label></td>
+								<td class="negrita" width="40%" align="left">MOSTRAR PRECIOS BAJO MARGEN</td>
+								<td width="10%" align="right"><label>{CHECK_S_MARGEN}</label></td>
+								<td class="negrita" width="40%" align="left">MOSTRAR PRECIOS SOBRE MARGEN</td>
+							</tr>
+						</table>
+					</td>
+					<td width="100">
+						<div id="loader" style="display: none;" align="center">
+							<img src="../../images_appl/ajax-loader.gif">
+						</div>
+					</td>
+					<td width="63">{WO_ADD}</td>
+					<td width="63">{WO_EXPORT}</td>				
 				</tr>
 			</table>
 		</td>
