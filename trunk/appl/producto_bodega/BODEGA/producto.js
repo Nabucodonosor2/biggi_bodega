@@ -179,25 +179,23 @@ function select_1_producto(valores, record) {
     ajax.send(null);    
 	var resp = ajax.responseText.split('|');
 	
-	var costo_base = resp[0];
+	//var costo_base = resp[0];
 	var precio_vta_int = resp[1];
-	var precio_vta_pub = resp[2];
+	//var precio_vta_pub = resp[2];
 	
 	
-	document.getElementById('COSTO_BASE_PC_'+record).innerHTML = number_format(costo_base, 0, ',', '.');
+	//document.getElementById('COSTO_BASE_PC_'+record).innerHTML = number_format(costo_base, 0, ',', '.');
 	document.getElementById('PRECIO_VENTA_INTERNO_PC_'+record).innerHTML = number_format(precio_vta_int, 0, ',', '.');
-	document.getElementById('PRECIO_VENTA_PUBLICO_PC_'+record).innerHTML = number_format(precio_vta_pub, 0, ',', '.');
-			 
+	//document.getElementById('PRECIO_VENTA_PUBLICO_PC_'+record).innerHTML = number_format(precio_vta_pub, 0, ',', '.');
+	calculo_producto();
 }
 
-function tot_costo_base(field){
+function tot_costo_base(){
 	/* copia el costo base desde la suma total */ 
-	var total_costo_base = get_value('SUM_TOTAL_PRECIO_INTERNO_0');
-	document.getElementById('COSTO_BASE_PI_0').innerHTML = total_costo_base;
-		
-	var record = get_num_rec_field(field.id);
-	document.getElementById('CANTIDAD_' + record).style.border='';
+	const total_costo_base = get_value('SUM_TOTAL_PI_0');
+	set_value('COSTO_BASE_PI_0', total_costo_base, total_costo_base);
 }
+
 function actualiza_otros_tabs() {
 	//valida que el equipo no exista
 	var cod_producto = document.getElementById('COD_PRODUCTO_PRINCIPAL_0').value;
@@ -226,4 +224,38 @@ function actualiza_otros_tabs() {
 		document.getElementById('nom_producto'+i).innerHTML = vl_nom_producto;
 		document.getElementById('nom_tipo_producto'+i).innerHTML = vl_nom_tipo_producto;
 	}
+}
+
+function calculo_total_pr(){
+	const aTR = get_TR('PRODUCTO_COMPUESTO');
+	let totalPi = 0;
+
+	for (let i = 0; i < aTR.length; i++) {
+		let vlRecord	= get_num_rec_field(aTR[i].id);
+
+		if(document.getElementById('GENERA_COMPRA_'+vlRecord).checked){
+			let vlCantidad	= get_value('CANTIDAD_'+vlRecord);
+			let vlPrecioPi	= get_value('PRECIO_VENTA_INTERNO_PC_'+vlRecord).replaceAll('.', '');
+			
+			let total = number_format(vlCantidad * vlPrecioPi, 0, ',', '.');
+			set_value('TOTAL_PRECIO_INTERNO_'+vlRecord, total, total);
+			totalPi += vlCantidad * vlPrecioPi;
+		}
+	}
+
+	totalPi = number_format(totalPi, 0, ',', '.');
+	set_value('SUM_TOTAL_PI_0', totalPi, totalPi);
+}
+
+function calculo_producto(){
+	calculo_total_pr();
+	tot_costo_base();
+	calc_precio_int_pub();
+	redondeo_biggi();
+}
+
+function del_line(ve_tr_id, ve_nom_mantenedor) {
+	del_line_standard(ve_tr_id, ve_nom_mantenedor);
+
+	calculo_producto();
 }

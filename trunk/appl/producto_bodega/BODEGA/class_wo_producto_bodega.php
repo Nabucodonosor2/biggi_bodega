@@ -56,7 +56,7 @@ class wo_producto_bodega extends wo_producto_bodega_base{
 						,NOM_TIPO_PRODUCTO
 						,dbo.f_bodega_stock(P.COD_PRODUCTO, ".self::K_BODEGA_TERMINADO.", getdate()) STOCK
 						,CASE
-                			when P.PRECIO_VENTA_INTERNO <= (dbo.f_prod_ultima_compra(P.COD_PRODUCTO) * p.FACTOR_VENTA_INTERNO) THEN 'RED'
+                			when (P.PRECIO_VENTA_INTERNO + CONVERT(NUMERIC, dbo.f_get_parametro(84))) <= (dbo.f_prod_ultima_compra(P.COD_PRODUCTO) * p.FACTOR_VENTA_INTERNO) THEN 'RED'
              				ELSE  'NAVY'
              			END AUXCOLOR
 				from 	PRODUCTO P
@@ -65,10 +65,10 @@ class wo_producto_bodega extends wo_producto_bodega_base{
 				AND dbo.f_prod_valido (COD_PRODUCTO) = 'S'";
 
 		if($this->checkbox_bajo_margen == true && $this->checkbox_sobre_margen == false)
-			$sql .= " AND P.PRECIO_VENTA_INTERNO <= (dbo.f_prod_ultima_compra(P.COD_PRODUCTO) * p.FACTOR_VENTA_INTERNO)";
+			$sql .= " AND (P.PRECIO_VENTA_INTERNO + CONVERT(NUMERIC, dbo.f_get_parametro(84))) <= (dbo.f_prod_ultima_compra(P.COD_PRODUCTO) * p.FACTOR_VENTA_INTERNO)";
 
 		if($this->checkbox_bajo_margen == false && $this->checkbox_sobre_margen == true)
-			$sql .= " AND P.PRECIO_VENTA_INTERNO > (dbo.f_prod_ultima_compra(P.COD_PRODUCTO) * p.FACTOR_VENTA_INTERNO)";
+			$sql .= " AND (P.PRECIO_VENTA_INTERNO + CONVERT(NUMERIC, dbo.f_get_parametro(84))) > (dbo.f_prod_ultima_compra(P.COD_PRODUCTO) * p.FACTOR_VENTA_INTERNO)";
 		
 		if($this->checkbox_bajo_margen == false && $this->checkbox_sobre_margen == false)
 			$sql .= " AND 0 = 1";

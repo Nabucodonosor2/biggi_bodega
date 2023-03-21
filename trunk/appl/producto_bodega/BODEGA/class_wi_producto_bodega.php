@@ -13,12 +13,9 @@ class dw_producto_compuesto extends dw_producto_compuesto_base{
 							,P.COD_PRODUCTO COD_PRODUCTO_PRINCIPAL
 							,PC.COD_PRODUCTO_HIJO COD_PRODUCTO					
 							,dbo.f_prod_get_costo_base(COD_PRODUCTO_HIJO) COSTO_BASE_PC
-							
-							--,(SELECT NOM_PRODUCTO FROM PRODUCTO WHERE COD_PRODUCTO = COD_PRODUCTO_HIJO) NOM_PRODUCTO
-							--,(SELECT PRECIO_VENTA_INTERNO FROM PRODUCTO WHERE COD_PRODUCTO = COD_PRODUCTO_HIJO) PRECIO_VENTA_INTERNO_PC
-							
 							,dbo.f_prod_compuesto_origen(COD_PRODUCTO_HIJO, 'NOM_PRODUCTO') NOM_PRODUCTO
 							,dbo.f_prod_compuesto_origen(COD_PRODUCTO_HIJO, 'PRECIO_VENTA_INTERNO_PC') PRECIO_VENTA_INTERNO_PC
+							,(PC.CANTIDAD * dbo.f_prod_compuesto_origen(COD_PRODUCTO_HIJO, 'PRECIO_VENTA_INTERNO_PC')) TOTAL_PRECIO_INTERNO
 							,(SELECT PRECIO_VENTA_PUBLICO FROM PRODUCTO WHERE COD_PRODUCTO = COD_PRODUCTO_HIJO) PRECIO_VENTA_PUBLICO_PC	
 							,ORDEN ORDEN_PC
 							,PC.CANTIDAD
@@ -35,13 +32,12 @@ class dw_producto_compuesto extends dw_producto_compuesto_base{
 		$this->add_control(new edit_text('COD_PRODUCTO_COMPUESTO', 20, 20, 'hidden'));
 		$this->add_controls_producto_help();
 		$this->add_control(new edit_num('ORDEN_PC', 5));
-		$this->add_control(new edit_check_box('GENERA_COMPRA','S','N'));	
-		$this->add_control($control = new edit_num('CANTIDAD', 8, 8));
-		$control->set_onBlur("tot_costo_base(this); calc_precio_int_pub(); redondeo_biggi();");			
+		$this->add_control($control = new edit_check_box('GENERA_COMPRA','S','N'));
+		$control->set_onChange("calculo_producto();");	
+		$this->add_control($control = new edit_num('CANTIDAD', 4, 4));
+		$control->set_onChange("calculo_producto();");			
 		$this->add_control(new static_text('PRECIO_VENTA_INTERNO_PC', 10, 8));
-		$this->set_computed('TOTAL_PRECIO_INTERNO', '[CANTIDAD] * [PRECIO_VENTA_INTERNO_PC]');
-		$this->accumulate('TOTAL_PRECIO_INTERNO');
-		
+		$this->add_control(new static_num('TOTAL_PRECIO_INTERNO'));
 		$this->add_control(new edit_check_box('ARMA_COMPUESTO','S','N'));
 						
 		$this->controls['NOM_PRODUCTO']->size = 52;
@@ -183,7 +179,8 @@ class wi_producto_bodega extends wi_producto_bodega_base{
 		                ,ES_DESPACHABLE
 		                ,'' TABLE_PRODUCTO_COMPUESTO
 		                ,'' ULTIMO_REG_INGRESO
-		                ,dbo.f_bodega_stock(P.COD_PRODUCTO, ".self::K_BODEGA_EQ_TERMINADO.", GETDATE()) STOCK            
+		                ,dbo.f_bodega_stock(P.COD_PRODUCTO, ".self::K_BODEGA_EQ_TERMINADO.", GETDATE()) STOCK
+						,0 SUM_TOTAL_PI        
         from   			PRODUCTO P
         				,MARCA M
         				,TIPO_PRODUCTO TP
@@ -202,19 +199,20 @@ class wi_producto_bodega extends wi_producto_bodega_base{
 		$this->dws['dw_producto']->add_control(new static_text('COSTO_BASE_PI'));		
 					
 		$this->dws['dw_producto']->add_control(new static_text('PRECIO_VENTA_INT_SUG'));	
-			
+		
+		$this->dws['dw_producto']->add_control(new static_num('SUM_TOTAL_PI'));
 		$this->dws['dw_producto']->add_control(new static_num('PRECIO_VENTA_INTERNO_NO_ING'));
 		$this->dws['dw_producto']->add_control(new static_text('PRECIO_VENTA_PUB_SUG'));		
 		
 		/*****/
 		$this->dws['dw_producto']->add_control($control = new edit_num('FACTOR_VENTA_INTERNO', 16, 16, 1));
-		$control->set_onChange("tot_costo_base(this); calc_precio_int_pub(); redondeo_biggi();");
+		$control->set_onChange("calculo_producto();");
 		$this->dws['dw_producto']->add_control($control = new edit_num_producto('PRECIO_VENTA_INTERNO'));
-		$control->set_onChange("tot_costo_base(this); calc_precio_int_pub(); redondeo_biggi();");
+		$control->set_onChange("calculo_producto();");
 		$this->dws['dw_producto']->add_control($control = new edit_num('FACTOR_VENTA_PUBLICO', 16, 16, 1));
-		$control->set_onChange("tot_costo_base(this); calc_precio_int_pub(); redondeo_biggi();");
+		$control->set_onChange("calculo_producto();");
 		$this->dws['dw_producto']->add_control($control = new edit_num_producto('PRECIO_VENTA_PUBLICO'));
-		$control->set_onChange("tot_costo_base(this); calc_precio_int_pub(); redondeo_biggi();");
+		$control->set_onChange("calculo_producto();");
 
 		$this->dws['dw_producto']->add_control(new edit_text_upper('NOM_PRODUCTO_INGLES', 100, 100));
 		$sql = "select		COD_MARCA
@@ -287,13 +285,31 @@ class wi_producto_bodega extends wi_producto_bodega_base{
 	}
 	function load_record(){
 		parent::load_record();
-		$total_costo_base = $this->dws['dw_producto_compuesto']->get_item(0, 'SUM_TOTAL_PRECIO_INTERNO');
+
+		$total_costo_base = 0;
+		for ($i=0; $i < $this->dws['dw_producto_compuesto']->row_count(); $i++){
+			if($this->dws['dw_producto_compuesto']->get_item($i, 'GENERA_COMPRA') == 'S')
+				$total_costo_base += $this->dws['dw_producto_compuesto']->get_item($i, 'TOTAL_PRECIO_INTERNO');
+		}
+		
+		$this->dws['dw_producto']->set_item(0, 'SUM_TOTAL_PI', $total_costo_base);
+
 		$factor_venta_int = $this->dws['dw_producto']->get_item(0, 'FACTOR_VENTA_INTERNO');
 		$factor_venta_pub = $this->dws['dw_producto']->get_item(0, 'FACTOR_VENTA_PUBLICO');
 		$factor_venta_int_no_ing = $this->dws['dw_producto']->get_item(0, 'PRECIO_VENTA_INTERNO_NO_ING');
 		$this->dws['dw_producto']->set_item(0, 'COSTO_BASE_PI',number_format($total_costo_base, 0, ',', '.'));
 		$precio_venta_int_sug = $total_costo_base * $factor_venta_int;
 		$precio_venta_pub_sug = str_replace(".", "", $factor_venta_int_no_ing) * $factor_venta_pub;
+
+		if($precio_venta_int_sug < 1000)
+			$precio_venta_int_sug = round($precio_venta_int_sug, -1);
+		else if($precio_venta_int_sug < 20000)
+			$precio_venta_int_sug = round($precio_venta_int_sug, -2);
+		else if($precio_venta_int_sug < 100000)
+			$precio_venta_int_sug = round($precio_venta_int_sug, -3);
+		else
+			$precio_venta_int_sug = round(($precio_venta_int_sug * 2), -4)/2;
+
 		$this->dws['dw_producto']->set_item(0, 'PRECIO_VENTA_INT_SUG',number_format($precio_venta_int_sug, 0, ',', '.'));
 		$this->dws['dw_producto']->set_item(0, 'PRECIO_VENTA_PUB_SUG',number_format($precio_venta_pub_sug, 0, ',', '.'));
 		
