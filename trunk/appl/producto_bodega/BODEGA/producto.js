@@ -97,75 +97,21 @@ function calc_precio_int_pub() {
 	si se modifica esta funcion tambien debe modificarse en la funcion load_record()
 	de class_wi_producto.php
 	**/
-	var cod_producto = document.getElementById('COD_PRODUCTO_H_0').value;	
-	var ve_pre_vta_int = to_num(document.getElementById('PRECIO_VENTA_INTERNO_0').value);
-	var pre_vta_int_ni = document.getElementById('PRECIO_VENTA_INTERNO_NO_ING_0');
-	var ve_fac_vta_pub = to_num(get_value('FACTOR_VENTA_PUBLICO_0'));
-	var precio_vta_int_sugerido = document.getElementById('PRECIO_VENTA_INT_SUG_0');
-	var precio_vta_pub_sugerido = document.getElementById('PRECIO_VENTA_PUB_SUG_0');
-	
-	///////////////////////////   LABEL PRECIO INTERNO    //////////////////////////////////////////	
-	var ajax = nuevoAjax();	
-    ajax.open("GET", "devolver_porcentajes.php?cod_producto="+cod_producto, false);    
-    ajax.send(null);    
-	var resp = ajax.responseText.split('|');
-	
-	var pre_int_bajo = resp[0];
-	var pre_int_alto = resp[1];
-	var pre_pub_bajo = resp[2];
-	var pre_pub_alto = resp[3];	
+	const ve_pre_vta_int			= get_value('PRECIO_VENTA_INTERNO_0');
+	const ve_fac_vta_pub			= to_num(get_value('FACTOR_VENTA_PUBLICO_0'));
+	let precio_vta_pub_sugerido		= get_value('PRECIO_VENTA_PUB_SUG_0');
+	const margen_precio_interno		= to_num(get_value('MARGEN_PRECIO_INTERNO_0'));
+	const precio_vta_int_sugerido 	= to_num(get_value('PRECIO_VENTA_INT_SUG_0'));
 
-	precio_vta_int_sugerido = parseInt(to_num(precio_vta_int_sugerido.innerHTML));
-	//ve_pre_vta_int = parseInt(to_num(ve_pre_vta_int));
-	var variacion_int = (ve_pre_vta_int - precio_vta_int_sugerido)/precio_vta_int_sugerido;
-			
-	if(variacion_int > pre_int_alto){
-		document.getElementById('PRECIO_INTERNO_ALTO').style.display = '';
+	precio_vta_pub_sugerido = to_num(ve_pre_vta_int) * ve_fac_vta_pub;
+	set_value('PRECIO_VENTA_INTERNO_NO_ING_0', number_format(ve_pre_vta_int, 0, ',', '.'), number_format(ve_pre_vta_int, 0, ',', '.'));
+	set_value('PRECIO_VENTA_PUB_SUG_0', number_format(precio_vta_pub_sugerido, 0, ',', '.'), number_format(precio_vta_pub_sugerido, 0, ',', '.'));
+
+	if(ve_pre_vta_int <= (precio_vta_int_sugerido - margen_precio_interno)){
+		document.getElementById('PRECIO_INTERNO_BAJO').style.display = '';
+	}else{
 		document.getElementById('PRECIO_INTERNO_BAJO').style.display = 'none';
-	}		
-	else{
-		document.getElementById('PRECIO_INTERNO_ALTO').style.display = 'none';
-		document.getElementById('PRECIO_INTERNO_BAJO').style.display = 'none';
-	}	
-	
-	if(variacion_int < (pre_int_bajo * -1)){
-		document.getElementById('PRECIO_INTERNO_BAJO').style.display = '';		
 	}
-			
-	pre_vta_int_ni.innerHTML = number_format(ve_pre_vta_int, 0, ',', '.');	 
-	precio_vta_pub_sugerido.innerHTML = to_num(pre_vta_int_ni.innerHTML) * ve_fac_vta_pub;
-	
-	precio_vta_pub_sugerido.innerHTML = number_format(precio_vta_pub_sugerido.innerHTML, 0, ',', '.');	
-		
-	
-	///////////////////////////   LABEL PRECIO PUBLICO    //////////////////////////////////////////
-	
-	var ve_pre_vta_pub = document.getElementById('PRECIO_VENTA_PUBLICO_0').value;
-	var precio_vta_pub_sugerido = document.getElementById('PRECIO_VENTA_PUB_SUG_0');
-	
-	precio_vta_pub_sugerido = parseInt(to_num(precio_vta_pub_sugerido.innerHTML));
-	
-	ve_pre_vta_pub = parseInt(to_num(ve_pre_vta_pub));
-	
-	
-	var variacion_pub = (ve_pre_vta_pub - precio_vta_pub_sugerido)/precio_vta_pub_sugerido;
-	
-	if(variacion_pub > pre_pub_alto){
-		document.getElementById('PRECIO_PUBLICO_ALTO').style.display = '';
-		document.getElementById('PRECIO_PUBLICO_BAJO').style.display = 'none';
-	}		
-	else{
-		document.getElementById('PRECIO_PUBLICO_ALTO').style.display = 'none';
-		document.getElementById('PRECIO_PUBLICO_BAJO').style.display = 'none';
-	}	
-	
-	if(variacion_pub < (pre_pub_bajo * -1)){
-		document.getElementById('PRECIO_PUBLICO_BAJO').style.display = '';		
-	}
-	
-	document.getElementById('PRECIO_VENTA_INTERNO_0').style.border='';
-	document.getElementById('PRECIO_VENTA_PUBLICO_0').style.border='';
-	document.getElementById('PRECIO_VENTA_PUBLICO_0').focus();
 }
 
 
@@ -178,15 +124,9 @@ function select_1_producto(valores, record) {
     ajax.open("GET", "get_valores_producto.php?cod_producto="+cod_producto_value, false);    
     ajax.send(null);    
 	var resp = ajax.responseText.split('|');
-	
-	//var costo_base = resp[0];
 	var precio_vta_int = resp[1];
-	//var precio_vta_pub = resp[2];
-	
-	
-	//document.getElementById('COSTO_BASE_PC_'+record).innerHTML = number_format(costo_base, 0, ',', '.');
+
 	document.getElementById('PRECIO_VENTA_INTERNO_PC_'+record).innerHTML = number_format(precio_vta_int, 0, ',', '.');
-	//document.getElementById('PRECIO_VENTA_PUBLICO_PC_'+record).innerHTML = number_format(precio_vta_pub, 0, ',', '.');
 	calculo_producto();
 }
 

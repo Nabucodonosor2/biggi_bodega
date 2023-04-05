@@ -180,7 +180,8 @@ class wi_producto_bodega extends wi_producto_bodega_base{
 		                ,'' TABLE_PRODUCTO_COMPUESTO
 		                ,'' ULTIMO_REG_INGRESO
 		                ,dbo.f_bodega_stock(P.COD_PRODUCTO, ".self::K_BODEGA_EQ_TERMINADO.", GETDATE()) STOCK
-						,0 SUM_TOTAL_PI        
+						,0 SUM_TOTAL_PI
+						,dbo.f_get_parametro(84) MARGEN_PRECIO_INTERNO
         from   			PRODUCTO P
         				,MARCA M
         				,TIPO_PRODUCTO TP
@@ -202,7 +203,8 @@ class wi_producto_bodega extends wi_producto_bodega_base{
 		
 		$this->dws['dw_producto']->add_control(new static_num('SUM_TOTAL_PI'));
 		$this->dws['dw_producto']->add_control(new static_num('PRECIO_VENTA_INTERNO_NO_ING'));
-		$this->dws['dw_producto']->add_control(new static_text('PRECIO_VENTA_PUB_SUG'));		
+		$this->dws['dw_producto']->add_control(new static_text('PRECIO_VENTA_PUB_SUG'));	
+		$this->dws['dw_producto']->add_control(new edit_text_hidden('MARGEN_PRECIO_INTERNO'));	
 		
 		/*****/
 		$this->dws['dw_producto']->add_control($control = new edit_num('FACTOR_VENTA_INTERNO', 16, 16, 1));
@@ -330,19 +332,26 @@ class wi_producto_bodega extends wi_producto_bodega_base{
 		$precio_venta_int_sug = ($precio_venta_int_sug == 0) ? 0.01 : $precio_venta_int_sug;
 		$precio_venta_pub_sug = ($precio_venta_pub_sug == 0) ? 0.01 : $precio_venta_pub_sug;
 
+		$margen_precio_int = $this->dws['dw_producto']->get_item(0, 'MARGEN_PRECIO_INTERNO');
+
+		if($precio_venta_int <= ($precio_venta_int_sug - $margen_precio_int))
+			$this->dws['dw_producto']->set_item(0, 'PRECIO_INTERNO_BAJO','');
+		else
+			$this->dws['dw_producto']->set_item(0, 'PRECIO_INTERNO_BAJO','none');
+
 		// CALCULO DE LABEL PRECIO INT BAJO O ALTO
-		$variacion_interno = ($precio_venta_int - $precio_venta_int_sug)/$precio_venta_int_sug;
+		/*$variacion_interno = ($precio_venta_int - $precio_venta_int_sug)/$precio_venta_int_sug;
 		if($variacion_interno > $pre_int_alto)
 			$this->dws['dw_producto']->set_item(0, 'PRECIO_INTERNO_ALTO','');
 		else if($variacion_interno < ($pre_int_bajo * -1))
-			$this->dws['dw_producto']->set_item(0, 'PRECIO_INTERNO_BAJO','');
+			$this->dws['dw_producto']->set_item(0, 'PRECIO_INTERNO_BAJO','');*/
 			
 		// CALCULO DE LABEL PRECIO PUB BAJO O ALTO						
-		$variacion_publico = ($precio_venta_pub - $precio_venta_pub_sug)/$precio_venta_pub_sug;
+		/*$variacion_publico = ($precio_venta_pub - $precio_venta_pub_sug)/$precio_venta_pub_sug;
 		if($variacion_publico > $pre_pub_alto)
 			$this->dws['dw_producto']->set_item(0, 'PRECIO_PUBLICO_ALTO','');
 		elseif($variacion_publico < ($pre_pub_bajo * -1))
-			$this->dws['dw_producto']->set_item(0, 'PRECIO_PUBLICO_BAJO','');
+			$this->dws['dw_producto']->set_item(0, 'PRECIO_PUBLICO_BAJO','');*/
 	}
 }
 ?>
