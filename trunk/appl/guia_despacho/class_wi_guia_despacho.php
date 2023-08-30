@@ -1805,7 +1805,7 @@ class wi_guia_despacho extends w_input {
 			}
 			else{
 				$this->_load_record();
-				print " <script>alert('No se encuentra Log Cambio del Envio Dte');</script>";
+				print " <script>alert('Conexion al SII es inestable. Favor notificar a Informática');</script>";
 				return;
 			}
 			

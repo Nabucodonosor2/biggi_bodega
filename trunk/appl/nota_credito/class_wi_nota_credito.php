@@ -1644,7 +1644,7 @@ class wi_nota_credito_base extends w_cot_nv {
 							$pos = strpos($response_genera, "200 OK");
 							if ($pos === false) {
 								$this->_load_record();
-								print " <script>alert('Error con generar al SII, revisar documento en IntegraDte.');</script>";
+								print " <script>alert('Conexion al SII es inestable. Favor notificar a Informática.');</script>";
 								return;
 							}
                             
