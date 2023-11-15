@@ -48,10 +48,30 @@ class wo_entrada_bodega extends wo_entrada_bodega_base {
 				}
 				
 				$sql_emp = "SELECT COD_EMPRESA
+								  ,NOM_EMPRESA
 								  ,COD_ORDEN_COMPRA
 							FROM ORDEN_COMPRA
 							WHERE COD_ORDEN_COMPRA = $cod_orden_compra";
 				$result_emp = $db->build_results($sql_emp);
+
+				/////////////////////////////////////////////////////////////////////
+				$cod_empresa_emp = $result_emp[0]['COD_EMPRESA'];
+				$nom_empresa_emp = $result_emp[0]['NOM_EMPRESA'];
+
+				$sql = "SELECT COUNT(*) COUNT
+						FROM FAPROV
+						WHERE COD_EMPRESA = $cod_empresa_emp
+						AND NRO_FAPROV = $nro_fa_proveedor
+						AND COD_ESTADO_FAPROV <> 5"; //anulada
+				$result = $db->build_results($sql);
+
+				if($result[0]['COUNT'] > 0){
+					$this->_redraw();
+					$this->alert('La Factura proveedor Nro '.$nro_fa_proveedor.', ya se encuentra registrada para el proveedor '.$nom_empresa_emp.'.');								
+					return;
+				}
+
+				/////////////////////////////////////////////////////////////////////
 				
 				if($result_emp[0]['COD_EMPRESA'] == 4 && $result_emp[0]['COD_ORDEN_COMPRA'] > 57130){
 					$sql = "select SISTEMA, URL_WS, USER_WS,PASSWROD_WS  from PARAMETRO_WS
