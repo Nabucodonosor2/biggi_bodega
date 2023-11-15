@@ -651,6 +651,33 @@ class wi_faprov extends w_input {
 			$this->habilita_boton($temp, 'create', true);
 		}
 	}
+
+	function validate_record(){
+		/*valida que no se guarde o modifique un registro con mismo proveedor y N° documento
+		mientras este no este en cualquier estado menos anulada*/
+		$COD_FAPROV		 	= $this->get_key();	
+		$COD_EMPRESA		= $this->dws['dw_faprov']->get_item(0, 'COD_EMPRESA');
+		$NOM_EMPRESA		= $this->dws['dw_faprov']->get_item(0, 'NOM_EMPRESA');
+		$NRO_FAPROV			= $this->dws['dw_faprov']->get_item(0, 'NRO_FAPROV');
+		$COD_ESTADO_FAPROV	= $this->dws['dw_faprov']->get_item(0, 'COD_ESTADO_FAPROV');
+
+		$COD_FAPROV 		= ($COD_FAPROV =='') ? 0 : $COD_FAPROV;
+
+		if($COD_ESTADO_FAPROV <> 5){
+			$db = new database(K_TIPO_BD, K_SERVER, K_BD, K_USER, K_PASS);
+			$sql = "SELECT COUNT(*) COUNT
+					FROM FAPROV
+					WHERE COD_EMPRESA = $COD_EMPRESA
+					AND NRO_FAPROV = $NRO_FAPROV
+					AND COD_ESTADO_FAPROV <> 5
+					AND COD_FAPROV <> $COD_FAPROV"; // NO DEBE CONSIDERAR LA FAPROV EN CREACION MH 31102023
+			$result = $db->build_results($sql);
+
+			if($result[0]['COUNT'] > 0)
+				return 'La Factura proveedor Nro '.$NRO_FAPROV.', ya se encuentra registrada para el proveedor '.$NOM_EMPRESA.'.';
+		}
+	}
+
 	function save_record($db) {	
 		$COD_FAPROV		 	= $this->get_key();		
 		$FECHA_REGISTRO		= $this->dws['dw_faprov']->get_item(0, 'FECHA_REGISTRO');
