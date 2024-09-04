@@ -6,6 +6,8 @@ class wo_orden_compra extends w_output {
 	var $checkbox_sumar;
 	
    	function wo_orden_compra() {
+		parent::w_base('orden_compra', $_REQUEST['cod_item_menu']);
+		
 		$sql = "select		COD_ORDEN_COMPRA                
 							,convert(varchar(20), FECHA_ORDEN_COMPRA, 103) FECHA_ORDEN_COMPRA 
 							,FECHA_ORDEN_COMPRA DATE_ORDEN_COMPRA             							                      
@@ -21,10 +23,15 @@ class wo_orden_compra extends w_output {
 				from 		ORDEN_COMPRA O LEFT OUTER JOIN SOLICITUD_COMPRA SC ON O.COD_DOC = SC.COD_SOLICITUD_COMPRA
 							,EMPRESA E
 							,ESTADO_ORDEN_COMPRA EOC
-				where		O.COD_EMPRESA = E.COD_EMPRESA and 
+				where									
+							O.COD_EMPRESA = E.COD_EMPRESA and 
 							O.COD_ESTADO_ORDEN_COMPRA = EOC.COD_ESTADO_ORDEN_COMPRA and
-							TIPO_ORDEN_COMPRA IN ('NOTA_VENTA', 'SOLICITUD_COMPRA')					
-				order by	COD_ORDEN_COMPRA desc";		
+							TIPO_ORDEN_COMPRA IN ('NOTA_VENTA', 'SOLICITUD_COMPRA') ";
+		
+		if($this->cod_usuario == 22)
+			$sql .= "and O.COD_EMPRESA = 5 ";
+							
+		$sql .=" order by	COD_ORDEN_COMPRA desc";		
 			
    		parent::w_output('orden_compra', $sql, $_REQUEST['cod_item_menu']);
 	
